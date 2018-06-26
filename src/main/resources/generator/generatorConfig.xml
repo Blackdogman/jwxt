@@ -14,27 +14,34 @@
         <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/jwxt"
                         userId="root" password="superboy123"/>
         <!-- 生成实体类 实体bean文件 -->
-        <javaModelGenerator targetPackage="temp.model" targetProject="jwxt"/>
+        <javaModelGenerator targetPackage="com.jwxt.model.system" targetProject="jwxt"/>
         <!-- mapper xml文件 -->
-        <sqlMapGenerator targetPackage="temp.mapper" targetProject="jwxt"/>
+        <sqlMapGenerator targetPackage="com.jwxt.mapper.system" targetProject="jwxt"/>
         <!-- mapper 接口文件 -->
-        <javaClientGenerator targetPackage="temp.dao" targetProject="jwxt" type="XMLMAPPER"/>
+        <javaClientGenerator targetPackage="com.jwxt.dao.system" targetProject="jwxt" type="XMLMAPPER"/>
 
-        <table tableName="administration_office" domainObjectName="AdministrationOffice" enableCountByExample="false" enableUpdateByExample="false"
+        <!-- <table tableName="administration_office" domainObjectName="AdministrationOffice" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+               
         <table tableName="class_info" domainObjectName="ClassInfo" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>    
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
+                 
         <table tableName="course" domainObjectName="Course" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+               
         <table tableName="score" domainObjectName="Score" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+               
         <table tableName="student" domainObjectName="Student" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+               
         <table tableName="sys_dictionary" domainObjectName="SysDictionary" enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table> -->
+               
+        <table tableName="sys_user" domainObjectName="SysUser" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-        <table tableName="sys_user" domainObjectName="Sys_User" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-        <table tableName="teacher" domainObjectName="Teacher" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+               
+       <!--  <table tableName="teacher" domainObjectName="Teacher" enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table> -->
     </context>
 </generatorConfiguration>

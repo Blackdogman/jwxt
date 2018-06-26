@@ -68,6 +68,6 @@
 
     <!-- DEFAULT PAGE -->
     <welcome-file-list>
-        <welcome-file>/index.jsp</welcome-file>
+        <welcome-file>/view/frame/login.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

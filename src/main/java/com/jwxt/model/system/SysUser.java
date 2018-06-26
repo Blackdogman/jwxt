@@ -1,8 +1,8 @@
-package temp.model;
+package com.jwxt.model.system;
 
 import java.util.Date;
 
-public class Sys_User {
+public class SysUser {
     private String userId;
 
     private String userLoginName;

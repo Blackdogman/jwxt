@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="temp.dao.Sys_UserMapper">
-  <resultMap id="BaseResultMap" type="temp.model.Sys_User">
+<mapper namespace="com.jwxt.dao.system.SysUserMapper">
+  <resultMap id="BaseResultMap" type="com.jwxt.model.system.SysUser">
     <id column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="user_login_name" jdbcType="VARCHAR" property="userLoginName" />
     <result column="user_login_pwd" jdbcType="VARCHAR" property="userLoginPwd" />
@@ -22,7 +22,7 @@
     delete from sys_user
     where user_id = #{userId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="temp.model.Sys_User">
+  <insert id="insert" parameterType="com.jwxt.model.system.SysUser">
     insert into sys_user (user_id, user_login_name, user_login_pwd, 
       user_create_time, user_charactor, user_status
       )
@@ -30,7 +30,7 @@
       #{userCreateTime,jdbcType=TIMESTAMP}, #{userCharactor,jdbcType=VARCHAR}, #{userStatus,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" parameterType="temp.model.Sys_User">
+  <insert id="insertSelective" parameterType="com.jwxt.model.system.SysUser">
     insert into sys_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -73,7 +73,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="temp.model.Sys_User">
+  <update id="updateByPrimaryKeySelective" parameterType="com.jwxt.model.system.SysUser">
     update sys_user
     <set>
       <if test="userLoginName != null">
@@ -94,7 +94,7 @@
     </set>
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="temp.model.Sys_User">
+  <update id="updateByPrimaryKey" parameterType="com.jwxt.model.system.SysUser">
     update sys_user
     set user_login_name = #{userLoginName,jdbcType=VARCHAR},
       user_login_pwd = #{userLoginPwd,jdbcType=VARCHAR},
