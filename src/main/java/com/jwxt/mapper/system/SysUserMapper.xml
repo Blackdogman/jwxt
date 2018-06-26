@@ -112,4 +112,12 @@
     AND user_login_pwd = #{userLoginPwd,jdbcType=VARCHAR}
     AND user_status = 1
   </select>
+
+  <select id="selectByUserLoginName" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_user
+    where user_login_name = #{0,jdbcType=VARCHAR}
+  </select>
+
 </mapper>

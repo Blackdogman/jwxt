@@ -2,6 +2,8 @@ package com.jwxt.dao.system;
 
 import com.jwxt.model.system.SysUser;
 
+import java.util.List;
+
 public interface SysUserMapper {
     int deleteByPrimaryKey(String userId);
 
@@ -16,4 +18,6 @@ public interface SysUserMapper {
     int updateByPrimaryKey(SysUser record);
 
     SysUser selectByUserLoginNameAndUserPwd(SysUser user);
+
+    List<SysUser> selectByUserLoginName(String studentId);
 }
