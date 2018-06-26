@@ -62,4 +62,16 @@ public class SysUser {
     public void setUserStatus(Integer userStatus) {
         this.userStatus = userStatus;
     }
+
+    @Override
+    public String toString() {
+        return "SysUser{" +
+                "userId='" + userId + '\'' +
+                ", userLoginName='" + userLoginName + '\'' +
+                ", userLoginPwd='" + userLoginPwd + '\'' +
+                ", userCreateTime=" + userCreateTime +
+                ", userCharactor='" + userCharactor + '\'' +
+                ", userStatus=" + userStatus +
+                '}';
+    }
 }

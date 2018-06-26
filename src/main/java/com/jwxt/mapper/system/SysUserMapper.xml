@@ -103,4 +103,13 @@
       user_status = #{userStatus,jdbcType=INTEGER}
     where user_id = #{userId,jdbcType=VARCHAR}
   </update>
+
+  <select id="selectByUserLoginNameAndUserPwd" parameterType="com.jwxt.model.system.SysUser" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_user
+    where user_login_name = #{userLoginName,jdbcType=VARCHAR}
+    AND user_login_pwd = #{userLoginPwd,jdbcType=VARCHAR}
+    AND user_status = 1
+  </select>
 </mapper>
