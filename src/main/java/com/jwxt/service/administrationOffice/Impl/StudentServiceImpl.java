@@ -1,9 +1,13 @@
 package com.jwxt.service.administrationOffice.Impl;
 
 import com.framework.utils.PrimaryKeyUtil;
+import com.framework.utils.pageUtil.PageBeanUtil;
+import com.framework.utils.pageUtil.PagedResult;
+import com.github.pagehelper.PageHelper;
 import com.jwxt.dao.system.StudentMapper;
 import com.jwxt.dao.system.SysUserMapper;
 import com.jwxt.model.system.Student;
+import com.jwxt.model.system.StudentVo;
 import com.jwxt.model.system.SysUser;
 import com.jwxt.service.administrationOffice.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,5 +50,12 @@ public class StudentServiceImpl implements StudentService {
             flag = 0;
         }
         return flag;
+    }
+
+    @Override
+    public PagedResult<StudentVo> listAllStudent(int pageNumber, int pageSize) {
+        PageHelper.startPage(pageNumber, pageSize);
+        List<StudentVo> userList = studentMapper.listAllUser();
+        return PageBeanUtil.toPagedResult(userList);
     }
 }

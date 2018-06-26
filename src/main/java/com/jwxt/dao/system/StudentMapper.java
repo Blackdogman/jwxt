@@ -1,6 +1,9 @@
 package com.jwxt.dao.system;
 
 import com.jwxt.model.system.Student;
+import com.jwxt.model.system.StudentVo;
+
+import java.util.List;
 
 public interface StudentMapper {
     int deleteByPrimaryKey(String id);
@@ -14,4 +17,6 @@ public interface StudentMapper {
     int updateByPrimaryKeySelective(Student record);
 
     int updateByPrimaryKey(Student record);
+
+    List<StudentVo> listAllUser();
 }
