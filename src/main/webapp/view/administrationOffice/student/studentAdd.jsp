@@ -25,7 +25,7 @@
 <div class="panel admin-panel">
     <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加内容</strong></div>
     <div class="body-content">
-        <form method="post" class="form-x" action="<%=basePath%>studentController/addStudent.do">
+        <form method="post" class="form-x" action="<%=basePath%>administrationOfficeController/addStudent.do">
             <div class="form-group">
                 <div class="label">
 

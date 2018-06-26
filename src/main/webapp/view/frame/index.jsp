@@ -41,6 +41,8 @@
     <ul style="display:block">
         <li><a href="<%=basePath%>view/administrationOffice/studentAdd.jsp" target="right"><span
                 class="icon-caret-right"></span>学生添加</a></li>
+        <li><a href="<%=basePath%>view/administrationOffice/teacherAdd.jsp" target="right"><span
+                class="icon-caret-right"></span>老师添加</a></li>
     </ul>
     <div id="test"></div>
 </div>

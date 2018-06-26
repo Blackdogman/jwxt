@@ -3,17 +3,21 @@ package com.jwxt.controller.administrationOffice;
 import com.framework.controller.BaseController;
 import com.framework.utils.PrimaryKeyUtil;
 import com.jwxt.model.system.Student;
+import com.jwxt.model.system.Teacher;
 import com.jwxt.service.administrationOffice.StudentService;
+import com.jwxt.service.administrationOffice.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/studentController")
-public class StudentController extends BaseController {
+@RequestMapping("/administrationOfficeController")
+public class AdministrationOfficeController extends BaseController {
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private TeacherService teacherService;
 
     @RequestMapping("/addStudent.do")
     public String addStudent(Student student, Model model){
@@ -22,9 +26,22 @@ public class StudentController extends BaseController {
         if(haveUser == 1){
             //已经存在该学号（工号）的用户了
             model.addAttribute("errorMessage", "用户已经存在");
-            return "view/administrationOffice/studentAdd";
+            return "view/administrationOffice/student/studentAdd";
         }
         int flag = studentService.addStudent(student);
+        return null;
+    }
+
+    @RequestMapping("/addTeacher.do")
+    public String addTeacher(Teacher teacher, Model model){
+        teacher.setId(PrimaryKeyUtil.getPrimaryKey());
+        int haveUser = studentService.userExist(teacher.getTeacherId());
+        if(haveUser == 1){
+            //已经存在该学号（工号）的用户了
+            model.addAttribute("errorMessage", "用户已经存在");
+            return "view/administrationOffice/teacher/teacherAdd";
+        }
+        int flag = teacherService.addTeacher(teacher);
         return null;
     }
 }
