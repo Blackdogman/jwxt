@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="temp.dao.Sys_UserMapper">
+  <resultMap id="BaseResultMap" type="temp.model.Sys_User">
+    <id column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="user_login_name" jdbcType="VARCHAR" property="userLoginName" />
+    <result column="user_login_pwd" jdbcType="VARCHAR" property="userLoginPwd" />
+    <result column="user_create_time" jdbcType="TIMESTAMP" property="userCreateTime" />
+    <result column="user_charactor" jdbcType="VARCHAR" property="userCharactor" />
+    <result column="user_status" jdbcType="INTEGER" property="userStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, user_login_name, user_login_pwd, user_create_time, user_charactor, user_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_user
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="temp.model.Sys_User">
+    insert into sys_user (user_id, user_login_name, user_login_pwd, 
+      user_create_time, user_charactor, user_status
+      )
+    values (#{userId,jdbcType=VARCHAR}, #{userLoginName,jdbcType=VARCHAR}, #{userLoginPwd,jdbcType=VARCHAR}, 
+      #{userCreateTime,jdbcType=TIMESTAMP}, #{userCharactor,jdbcType=VARCHAR}, #{userStatus,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="temp.model.Sys_User">
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userLoginName != null">
+        user_login_name,
+      </if>
+      <if test="userLoginPwd != null">
+        user_login_pwd,
+      </if>
+      <if test="userCreateTime != null">
+        user_create_time,
+      </if>
+      <if test="userCharactor != null">
+        user_charactor,
+      </if>
+      <if test="userStatus != null">
+        user_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userLoginName != null">
+        #{userLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="userLoginPwd != null">
+        #{userLoginPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userCreateTime != null">
+        #{userCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userCharactor != null">
+        #{userCharactor,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null">
+        #{userStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="temp.model.Sys_User">
+    update sys_user
+    <set>
+      <if test="userLoginName != null">
+        user_login_name = #{userLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="userLoginPwd != null">
+        user_login_pwd = #{userLoginPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userCreateTime != null">
+        user_create_time = #{userCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userCharactor != null">
+        user_charactor = #{userCharactor,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null">
+        user_status = #{userStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="temp.model.Sys_User">
+    update sys_user
+    set user_login_name = #{userLoginName,jdbcType=VARCHAR},
+      user_login_pwd = #{userLoginPwd,jdbcType=VARCHAR},
+      user_create_time = #{userCreateTime,jdbcType=TIMESTAMP},
+      user_charactor = #{userCharactor,jdbcType=VARCHAR},
+      user_status = #{userStatus,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+</mapper>

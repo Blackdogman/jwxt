@@ -11,21 +11,30 @@
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
 
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/ssmWork"
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/jwxt"
                         userId="root" password="superboy123"/>
         <!-- 生成实体类 实体bean文件 -->
-        <javaModelGenerator targetPackage="com.model.system" targetProject="ssmdemo-4"/>
+        <javaModelGenerator targetPackage="temp.model" targetProject="jwxt"/>
         <!-- mapper xml文件 -->
-        <sqlMapGenerator targetPackage="com.mapper.system" targetProject="ssmdemo-4"/>
+        <sqlMapGenerator targetPackage="temp.mapper" targetProject="jwxt"/>
         <!-- mapper 接口文件 -->
-        <javaClientGenerator targetPackage="com.dao.system" targetProject="ssmdemo-4" type="XMLMAPPER"/>
+        <javaClientGenerator targetPackage="temp.dao" targetProject="jwxt" type="XMLMAPPER"/>
 
-        <!--<table tableName="sys_menu" domainObjectName="Menu" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" ></table>-->
-        <!--<table tableName="sys_role" domainObjectName="Role" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" ></table>-->
-        <!--<table tableName="sys_role_menu" domainObjectName="RoleMenu" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" ></table>-->
-        <!--<table tableName="sys_user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" ></table>-->
-        <!--<table tableName="sys_user_role" domainObjectName="UserRole" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" ></table>-->
-        <table tableName="sys_mail" domainObjectName="Mail" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="administration_office" domainObjectName="AdministrationOffice" enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="class_info" domainObjectName="ClassInfo" enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>    
+        <table tableName="course" domainObjectName="Course" enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="score" domainObjectName="Score" enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="student" domainObjectName="Student" enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="sys_dictionary" domainObjectName="SysDictionary" enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="sys_user" domainObjectName="Sys_User" enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="teacher" domainObjectName="Teacher" enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
     </context>
 </generatorConfiguration>
