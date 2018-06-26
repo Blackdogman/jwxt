@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/loginController")
 public class LoginController {
@@ -14,15 +16,14 @@ public class LoginController {
     private LoginService loginService;
 
     @RequestMapping("/login.do")
-    public String login(SysUser user, Model model){
-        System.out.println(user);
+    public String login(SysUser user, Model model, HttpSession session){
         SysUser reUser = loginService.login(user);
         if(reUser == null){
             model.addAttribute("loginError", "用户名或者密码有误，请检查");
-            return "view/frame/login" ;
+            return "view/frame/login";
         }else {
-            System.out.println(reUser);
+            session.setAttribute("loginUser", reUser);
+            return "view/frame/index";
         }
-        return null;
     }
 }
