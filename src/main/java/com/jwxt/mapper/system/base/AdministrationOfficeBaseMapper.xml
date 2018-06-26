@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="packageMapper.base.AdministrationOfficeBaseMapper">
+
+
+    <insert id="insertAdministrationOffice" >
+        INSERT INTO `administration_office`
+        (
+        <trim suffixOverrides=",">
+                    <if test="id!=null">
+                        `id`,
+                    </if>
+                    <if test="workerId!=null">
+                        `worker_id`,
+                    </if>
+                    <if test="workerName!=null">
+                        `worker_name`,
+                    </if>
+                    <if test="workerBirthday!=null">
+                        `worker_birthday`,
+                    </if>
+                    <if test="workerSex!=null">
+                        `worker_sex`,
+                    </if>
+                    <if test="workerAddress!=null">
+                        `worker_address`,
+                    </if>
+                    <if test="workerNationality!=null">
+                        `worker_nationality`,
+                    </if>
+                    <if test="workerPhone!=null">
+                        `worker_phone`,
+                    </if>
+                    <if test="workerStatus!=null">
+                        `worker_status`,
+                    </if>
+                    <if test="workerCitizenId!=null">
+                        `worker_citizen_id`,
+                    </if>
+                    <if test="workerPoliticalStatus!=null">
+                        `worker_political_status`,
+                    </if>
+        </trim>
+        )
+        VALUES
+        (
+        <trim suffixOverrides=",">
+                <if test="id!=null">
+                    #{id},
+                </if>
+                <if test="workerId!=null">
+                    #{workerId},
+                </if>
+                <if test="workerName!=null">
+                    #{workerName},
+                </if>
+                <if test="workerBirthday!=null">
+                    #{workerBirthday},
+                </if>
+                <if test="workerSex!=null">
+                    #{workerSex},
+                </if>
+                <if test="workerAddress!=null">
+                    #{workerAddress},
+                </if>
+                <if test="workerNationality!=null">
+                    #{workerNationality},
+                </if>
+                <if test="workerPhone!=null">
+                    #{workerPhone},
+                </if>
+                <if test="workerStatus!=null">
+                    #{workerStatus},
+                </if>
+                <if test="workerCitizenId!=null">
+                    #{workerCitizenId},
+                </if>
+                <if test="workerPoliticalStatus!=null">
+                    #{workerPoliticalStatus},
+                </if>
+        </trim>
+        )
+    </insert>
+
+
+
+
+    <update id="updateAdministrationOffice">
+        UPDATE `administration_office`
+        SET
+        <trim suffixOverrides=",">
+            <if test="workerId != null and workerId!=''">
+                `worker_id` = #{workerId},
+            </if>
+            <if test="workerName != null and workerName!=''">
+                `worker_name` = #{workerName},
+            </if>
+            <if test="workerBirthday != null">
+                `worker_birthday` = #{workerBirthday},
+            </if>
+            <if test="workerSex != null">
+                `worker_sex` = #{workerSex},
+            </if>
+            <if test="workerAddress != null and workerAddress!=''">
+                `worker_address` = #{workerAddress},
+            </if>
+            <if test="workerNationality != null and workerNationality!=''">
+                `worker_nationality` = #{workerNationality},
+            </if>
+            <if test="workerPhone != null and workerPhone!=''">
+                `worker_phone` = #{workerPhone},
+            </if>
+            <if test="workerStatus != null">
+                `worker_status` = #{workerStatus},
+            </if>
+            <if test="workerCitizenId != null and workerCitizenId!=''">
+                `worker_citizen_id` = #{workerCitizenId},
+            </if>
+            <if test="workerPoliticalStatus != null">
+                `worker_political_status` = #{workerPoliticalStatus},
+            </if>
+        </trim>
+        WHERE
+        <trim suffixOverrides="and">
+                `id` = #{id} and
+        </trim>
+    </update>
+
+
+
+    <resultMap type="packageModel.AdministrationOffice" id="AdministrationOfficeMap">
+        <result property="id" column="id"/>
+        <result property="workerId" column="worker_id"/>
+        <result property="workerName" column="worker_name"/>
+        <result property="workerBirthday" column="worker_birthday"/>
+        <result property="workerSex" column="worker_sex"/>
+        <result property="workerAddress" column="worker_address"/>
+        <result property="workerNationality" column="worker_nationality"/>
+        <result property="workerPhone" column="worker_phone"/>
+        <result property="workerStatus" column="worker_status"/>
+        <result property="workerCitizenId" column="worker_citizen_id"/>
+        <result property="workerPoliticalStatus" column="worker_political_status"/>
+    </resultMap>
+
+
+    <select id="queryAdministrationOffice" resultMap="AdministrationOfficeMap">
+        select
+        <include refid="baseResult"></include>
+        from  `administration_office`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null and id!=''">
+                `id` = #{id} and
+            </if>
+            <if test="workerId != null and workerId!=''">
+                `worker_id` = #{workerId} and
+            </if>
+            <if test="workerName != null and workerName!=''">
+                `worker_name` = #{workerName} and
+            </if>
+            <if test="workerBirthday != null">
+                `worker_birthday` = #{workerBirthday} and
+            </if>
+            <if test="workerSex != null">
+                `worker_sex` = #{workerSex} and
+            </if>
+            <if test="workerAddress != null and workerAddress!=''">
+                `worker_address` = #{workerAddress} and
+            </if>
+            <if test="workerNationality != null and workerNationality!=''">
+                `worker_nationality` = #{workerNationality} and
+            </if>
+            <if test="workerPhone != null and workerPhone!=''">
+                `worker_phone` = #{workerPhone} and
+            </if>
+            <if test="workerStatus != null">
+                `worker_status` = #{workerStatus} and
+            </if>
+            <if test="workerCitizenId != null and workerCitizenId!=''">
+                `worker_citizen_id` = #{workerCitizenId} and
+            </if>
+            <if test="workerPoliticalStatus != null">
+                `worker_political_status` = #{workerPoliticalStatus} and
+            </if>
+            <if test = "(_parameter instanceof packageModel.AdministrationOffice$QueryBuilder) == true">
+                <if test="idList != null">
+                    `id` in
+                    <foreach collection="idList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyId!=null and fuzzyId.size()>0">
+                    (
+                    <foreach collection="fuzzyId"  separator="or" item="item">
+                        `Id` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyId!=null and rightFuzzyId.size()>0">
+                    (
+                    <foreach collection="rightFuzzyId"  separator="or" item="item">
+                        `Id` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="workerIdList != null">
+                    `worker_id` in
+                    <foreach collection="workerIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyWorkerId!=null and fuzzyWorkerId.size()>0">
+                    (
+                    <foreach collection="fuzzyWorkerId"  separator="or" item="item">
+                        `Worker_id` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyWorkerId!=null and rightFuzzyWorkerId.size()>0">
+                    (
+                    <foreach collection="rightFuzzyWorkerId"  separator="or" item="item">
+                        `Worker_id` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="workerNameList != null">
+                    `worker_name` in
+                    <foreach collection="workerNameList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyWorkerName!=null and fuzzyWorkerName.size()>0">
+                    (
+                    <foreach collection="fuzzyWorkerName"  separator="or" item="item">
+                        `Worker_name` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyWorkerName!=null and rightFuzzyWorkerName.size()>0">
+                    (
+                    <foreach collection="rightFuzzyWorkerName"  separator="or" item="item">
+                        `Worker_name` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="workerBirthdayList != null">
+                    `worker_birthday` in
+                    <foreach collection="workerBirthdayList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="workerBirthdaySt !=null">
+                    `worker_birthday` >= #{workerBirthdaySt} and
+                </if>
+                <if test="workerBirthdayEd!=null">
+                    `worker_birthday` &lt;= #{workerBirthdayEd} and
+                </if>
+                <if test="workerSexList != null">
+                    `worker_sex` in
+                    <foreach collection="workerSexList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="workerSexSt !=null">
+                    `worker_sex` >= #{workerSexSt} and
+                </if>
+                <if test="workerSexEd!=null">
+                    `worker_sex` &lt;= #{workerSexEd} and
+                </if>
+                <if test="workerAddressList != null">
+                    `worker_address` in
+                    <foreach collection="workerAddressList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyWorkerAddress!=null and fuzzyWorkerAddress.size()>0">
+                    (
+                    <foreach collection="fuzzyWorkerAddress"  separator="or" item="item">
+                        `Worker_address` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyWorkerAddress!=null and rightFuzzyWorkerAddress.size()>0">
+                    (
+                    <foreach collection="rightFuzzyWorkerAddress"  separator="or" item="item">
+                        `Worker_address` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="workerNationalityList != null">
+                    `worker_nationality` in
+                    <foreach collection="workerNationalityList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyWorkerNationality!=null and fuzzyWorkerNationality.size()>0">
+                    (
+                    <foreach collection="fuzzyWorkerNationality"  separator="or" item="item">
+                        `Worker_nationality` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyWorkerNationality!=null and rightFuzzyWorkerNationality.size()>0">
+                    (
+                    <foreach collection="rightFuzzyWorkerNationality"  separator="or" item="item">
+                        `Worker_nationality` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="workerPhoneList != null">
+                    `worker_phone` in
+                    <foreach collection="workerPhoneList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyWorkerPhone!=null and fuzzyWorkerPhone.size()>0">
+                    (
+                    <foreach collection="fuzzyWorkerPhone"  separator="or" item="item">
+                        `Worker_phone` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyWorkerPhone!=null and rightFuzzyWorkerPhone.size()>0">
+                    (
+                    <foreach collection="rightFuzzyWorkerPhone"  separator="or" item="item">
+                        `Worker_phone` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="workerStatusList != null">
+                    `worker_status` in
+                    <foreach collection="workerStatusList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="workerStatusSt !=null">
+                    `worker_status` >= #{workerStatusSt} and
+                </if>
+                <if test="workerStatusEd!=null">
+                    `worker_status` &lt;= #{workerStatusEd} and
+                </if>
+                <if test="workerCitizenIdList != null">
+                    `worker_citizen_id` in
+                    <foreach collection="workerCitizenIdList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test ="fuzzyWorkerCitizenId!=null and fuzzyWorkerCitizenId.size()>0">
+                    (
+                    <foreach collection="fuzzyWorkerCitizenId"  separator="or" item="item">
+                        `Worker_citizen_id` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyWorkerCitizenId!=null and rightFuzzyWorkerCitizenId.size()>0">
+                    (
+                    <foreach collection="rightFuzzyWorkerCitizenId"  separator="or" item="item">
+                        `Worker_citizen_id` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test="workerPoliticalStatusList != null">
+                    `worker_political_status` in
+                    <foreach collection="workerPoliticalStatusList" close=")" open="(" separator="," item="item">
+                        #{item}
+                    </foreach> and
+                </if>
+                <if test="workerPoliticalStatusSt !=null">
+                    `worker_political_status` >= #{workerPoliticalStatusSt} and
+                </if>
+                <if test="workerPoliticalStatusEd!=null">
+                    `worker_political_status` &lt;= #{workerPoliticalStatusEd} and
+                </if>
+            </if>
+        </trim>
+    </select>
+
+    <select id="queryAdministrationOfficeLimit1" resultMap="AdministrationOfficeMap">
+        select
+        <include refid="baseResult"></include>
+        from  `administration_office`
+        <trim prefix="where" suffixOverrides="and | or">
+            <if test="id != null and id!=''">
+                `id` = #{id} and
+            </if>
+            <if test="workerId != null and workerId!=''">
+                `worker_id` = #{workerId} and
+            </if>
+            <if test="workerName != null and workerName!=''">
+                `worker_name` = #{workerName} and
+            </if>
+            <if test="workerBirthday != null">
+                `worker_birthday` = #{workerBirthday} and
+            </if>
+            <if test="workerSex != null">
+                `worker_sex` = #{workerSex} and
+            </if>
+            <if test="workerAddress != null and workerAddress!=''">
+                `worker_address` = #{workerAddress} and
+            </if>
+            <if test="workerNationality != null and workerNationality!=''">
+                `worker_nationality` = #{workerNationality} and
+            </if>
+            <if test="workerPhone != null and workerPhone!=''">
+                `worker_phone` = #{workerPhone} and
+            </if>
+            <if test="workerStatus != null">
+                `worker_status` = #{workerStatus} and
+            </if>
+            <if test="workerCitizenId != null and workerCitizenId!=''">
+                `worker_citizen_id` = #{workerCitizenId} and
+            </if>
+            <if test="workerPoliticalStatus != null">
+                `worker_political_status` = #{workerPoliticalStatus} and
+            </if>
+            <if test = "(_parameter instanceof packageModel.AdministrationOffice$QueryBuilder) == true">
+                    <if test="idList != null">
+                        `id` in
+                        <foreach collection="idList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyId!=null and fuzzyId.size()>0">
+                    (
+                    <foreach collection="fuzzyId"  separator="or" item="item">
+                        `Id` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyId!=null and rightFuzzyId.size()>0">
+                    (
+                    <foreach collection="rightFuzzyId"  separator="or" item="item">
+                        `Id` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="workerIdList != null">
+                        `worker_id` in
+                        <foreach collection="workerIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyWorkerId!=null and fuzzyWorkerId.size()>0">
+                    (
+                    <foreach collection="fuzzyWorkerId"  separator="or" item="item">
+                        `Worker_id` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyWorkerId!=null and rightFuzzyWorkerId.size()>0">
+                    (
+                    <foreach collection="rightFuzzyWorkerId"  separator="or" item="item">
+                        `Worker_id` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="workerNameList != null">
+                        `worker_name` in
+                        <foreach collection="workerNameList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyWorkerName!=null and fuzzyWorkerName.size()>0">
+                    (
+                    <foreach collection="fuzzyWorkerName"  separator="or" item="item">
+                        `Worker_name` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyWorkerName!=null and rightFuzzyWorkerName.size()>0">
+                    (
+                    <foreach collection="rightFuzzyWorkerName"  separator="or" item="item">
+                        `Worker_name` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="workerBirthdayList != null">
+                        `worker_birthday` in
+                        <foreach collection="workerBirthdayList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="workerBirthdaySt !=null">
+                    `worker_birthday` >= #{workerBirthdaySt} and
+                </if>
+                <if test="workerBirthdayEd!=null">
+                    `worker_birthday` &lt;= #{workerBirthdayEd} and
+                </if>
+                    <if test="workerSexList != null">
+                        `worker_sex` in
+                        <foreach collection="workerSexList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="workerSexSt !=null">
+                    `worker_sex` >= #{workerSexSt} and
+                </if>
+                <if test="workerSexEd!=null">
+                    `worker_sex` &lt;= #{workerSexEd} and
+                </if>
+                    <if test="workerAddressList != null">
+                        `worker_address` in
+                        <foreach collection="workerAddressList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyWorkerAddress!=null and fuzzyWorkerAddress.size()>0">
+                    (
+                    <foreach collection="fuzzyWorkerAddress"  separator="or" item="item">
+                        `Worker_address` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyWorkerAddress!=null and rightFuzzyWorkerAddress.size()>0">
+                    (
+                    <foreach collection="rightFuzzyWorkerAddress"  separator="or" item="item">
+                        `Worker_address` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="workerNationalityList != null">
+                        `worker_nationality` in
+                        <foreach collection="workerNationalityList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyWorkerNationality!=null and fuzzyWorkerNationality.size()>0">
+                    (
+                    <foreach collection="fuzzyWorkerNationality"  separator="or" item="item">
+                        `Worker_nationality` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyWorkerNationality!=null and rightFuzzyWorkerNationality.size()>0">
+                    (
+                    <foreach collection="rightFuzzyWorkerNationality"  separator="or" item="item">
+                        `Worker_nationality` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="workerPhoneList != null">
+                        `worker_phone` in
+                        <foreach collection="workerPhoneList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyWorkerPhone!=null and fuzzyWorkerPhone.size()>0">
+                    (
+                    <foreach collection="fuzzyWorkerPhone"  separator="or" item="item">
+                        `Worker_phone` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyWorkerPhone!=null and rightFuzzyWorkerPhone.size()>0">
+                    (
+                    <foreach collection="rightFuzzyWorkerPhone"  separator="or" item="item">
+                        `Worker_phone` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="workerStatusList != null">
+                        `worker_status` in
+                        <foreach collection="workerStatusList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="workerStatusSt !=null">
+                    `worker_status` >= #{workerStatusSt} and
+                </if>
+                <if test="workerStatusEd!=null">
+                    `worker_status` &lt;= #{workerStatusEd} and
+                </if>
+                    <if test="workerCitizenIdList != null">
+                        `worker_citizen_id` in
+                        <foreach collection="workerCitizenIdList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test ="fuzzyWorkerCitizenId!=null and fuzzyWorkerCitizenId.size()>0">
+                    (
+                    <foreach collection="fuzzyWorkerCitizenId"  separator="or" item="item">
+                        `Worker_citizen_id` like concat('%',#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                <if test ="rightFuzzyWorkerCitizenId!=null and rightFuzzyWorkerCitizenId.size()>0">
+                    (
+                    <foreach collection="rightFuzzyWorkerCitizenId"  separator="or" item="item">
+                        `Worker_citizen_id` like concat(#{item},'%')
+                    </foreach>
+                    ) and
+                </if>
+                    <if test="workerPoliticalStatusList != null">
+                        `worker_political_status` in
+                        <foreach collection="workerPoliticalStatusList" close=")" open="(" separator="," item="item">
+                            #{item}
+                        </foreach> and
+                    </if>
+                <if test="workerPoliticalStatusSt !=null">
+                    `worker_political_status` >= #{workerPoliticalStatusSt} and
+                </if>
+                <if test="workerPoliticalStatusEd!=null">
+                    `worker_political_status` &lt;= #{workerPoliticalStatusEd} and
+                </if>
+            </if>
+        </trim>
+        limit 1
+    </select>
+
+    <sql id="allResult">
+        <trim suffixOverrides=",">
+        `id`,
+        `worker_id`,
+        `worker_name`,
+        `worker_birthday`,
+        `worker_sex`,
+        `worker_address`,
+        `worker_nationality`,
+        `worker_phone`,
+        `worker_status`,
+        `worker_citizen_id`,
+        `worker_political_status`,
+        </trim>
+    </sql>
+
+
+
+    <sql id="baseResult">
+        <trim suffixOverrides=",">
+            <if test = "(_parameter instanceof packageModel.AdministrationOffice$QueryBuilder) == true">
+
+                <if test="fetchFields==null">
+                    <include refid="allResult"></include>
+                </if>
+                <if test="fetchFields!=null">
+                    <if test="fetchFields.AllFields !=null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields ==null and fetchFields.fetchFields==null and fetchFields.excludeFields==null and fetchFields.otherFields==null">
+                        <include refid="allResult"></include>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.fetchFields!=null">
+                    <if test="fetchFields.fetchFields.id==true">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.workerId==true">
+                        `worker_id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.workerName==true">
+                        `worker_name`,
+                    </if>
+                    <if test="fetchFields.fetchFields.workerBirthday==true">
+                        `worker_birthday`,
+                    </if>
+                    <if test="fetchFields.fetchFields.workerSex==true">
+                        `worker_sex`,
+                    </if>
+                    <if test="fetchFields.fetchFields.workerAddress==true">
+                        `worker_address`,
+                    </if>
+                    <if test="fetchFields.fetchFields.workerNationality==true">
+                        `worker_nationality`,
+                    </if>
+                    <if test="fetchFields.fetchFields.workerPhone==true">
+                        `worker_phone`,
+                    </if>
+                    <if test="fetchFields.fetchFields.workerStatus==true">
+                        `worker_status`,
+                    </if>
+                    <if test="fetchFields.fetchFields.workerCitizenId==true">
+                        `worker_citizen_id`,
+                    </if>
+                    <if test="fetchFields.fetchFields.workerPoliticalStatus==true">
+                        `worker_political_status`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.AllFields==null and fetchFields.excludeFields!=null">
+                    <if test="fetchFields.excludeFields.id==null">
+                        `id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.workerId==null">
+                        `worker_id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.workerName==null">
+                        `worker_name`,
+                    </if>
+                    <if test="fetchFields.excludeFields.workerBirthday==null">
+                        `worker_birthday`,
+                    </if>
+                    <if test="fetchFields.excludeFields.workerSex==null">
+                        `worker_sex`,
+                    </if>
+                    <if test="fetchFields.excludeFields.workerAddress==null">
+                        `worker_address`,
+                    </if>
+                    <if test="fetchFields.excludeFields.workerNationality==null">
+                        `worker_nationality`,
+                    </if>
+                    <if test="fetchFields.excludeFields.workerPhone==null">
+                        `worker_phone`,
+                    </if>
+                    <if test="fetchFields.excludeFields.workerStatus==null">
+                        `worker_status`,
+                    </if>
+                    <if test="fetchFields.excludeFields.workerCitizenId==null">
+                        `worker_citizen_id`,
+                    </if>
+                    <if test="fetchFields.excludeFields.workerPoliticalStatus==null">
+                        `worker_political_status`,
+                    </if>
+                    </if>
+                    <if test="fetchFields.otherFields!=null and fetchFields.otherFields.size>0">
+                        <foreach collection="fetchFields.otherFields" index="index" item="item" separator=",">
+                        `#{item}`
+                        </foreach>
+                    </if>
+                </if>
+            </if>
+            <if test="(_parameter instanceof packageModel.AdministrationOffice$QueryBuilder) == false" >
+                <include refid="allResult"></include>
+            </if>
+
+        </trim>
+    </sql>
+
+
+</mapper>
