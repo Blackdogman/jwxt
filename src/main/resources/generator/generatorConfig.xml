@@ -20,10 +20,10 @@
 			targetPackage="com.jwxt.model.system" targetProject="jwxt" />
 		<!-- mapper xml文件 -->
 		<sqlMapGenerator
-			targetPackage="com.jwxt.mapper.administrationOffice" targetProject="jwxt" />
+			targetPackage="com.jwxt.mapper.system" targetProject="jwxt" />
 		<!-- mapper 接口文件 -->
 		<javaClientGenerator
-			targetPackage="com.jwxt.dao.administrationOffice" targetProject="jwxt"
+			targetPackage="com.jwxt.dao.system" targetProject="jwxt"
 			type="XMLMAPPER" />
 
 		<!-- <table tableName="administration_office" domainObjectName="AdministrationOffice" 
@@ -45,7 +45,7 @@
 		<!-- <table tableName="sys_user" domainObjectName="SysUser" enableCountByExample="false" 
 			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
 			selectByExampleQueryId="false"></table> -->
-		<table tableName="score" domainObjectName="Score"
+		<table tableName="sys_mail" domainObjectName="SysMail"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false"></table>
