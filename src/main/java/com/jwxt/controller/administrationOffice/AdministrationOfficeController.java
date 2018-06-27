@@ -7,10 +7,6 @@ import com.jwxt.model.system.Student;
 import com.jwxt.model.system.StudentVo;
 import com.jwxt.model.system.Teacher;
 import com.jwxt.model.system.TeacherVo;
-import com.jwxt.service.administrationOffice.StudentService;
-import com.jwxt.service.administrationOffice.SysUserService;
-import com.jwxt.service.administrationOffice.TeacherService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,12 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/administrationOfficeController")
 public class AdministrationOfficeController extends BaseController {
-    @Autowired
-    private StudentService studentService;
-    @Autowired
-    private TeacherService teacherService;
-    @Autowired
-    private SysUserService sysUserService;
 
     @RequestMapping(value = "/studentListUi.do", produces = "application/json;charset=utf-8")
     public String studentListUi(

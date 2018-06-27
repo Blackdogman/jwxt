@@ -2,48 +2,53 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
-    <!-- 配置驱动 -->
-    <classPathEntry location="/Users/Blackdogman/mysql-connector-java-5.1.5-bin.jar"/>
-    <context id="context1">
-        <commentGenerator>
-            <property name="suppressDate" value="true"/>
-            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
-            <property name="suppressAllComments" value="true"/>
-        </commentGenerator>
+	<!-- 配置驱动 -->
+	<classPathEntry
+		location="/Users/Blackdogman/mysql-connector-java-5.1.5-bin.jar" />
+	<context id="context1">
+		<commentGenerator>
+			<property name="suppressDate" value="true" />
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
 
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/jwxt"
-                        userId="root" password="superboy123"/>
-        <!-- 生成实体类 实体bean文件 -->
-        <javaModelGenerator targetPackage="com.jwxt.model.system" targetProject="jwxt"/>
-        <!-- mapper xml文件 -->
-        <sqlMapGenerator targetPackage="com.jwxt.mapper.system" targetProject="jwxt"/>
-        <!-- mapper 接口文件 -->
-        <javaClientGenerator targetPackage="com.jwxt.dao.system" targetProject="jwxt" type="XMLMAPPER"/>
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://127.0.0.1:3306/jwxt" userId="root"
+			password="superboy123" />
+		<!-- 生成实体类 实体bean文件 -->
+		<javaModelGenerator
+			targetPackage="com.jwxt.model.system" targetProject="jwxt" />
+		<!-- mapper xml文件 -->
+		<sqlMapGenerator
+			targetPackage="com.jwxt.mapper.administrationOffice" targetProject="jwxt" />
+		<!-- mapper 接口文件 -->
+		<javaClientGenerator
+			targetPackage="com.jwxt.dao.administrationOffice" targetProject="jwxt"
+			type="XMLMAPPER" />
 
-        <!-- <table tableName="administration_office" domainObjectName="AdministrationOffice" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-               
-        <table tableName="class_info" domainObjectName="ClassInfo" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
-                 
-        <table tableName="course" domainObjectName="Course" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-               
-        <table tableName="score" domainObjectName="Score" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-               
-        <table tableName="student" domainObjectName="Student" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-               
-        <table tableName="sys_dictionary" domainObjectName="SysDictionary" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table> -->
-               
-        <!-- <table tableName="sys_user" domainObjectName="SysUser" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table> -->
-       <table tableName="student" domainObjectName="Student" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
-              
-       <table tableName="teacher" domainObjectName="Teacher" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table> 
-    </context>
+		<!-- <table tableName="administration_office" domainObjectName="AdministrationOffice" 
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"></table> <table 
+			tableName="class_info" domainObjectName="ClassInfo" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false"></table> <table tableName="course" domainObjectName="Course" 
+			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" 
+			enableSelectByExample="false" selectByExampleQueryId="false"></table> <table 
+			tableName="score" domainObjectName="Score" enableCountByExample="false" enableUpdateByExample="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table> 
+			<table tableName="student" domainObjectName="Student" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false"></table> <table tableName="sys_dictionary" 
+			domainObjectName="SysDictionary" enableCountByExample="false" enableUpdateByExample="false" 
+			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table> -->
+
+		<!-- <table tableName="sys_user" domainObjectName="SysUser" enableCountByExample="false" 
+			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
+			selectByExampleQueryId="false"></table> -->
+		<table tableName="score" domainObjectName="Score"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+
+	</context>
 </generatorConfiguration>

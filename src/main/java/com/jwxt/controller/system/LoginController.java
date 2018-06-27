@@ -1,5 +1,6 @@
 package com.jwxt.controller.system;
 
+import com.framework.controller.BaseController;
 import com.jwxt.model.system.SysUser;
 import com.jwxt.service.system.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +12,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/loginController")
-public class LoginController {
-    @Autowired
-    private LoginService loginService;
+public class LoginController extends BaseController {
 
     @RequestMapping("/login.do")
     public String login(SysUser user, Model model, HttpSession session){
