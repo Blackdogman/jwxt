@@ -14,6 +14,20 @@
     <result column="teacher_political_status" jdbcType="INTEGER" property="teacherPoliticalStatus" />
     <result column="teacher_phone" jdbcType="VARCHAR" property="teacherPhone" />
   </resultMap>
+
+  <resultMap id="VoResultMap" type="com.jwxt.model.system.TeacherVo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="teacher_id" jdbcType="VARCHAR" property="teacherId" />
+    <result column="teacher_name" jdbcType="VARCHAR" property="teacherName" />
+    <result column="teacher_birthday" jdbcType="DATE" property="teacherBirthday" />
+    <result column="teacher_sex" jdbcType="VARCHAR" property="teacherSex" />
+    <result column="teacher_address" jdbcType="VARCHAR" property="teacherAddress" />
+    <result column="teacher_nationality" jdbcType="VARCHAR" property="teacherNationality" />
+    <result column="teacher_status" jdbcType="VARCHAR" property="teacherStatus" />
+    <result column="teacher_citizen_id" jdbcType="VARCHAR" property="teacherCitizenId" />
+    <result column="teacher_political_status" jdbcType="VARCHAR" property="teacherPoliticalStatus" />
+    <result column="teacher_phone" jdbcType="VARCHAR" property="teacherPhone" />
+  </resultMap>
   <sql id="Base_Column_List">
     id, teacher_id, teacher_name, teacher_birthday, teacher_sex, teacher_address, teacher_nationality, 
     teacher_status, teacher_citizen_id, teacher_political_status, teacher_phone
@@ -161,4 +175,18 @@
       teacher_phone = #{teacherPhone,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
+
+  <select id="listAllTeacher" resultMap="VoResultMap" parameterType="com.jwxt.model.system.Teacher">
+    SELECT
+    id,teacher_id,teacher_name,teacher_birthday,teacher_sex,
+    teacher_address,teacher_nationality,teacher_status,teacher_citizen_id,
+    teacher_political_status,teacher_phone
+    FROM v_teachervo
+    WHERE 1 = 1
+    <if test="teacherName != null || teacherId != null">
+      AND ( teacher_name LIKE '%${teacherName}%' OR teacher_id LIKE '%${teacherId}%' )
+    </if>
+    AND teacher_status = '在职'
+  </select>
 </mapper>

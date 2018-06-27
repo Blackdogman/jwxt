@@ -33,14 +33,14 @@
         <div class="padding border-bottom">
             <ul class="search">
                 <li>
-                    <a href="<%=basePath%>view/administrationOffice/student/studentAdd.jsp" class="button border-blue" id=""><span
+                    <a href="<%=basePath%>view/administrationOffice/teacher/teacherAdd.jsp" class="button border-blue" id=""><span
                             class="icon-plus"></span> 添加
                     </a>
                 </li>
                 <li>
-                    <form action="<%=basePath%>administrationOfficeController/studentListUi.do" method="post" class="pull-right navbar-form navbar-right" role="search">
+                    <form action="<%=basePath%>administrationOfficeController/teacherListUi.do" method="post" class="pull-right navbar-form navbar-right" role="search">
                         <div class="form-group pull-left">
-                            <input type="text" name="studentName" class="form-control" placeholder="Search">
+                            <input type="text" name="teacherName" class="form-control" placeholder="Search">
                         </div>
                         <div style="width:10px;" class="pull-left"></div>
                         <button type="submit" class="pull-right btn btn-default">搜索</button>
@@ -50,27 +50,29 @@
         </div>
         <table class="table table-hover text-center">
             <tr>
-                <th width="120">学号</th>
+                <th width="120">工号</th>
                 <th>姓名</th>
                 <th>生日</th>
                 <th>性别</th>
                 <th>住址</th>
                 <th>民族</th>
+                <th>电话</th>
             </tr>
-            <c:forEach var="student" items="${pageResult.dataList}">
+            <c:forEach var="teacher" items="${pageResult.dataList}">
                 <tr>
-                    <td><input type="checkbox" name="id[]" value="${user.userId}" />
-                            ${student.studentId}
+                    <td><input type="checkbox" name="id[]" value="${teacher.teacherId}" />
+                            ${teacher.teacherId}
                     </td>
-                    <td>${student.studentName}</td>
-                    <td><fmt:formatDate value="${student.studentBirthday}" type="date"></fmt:formatDate></td>
-                    <td>${student.studentSex}</td>
-                    <td>${student.studentAddress}</td>
-                    <td>${student.studentNationality}</td>
+                    <td>${teacher.teacherName}</td>
+                    <td><fmt:formatDate value="${teacher.teacherBirthday}" type="date"></fmt:formatDate></td>
+                    <td>${teacher.teacherSex}</td>
+                    <td>${teacher.teacherAddress}</td>
+                    <td>${teacher.teacherNationality}</td>
+                    <td>${teacher.teacherPhone}</td>
                     <td>
                         <div class="button-group">
                             <a class="button border-red"
-                               href="<%=basePath%>administrationOfficeController/deleteStudent.do?studentId=${student.studentId}"><span
+                               href="<%=basePath%>administrationOfficeController/deleteStudent.do?studentId=${teacher.teacherId}"><span
                                     class="icon-trash-o"></span> 删除</a>
                         </div>
                     </td>

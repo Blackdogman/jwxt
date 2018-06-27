@@ -6,6 +6,7 @@ import com.framework.utils.pageUtil.PagedResult;
 import com.jwxt.model.system.Student;
 import com.jwxt.model.system.StudentVo;
 import com.jwxt.model.system.Teacher;
+import com.jwxt.model.system.TeacherVo;
 import com.jwxt.service.administrationOffice.StudentService;
 import com.jwxt.service.administrationOffice.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,7 @@ public class AdministrationOfficeController extends BaseController {
             return "view/administrationOffice/student/studentAdd";
         }
         int flag = studentService.addStudent(student);
-        return null;
+        return "redirect:/administrationOfficeController/studentListUi.do";
     }
 
     @RequestMapping("/deleteStudent.do")
@@ -54,6 +55,18 @@ public class AdministrationOfficeController extends BaseController {
             int flag = studentService.deleteStudentByStudentId(studentId);
         }
         return "redirect:/administrationOfficeController/studentListUi.do";
+    }
+
+    @RequestMapping(value = "/teacherListUi.do", produces = "application/json;charset=utf-8")
+    public String studentListUi(
+            @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
+            @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
+            TeacherVo teacherVo,
+            Model model) {
+        teacherVo.setTeacherId(teacherVo.getTeacherName());
+        PagedResult<TeacherVo> pagedResult = teacherService.listAllTeacher(pageNumber, pageSize, teacherVo);
+        model.addAttribute("pageResult", pagedResult);
+        return "view/administrationOffice/teacher/teacherList";
     }
 
     @RequestMapping("/addTeacher.do")
@@ -66,6 +79,6 @@ public class AdministrationOfficeController extends BaseController {
             return "view/administrationOffice/teacher/teacherAdd";
         }
         int flag = teacherService.addTeacher(teacher);
-        return null;
+        return "redirect:/administrationOfficeController/teacherListUi.do";
     }
 }

@@ -1,15 +1,21 @@
 package com.jwxt.service.administrationOffice.Impl;
 
 import com.framework.utils.PrimaryKeyUtil;
+import com.framework.utils.pageUtil.PageBeanUtil;
+import com.framework.utils.pageUtil.PagedResult;
+import com.github.pagehelper.PageHelper;
 import com.jwxt.dao.system.SysUserMapper;
 import com.jwxt.dao.system.TeacherMapper;
+import com.jwxt.model.system.StudentVo;
 import com.jwxt.model.system.SysUser;
 import com.jwxt.model.system.Teacher;
+import com.jwxt.model.system.TeacherVo;
 import com.jwxt.service.administrationOffice.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class TeacherServiceImpl implements TeacherService {
@@ -33,5 +39,12 @@ public class TeacherServiceImpl implements TeacherService {
             flag = 1;
         }
         return flag;
+    }
+
+    @Override
+    public PagedResult<TeacherVo> listAllTeacher(Integer pageNumber, Integer pageSize, TeacherVo teacherVo) {
+        PageHelper.startPage(pageNumber, pageSize);
+        List<TeacherVo> userList = teacherMapper.listAllTeacher(teacherVo);
+        return PageBeanUtil.toPagedResult(userList);
     }
 }

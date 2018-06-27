@@ -41,8 +41,8 @@
     <ul style="display:block">
         <li><a href="<%=basePath%>administrationOfficeController/studentListUi.do" target="right"><span
                 class="icon-caret-right"></span>学生管理</a></li>
-        <li><a href="<%=basePath%>view/administrationOffice/teacher/teacherAdd.jsp" target="right"><span
-                class="icon-caret-right"></span>老师添加</a></li>
+        <li><a href="<%=basePath%>administrationOfficeController/teacherListUi.do" target="right"><span
+                class="icon-caret-right"></span>老师管理</a></li>
     </ul>
     <div id="test"></div>
 </div>
