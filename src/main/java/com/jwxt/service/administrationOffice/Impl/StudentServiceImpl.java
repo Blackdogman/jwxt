@@ -52,10 +52,16 @@ public class StudentServiceImpl implements StudentService {
         return flag;
     }
 
+
     @Override
-    public PagedResult<StudentVo> listAllStudent(int pageNumber, int pageSize) {
+    public PagedResult<StudentVo> listAllStudent(Integer pageNumber, Integer pageSize, StudentVo studentVo) {
         PageHelper.startPage(pageNumber, pageSize);
-        List<StudentVo> userList = studentMapper.listAllUser();
+        List<StudentVo> userList = studentMapper.listAllUser(studentVo);
         return PageBeanUtil.toPagedResult(userList);
+    }
+
+    @Override
+    public int deleteStudentByStudentId(String studentId) {
+        return studentMapper.deleteStudentByStudentId(studentId);
     }
 }

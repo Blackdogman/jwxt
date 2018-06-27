@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="css/admin.css">
     <script src="js/jquery.js"></script>
     <script src="js/pintuer.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <script type="text/javascript" src="<%=basePath%>js/kkpager/jpager.js"></script>
     <link rel="stylesheet" type="text/css" href="<%=basePath%>js/kkpager/jpager.css">
     <script type="text/javascript" src="<%=basePath%>view/administrationOffice/student/listPage.js"></script>
@@ -34,11 +36,20 @@
                     <a href="<%=basePath%>view/administrationOffice/student/studentAdd.jsp" class="button border-blue" id=""><span
                             class="icon-plus"></span> 添加
                     </a>
-                    <button type="button" class="button border-green" id="checkall"><span class="icon-check"></span> 全选
-                    </button>
-                    <button type="button" onclick="DelSelect();" class="button border-red"><span
-                            class="icon-trash-o"></span> 批量删除
-                    </button>
+                    <%--<button type="button" class="button border-green" id="checkall"><span class="icon-check"></span> 全选--%>
+                    <%--</button>--%>
+                    <%--<button type="button" onclick="DelSelect();" class="button border-red"><span--%>
+                            <%--class="icon-trash-o"></span> 批量删除--%>
+                    <%--</button>--%>
+                </li>
+                <li>
+                    <form action="<%=basePath%>administrationOfficeController/studentListUi.do" method="post" class="pull-right navbar-form navbar-right" role="search">
+                        <div class="form-group pull-left">
+                            <input type="text" name="studentName" class="form-control" placeholder="Search">
+                        </div>
+                        <div style="width:10px;" class="pull-left"></div>
+                        <button type="submit" class="pull-right btn btn-default">搜索</button>
+                    </form>
                 </li>
             </ul>
         </div>
@@ -62,18 +73,18 @@
                     <td>${student.studentSex}</td>
                     <td>${student.studentAddress}</td>
                     <td>${student.studentNationality}</td>
-                    <%--<td>--%>
-                        <%--<div class="button-group">--%>
-                            <%--<a class="button border-red"--%>
-                               <%--href="<%=basePath%>userController/deleteUser.do?userId=${student.studentId}"><span--%>
-                                    <%--class="icon-trash-o"></span> 删除</a>--%>
+                    <td>
+                        <div class="button-group">
+                            <a class="button border-red"
+                               href="<%=basePath%>administrationOfficeController/deleteStudent.do?studentId=${student.studentId}"><span
+                                    class="icon-trash-o"></span> 删除</a>
                             <%--<a class="button border-blue"--%>
                                <%--href="<%=basePath%>userController/updateUserUi.do?userId=${student.studentId}"><span--%>
                                     <%--class="icon-database"></span> 修改</a>--%>
                             <%--<a class="button border-yellow"--%>
                                <%--href="<%=basePath%>userController/userRoleSetUi.do?userId=${student.studentId}"><span--%>
                                     <%--class="icon-user"></span> 分配角色</a>--%>
-                        <%--</div>--%>
+                        </div>
                     </td>
                 </tr>
             </c:forEach>

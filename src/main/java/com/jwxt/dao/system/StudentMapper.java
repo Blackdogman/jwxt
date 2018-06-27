@@ -18,5 +18,7 @@ public interface StudentMapper {
 
     int updateByPrimaryKey(Student record);
 
-    List<StudentVo> listAllUser();
+    List<StudentVo> listAllUser(StudentVo studentVo);
+
+    int deleteStudentByStudentId(String studentId);
 }

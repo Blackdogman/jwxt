@@ -9,5 +9,8 @@ public interface StudentService {
 
     int userExist(String studentId);
 
-    PagedResult<StudentVo> listAllStudent(int pageNumber, int pageSize);
+
+    PagedResult<StudentVo> listAllStudent(Integer pageNumber, Integer pageSize, StudentVo studentVo);
+
+    int deleteStudentByStudentId(String studentId);
 }

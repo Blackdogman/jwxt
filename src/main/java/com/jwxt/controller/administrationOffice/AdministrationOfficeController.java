@@ -26,8 +26,10 @@ public class AdministrationOfficeController extends BaseController {
     public String studentListUi(
             @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
             @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize,
+            StudentVo studentVo,
             Model model) {
-        PagedResult<StudentVo> pagedResult = studentService.listAllStudent(pageNumber, pageSize);
+        studentVo.setStudentId(studentVo.getStudentName());
+        PagedResult<StudentVo> pagedResult = studentService.listAllStudent(pageNumber, pageSize, studentVo);
         model.addAttribute("pageResult", pagedResult);
         return "view/administrationOffice/student/studentList";
     }
@@ -43,6 +45,15 @@ public class AdministrationOfficeController extends BaseController {
         }
         int flag = studentService.addStudent(student);
         return null;
+    }
+
+    @RequestMapping("/deleteStudent.do")
+    public String deleteStudent(String studentId){
+        int haveUser = studentService.userExist(studentId);
+        if(haveUser == 1){
+            int flag = studentService.deleteStudentByStudentId(studentId);
+        }
+        return "redirect:/administrationOfficeController/studentListUi.do";
     }
 
     @RequestMapping("/addTeacher.do")

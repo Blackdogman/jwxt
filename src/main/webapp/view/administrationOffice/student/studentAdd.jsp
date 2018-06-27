@@ -28,7 +28,6 @@
         <form method="post" class="form-x" action="<%=basePath%>administrationOfficeController/addStudent.do">
             <div class="form-group">
                 <div class="label">
-
                 </div>
                 <div class="field">
                     <span style="color:red;">${errorMessage}</span>
