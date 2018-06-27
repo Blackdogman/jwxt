@@ -20,4 +20,6 @@ public interface TeacherMapper {
     int updateByPrimaryKey(Teacher record);
 
     List<TeacherVo> listAllTeacher(TeacherVo teacherVo);
+
+    int deleteTeacherByTeacherId(String teacherId);
 }

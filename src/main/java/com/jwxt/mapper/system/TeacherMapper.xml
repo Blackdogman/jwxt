@@ -189,4 +189,10 @@
     </if>
     AND teacher_status = '在职'
   </select>
+
+  <update id="deleteTeacherByTeacherId" parameterType="java.lang.String">
+    update teacher
+    set teacher_status = 0
+    where teacher_id = #{teacherId,jdbcType=VARCHAR}
+  </update>
 </mapper>

@@ -41,19 +41,6 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public int userExist(String studentId) {
-        List<SysUser> sysUserList = sysUserMapper.selectByUserLoginName(studentId);
-        int flag;
-        if(sysUserList.size() > 0){
-            flag = 1;
-        }else {
-            flag = 0;
-        }
-        return flag;
-    }
-
-
-    @Override
     public PagedResult<StudentVo> listAllStudent(Integer pageNumber, Integer pageSize, StudentVo studentVo) {
         PageHelper.startPage(pageNumber, pageSize);
         List<StudentVo> userList = studentMapper.listAllUser(studentVo);

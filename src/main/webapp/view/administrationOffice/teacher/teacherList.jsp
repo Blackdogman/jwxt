@@ -29,7 +29,7 @@
 <body onload="load()">
 <form method="post" action="">
     <div class="panel admin-panel">
-        <div class="panel-head"><strong class="icon-reorder"> 留言管理</strong></div>
+        <div class="panel-head"><strong class="icon-reorder"> 老师管理</strong></div>
         <div class="padding border-bottom">
             <ul class="search">
                 <li>
@@ -72,7 +72,7 @@
                     <td>
                         <div class="button-group">
                             <a class="button border-red"
-                               href="<%=basePath%>administrationOfficeController/deleteStudent.do?studentId=${teacher.teacherId}"><span
+                               href="<%=basePath%>administrationOfficeController/deleteTeacher.do?teacherId=${teacher.teacherId}"><span
                                     class="icon-trash-o"></span> 删除</a>
                         </div>
                     </td>

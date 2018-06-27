@@ -9,4 +9,6 @@ public interface TeacherService {
     int addTeacher(Teacher teacher);
 
     PagedResult<TeacherVo> listAllTeacher(Integer pageNumber, Integer pageSize, TeacherVo teacherVo);
+
+    int deleteTeacherByTeacherId(String teacherId);
 }

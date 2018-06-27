@@ -6,7 +6,6 @@ import com.framework.utils.pageUtil.PagedResult;
 import com.github.pagehelper.PageHelper;
 import com.jwxt.dao.system.SysUserMapper;
 import com.jwxt.dao.system.TeacherMapper;
-import com.jwxt.model.system.StudentVo;
 import com.jwxt.model.system.SysUser;
 import com.jwxt.model.system.Teacher;
 import com.jwxt.model.system.TeacherVo;
@@ -46,5 +45,10 @@ public class TeacherServiceImpl implements TeacherService {
         PageHelper.startPage(pageNumber, pageSize);
         List<TeacherVo> userList = teacherMapper.listAllTeacher(teacherVo);
         return PageBeanUtil.toPagedResult(userList);
+    }
+
+    @Override
+    public int deleteTeacherByTeacherId(String teacherId) {
+        return teacherMapper.deleteTeacherByTeacherId(teacherId);
     }
 }

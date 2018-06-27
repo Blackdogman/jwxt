@@ -29,16 +29,18 @@
 <body onload="load()">
 <form method="post" action="">
     <div class="panel admin-panel">
-        <div class="panel-head"><strong class="icon-reorder"> 留言管理</strong></div>
+        <div class="panel-head"><strong class="icon-reorder"> 学生管理</strong></div>
         <div class="padding border-bottom">
             <ul class="search">
                 <li>
-                    <a href="<%=basePath%>view/administrationOffice/student/studentAdd.jsp" class="button border-blue" id=""><span
+                    <a href="<%=basePath%>view/administrationOffice/student/studentAdd.jsp" class="button border-blue"
+                       id=""><span
                             class="icon-plus"></span> 添加
                     </a>
                 </li>
                 <li>
-                    <form action="<%=basePath%>administrationOfficeController/studentListUi.do" method="post" class="pull-right navbar-form navbar-right" role="search">
+                    <form action="<%=basePath%>administrationOfficeController/studentListUi.do" method="post"
+                          class="pull-right navbar-form navbar-right" role="search">
                         <div class="form-group pull-left">
                             <input type="text" name="studentName" class="form-control" placeholder="Search">
                         </div>
@@ -59,7 +61,7 @@
             </tr>
             <c:forEach var="student" items="${pageResult.dataList}">
                 <tr>
-                    <td><input type="checkbox" name="id[]" value="${user.userId}" />
+                    <td><input type="checkbox" name="id[]" value="${student.studentId}"/>
                             ${student.studentId}
                     </td>
                     <td>${student.studentName}</td>
@@ -82,7 +84,7 @@
 <div align="center" id="jpager"></div>
 <script type="text/javascript">
     function load() {
-        arrayPage(${pageResult.pages},${pageResult.total});
+        arrayPage(${pageResult.pages}, ${pageResult.total});
     }
 
     function del(id) {
@@ -125,7 +127,7 @@
                     type: "post",
                     success: function () {
                         alert("成功");
-                        location.reload(true);   
+                        location.reload(true);
                     }
                 });
             }
