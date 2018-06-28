@@ -4,6 +4,7 @@ import com.jwxt.service.administrationOffice.StudentService;
 import com.jwxt.service.administrationOffice.SysUserService;
 import com.jwxt.service.administrationOffice.TeacherService;
 import com.jwxt.service.system.LoginService;
+import com.jwxt.utils.DictionaryTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.ServletRequestDataBinder;
@@ -22,6 +23,10 @@ public class BaseController extends HttpServlet {
 	protected TeacherService teacherService;
 	@Autowired
 	protected SysUserService sysUserService;
+
+
+	@Autowired
+	protected DictionaryTools dictionaryTools;
 	/**
 	 * 
 	 */

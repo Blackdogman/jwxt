@@ -2,8 +2,6 @@ package com.jwxt.controller.system;
 
 import com.framework.controller.BaseController;
 import com.jwxt.model.system.SysUser;
-import com.jwxt.service.system.LoginService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jwxt.dao.utils.UtilMapper">
+    <select id="listDictionaryNameByType" parameterType="java.lang.String" resultType="java.util.HashMap">
+      SELECT code,`name` FROM sys_dictionary WHERE type = #{0,jdbcType=VARCHAR}
+    </select>
+</mapper>

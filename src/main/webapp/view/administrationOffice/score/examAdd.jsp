@@ -33,13 +33,9 @@
                     <label for="input1" class="col-sm-4 col-xs-4 control-label">学科</label>
                     <div class="col-sm-8 col-xs-8">
                         <select class="form-control" id="input1">
-                            <option value="1">你好</option>
-                            <option value="1">你好</option>
-                            <option value="1">你好</option>
-                            <option value="1">你好</option>
-                            <option value="1">你好</option>
-                            <option value="1">你好</option>
-                            <option value="1">你好</option>
+                            <c:forEach var="map" items="${xuekeDictionary}">
+                                <option value="${map.code}">${map.name}</option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>

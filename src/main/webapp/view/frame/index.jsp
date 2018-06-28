@@ -43,6 +43,8 @@
                 class="icon-caret-right"></span>学生管理</a></li>
         <li><a href="<%=basePath%>administrationOfficeController/teacherListUi.do" target="right"><span
                 class="icon-caret-right"></span>老师管理</a></li>
+        <li><a href="<%=basePath%>administrationOfficeController/examAddUi.do" target="right"><span
+                class="icon-caret-right"></span>课程添加</a></li>
     </ul>
     <div id="test"></div>
 </div>

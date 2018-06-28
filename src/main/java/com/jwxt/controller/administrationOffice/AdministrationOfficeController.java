@@ -12,6 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+import java.util.Map;
+
 @Controller
 @RequestMapping("/administrationOfficeController")
 public class AdministrationOfficeController extends BaseController {
@@ -85,8 +88,9 @@ public class AdministrationOfficeController extends BaseController {
     }
 
     @RequestMapping("/examAddUi.do")
-    public String examAddUi(){
-
+    public String examAddUi(Model model){
+        List<Map<String, String>> xuekeDictionary = dictionaryTools.listDictionaryNameByType("科目");
+        model.addAttribute("xuekeDictionary", xuekeDictionary);
         return "view/administrationOffice/score/examAdd";
     }
 
