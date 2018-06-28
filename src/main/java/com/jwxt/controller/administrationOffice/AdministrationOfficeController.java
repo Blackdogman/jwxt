@@ -90,7 +90,9 @@ public class AdministrationOfficeController extends BaseController {
     @RequestMapping("/examAddUi.do")
     public String examAddUi(Model model){
         List<Map<String, String>> xuekeDictionary = dictionaryTools.listDictionaryNameByType("科目");
+        List<Map<String, String>> kaoshiDictionary = dictionaryTools.listDictionaryNameByType("考试");
         model.addAttribute("xuekeDictionary", xuekeDictionary);
+        model.addAttribute("kaoshiDictionary", kaoshiDictionary);
         return "view/administrationOffice/score/examAdd";
     }
 

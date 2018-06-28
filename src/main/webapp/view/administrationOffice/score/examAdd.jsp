@@ -42,36 +42,49 @@
                 <div class="form-group">
                     <label for="input2" class="col-sm-4 col-xs-4 control-label">学年:</label>
                     <div class="col-sm-8 col-xs-8">
-                        <input type="text" class="form-control" id="input2" placeholder="请输入名字">
+                        <select class="form-control" id="input2">
+                            <%--时间选择下拉框--%>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="input3" class="col-sm-4 col-xs-4 control-label">学期:</label>
                     <div class="col-sm-8 col-xs-8">
-                        <input type="text" class="form-control" id="input3" placeholder="请输入名字">
+                        <select class="form-control" id="input3">
+                            <option value="1">第一学期</option>
+                            <option value="2">第二学期</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="input4" class="col-sm-4 col-xs-4 control-label">考试名称:</label>
                     <div class="col-sm-8 col-xs-8">
-                        <input type="text" class="form-control" id="input4" placeholder="请输入名字">
+                        <select class="form-control" id="input4">
+                            <c:forEach var="map" items="${kaoshiDictionary}">
+                                <option value="${map.code}">${map.name}</option>
+                            </c:forEach>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-8 col-xs-offset-4 col-xs-8">
-                        <button type="submit" class="btn btn-default">登录</button>
+                        <button type="button" class="btn btn-info">提交</button>
                     </div>
                 </div>
             </form>
         </div>
         <div class="col-md-8 col-sm-8">
-            <div class="form-group col-sm-5">
-                <label for="input1233" class="col-sm-4 col-xs-4 control-label">学年:</label>
+            <div class="form-group col-sm-6">
+                <label for="input1233" class="col-sm-4 col-xs-4 control-label">毕业年:</label>
                 <div class="col-sm-8 col-xs-8">
                     <select class="form-control" id="input1233">
                         <%--时间选择下拉框--%>
                     </select>
                 </div>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <ul class="list-inline" id="classAddList">
+                </ul>
             </div>
             <table class="col-md-12 col-sm-12 table">
                 <thead>
@@ -109,10 +122,6 @@
                 </tr>
                 </tbody>
             </table>
-            <div class="col-md-12 col-sm-12">
-                <ul class="list-inline" id="classAddList">
-                </ul>
-            </div>
         </div>
     </div>
 </div>
@@ -125,6 +134,7 @@
         for(var i = year; i > year - 30; i--){
             //<option value="2018" selected="selected">2018</option>
             $("#input1233").append('<option value="'+i+'">'+i+'</option>');
+            $("#input2").append('<option value="'+i+'">'+i+'</option>');
         }
     });
 
