@@ -49,4 +49,9 @@ public class ClassInfoServiceImpl implements ClassInfoService {
     public int updateClassInfoByClassInfo(ClassInfo classInfo) {
         return classInfoMapper.updateByPrimaryKeySelective(classInfo);
     }
+
+    @Override
+    public List<ClassInfoVo> listClassInfoVoByYearAndName(ClassInfoVo classInfoVo) {
+        return classInfoMapper.listClassInfoVoByYearAndName(classInfoVo);
+    }
 }

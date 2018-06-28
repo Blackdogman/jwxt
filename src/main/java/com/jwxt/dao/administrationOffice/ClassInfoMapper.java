@@ -21,4 +21,6 @@ public interface ClassInfoMapper {
 	List<ClassInfoVo> queryAllClassInfo();
 
 	List<ClassInfoVo> queryClassInfoByStatus(List<Integer> statusList);
+
+    List<ClassInfoVo> listClassInfoVoByYearAndName(ClassInfoVo classInfoVo);
 }

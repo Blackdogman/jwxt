@@ -3,6 +3,7 @@ package com.jwxt.controller.administrationOffice;
 import com.framework.controller.BaseController;
 import com.framework.utils.PrimaryKeyUtil;
 import com.framework.utils.pageUtil.PagedResult;
+import com.jwxt.model.administrationOffice.ClassInfoVo;
 import com.jwxt.model.system.Student;
 import com.jwxt.model.system.StudentVo;
 import com.jwxt.model.system.Teacher;
@@ -91,8 +92,10 @@ public class AdministrationOfficeController extends BaseController {
     public String examAddUi(Model model){
         List<Map<String, String>> xuekeDictionary = dictionaryTools.listDictionaryNameByType("科目");
         List<Map<String, String>> kaoshiDictionary = dictionaryTools.listDictionaryNameByType("考试");
+        List<ClassInfoVo> classInfoVoList = classInfoService.listClassInfoVoByYearAndName(null);
         model.addAttribute("xuekeDictionary", xuekeDictionary);
         model.addAttribute("kaoshiDictionary", kaoshiDictionary);
+        model.addAttribute("classList", classInfoVoList);
         return "view/administrationOffice/score/examAdd";
     }
 

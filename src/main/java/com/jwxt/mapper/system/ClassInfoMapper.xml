@@ -133,5 +133,28 @@
     ORDER BY class_graduate_year
 	ASC
   </select>
-  
+
+  <select id="listClassInfoVoByYearAndName" resultMap="VoResultMap" parameterType="com.jwxt.model.administrationOffice.ClassInfoVo">
+    select
+    class_info.id,
+    class_info.class_name,
+    class_info.class_graduate_year,
+    teacher.teacher_name,
+    sys_dictionary.name AS class_status
+    from class_info
+    LEFT JOIN teacher ON
+    class_info.class_teacher_id = teacher.teacher_id
+    LEFT JOIN sys_dictionary ON
+    class_info.class_status = sys_dictionary.code AND sys_dictionary.type = '班级状态'
+    where 1=1
+    <if test="classGraduateYear!=null">
+      AND class_graduate_year = #{classGraduateYear, jdbcType=VARCHAR}
+    </if>
+    <if test="className!=null">
+      AND class_name '%${className, jdbcType=VARCHAR}%'
+    </if>
+    ORDER BY class_graduate_year
+    ASC
+  </select>
+
 </mapper>

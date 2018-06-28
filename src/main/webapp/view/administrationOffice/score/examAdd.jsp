@@ -68,19 +68,27 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-8 col-xs-offset-4 col-xs-8">
-                        <button type="button" class="btn btn-info">提交</button>
+                        <button type="button" class="btn btn-info btn-block">提交</button>
                     </div>
                 </div>
             </form>
         </div>
         <div class="col-md-8 col-sm-8">
-            <div class="form-group col-sm-6">
+            <div class="form-group col-sm-5">
                 <label for="input1233" class="col-sm-4 col-xs-4 control-label">毕业年:</label>
                 <div class="col-sm-8 col-xs-8">
                     <select class="form-control" id="input1233">
                         <%--时间选择下拉框--%>
                     </select>
                 </div>
+            </div>
+            <div class="form-group col-sm-5">
+                <div>
+                    <input type="text" class="form-control" id="input1234" placeholder="班级名称" />
+                </div>
+            </div>
+            <div class="form-group col-sm-2">
+                <button type="button" class="btn btn-success">搜索</button>
             </div>
             <div class="col-md-12 col-sm-12">
                 <ul class="list-inline" id="classAddList">
@@ -96,30 +104,16 @@
                 </tr>
                 </thead>
                 <tbody id="list_tbody">
-                <tr id="tr_1">
-                    <td>火箭一班</td>
-                    <td>2017</td>
-                    <td>李老师</td>
-                    <td class="text-center">
-                        <a href="javascript:;" onclick="addClassToList('1','火箭一班','2017','李老师');">添加</a>
-                    </td>
-                </tr>
-                <tr id="tr_2">
-                    <td>平行二班</td>
-                    <td>2018</td>
-                    <td>王老师</td>
-                    <td class="text-center">
-                        <a href="javascript:;" onclick="addClassToList('2','平行二班','2018','王老师');">添加</a>
-                    </td>
-                </tr>
-                <tr id="tr_3">
-                    <td>绿色三班</td>
-                    <td>2016</td>
-                    <td>贾老师</td>
-                    <td class="text-center">
-                        <a href="javascript:;" onclick="addClassToList('3','绿色三班','2016','贾老师');">添加</a>
-                    </td>
-                </tr>
+                <c:forEach var="classInfoVo" items="${classList}">
+                    <tr id="tr_${classInfoVo.id}">
+                        <td>${classInfoVo.className}</td>
+                        <td>${classInfoVo.classGraduateYear}</td>
+                        <td>${classInfoVo.teacherName}</td>
+                        <td class="text-center">
+                            <a href="javascript:;" onclick="addClassToList('${classInfoVo.id}','${classInfoVo.className}','${classInfoVo.classGraduateYear}','${classInfoVo.teacherName}');">添加</a>
+                        </td>
+                    </tr>
+                </c:forEach>
                 </tbody>
             </table>
         </div>

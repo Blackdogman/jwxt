@@ -1,5 +1,6 @@
 package com.framework.controller;
 
+import com.jwxt.service.administrationOffice.ClassInfoService;
 import com.jwxt.service.administrationOffice.StudentService;
 import com.jwxt.service.administrationOffice.SysUserService;
 import com.jwxt.service.administrationOffice.TeacherService;
@@ -23,6 +24,8 @@ public class BaseController extends HttpServlet {
 	protected TeacherService teacherService;
 	@Autowired
 	protected SysUserService sysUserService;
+	@Autowired
+	protected ClassInfoService classInfoService;
 
 
 	@Autowired

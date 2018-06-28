@@ -18,4 +18,5 @@ public interface ClassInfoService {
 
 	int updateClassInfoByClassInfo(ClassInfo classInfo);
 
+    List<ClassInfoVo> listClassInfoVoByYearAndName(ClassInfoVo classInfoVo);
 }
