@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jwxt.dao.administrationOffice.ClassInfoMapper">
+  <resultMap id="BaseResultMap" type="com.jwxt.model.administrationOffice.ClassInfo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="class_name" jdbcType="VARCHAR" property="className" />
+    <result column="class_graduate_year" jdbcType="VARCHAR" property="classGraduateYear" />
+    <result column="class_teacher_id" jdbcType="VARCHAR" property="classTeacherId" />
+    <result column="class_status" jdbcType="INTEGER" property="classStatus" />
+  </resultMap>
+  <resultMap id="VoResultMap" type="com.jwxt.model.administrationOffice.ClassInfoVo">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="class_name" jdbcType="VARCHAR" property="className" />
+    <result column="class_graduate_year" jdbcType="VARCHAR" property="classGraduateYear" />
+    <result column="teacher_name" jdbcType="VARCHAR" property="teacherName" />
+    <result column="class_status" jdbcType="VARCHAR" property="classStatus" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, class_name, class_graduate_year, class_teacher_id, class_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from class_info
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from class_info
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jwxt.model.administrationOffice.ClassInfo">
+    insert into class_info (id, class_name, class_graduate_year, 
+      class_teacher_id, class_status)
+    values (#{id,jdbcType=VARCHAR}, #{className,jdbcType=VARCHAR}, #{classGraduateYear,jdbcType=VARCHAR}, 
+      #{classTeacherId,jdbcType=VARCHAR}, #{classStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jwxt.model.administrationOffice.ClassInfo">
+    insert into class_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="className != null">
+        class_name,
+      </if>
+      <if test="classGraduateYear != null">
+        class_graduate_year,
+      </if>
+      <if test="classTeacherId != null">
+        class_teacher_id,
+      </if>
+      <if test="classStatus != null">
+        class_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="className != null">
+        #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="classGraduateYear != null">
+        #{classGraduateYear,jdbcType=VARCHAR},
+      </if>
+      <if test="classTeacherId != null">
+        #{classTeacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="classStatus != null">
+        #{classStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jwxt.model.administrationOffice.ClassInfo">
+    update class_info
+    <set>
+      <if test="className != null">
+        class_name = #{className,jdbcType=VARCHAR},
+      </if>
+      <if test="classGraduateYear != null">
+        class_graduate_year = #{classGraduateYear,jdbcType=VARCHAR},
+      </if>
+      <if test="classTeacherId != null">
+        class_teacher_id = #{classTeacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="classStatus != null">
+        class_status = #{classStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jwxt.model.administrationOffice.ClassInfo">
+    update class_info
+    set class_name = #{className,jdbcType=VARCHAR},
+      class_graduate_year = #{classGraduateYear,jdbcType=VARCHAR},
+      class_teacher_id = #{classTeacherId,jdbcType=VARCHAR},
+      class_status = #{classStatus,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="queryAllClassInfo" resultMap="VoResultMap">
+    select 
+    class_info.id,
+    class_info.class_name,
+    class_info.class_graduate_year, 
+    teacher.teacher_name, 
+    sys_dictionary.name AS class_status
+    from class_info
+    INNER JOIN teacher ON
+    class_info.class_teacher_id = teacher.teacher_id
+    INNER JOIN sys_dictionary ON
+    class_info.class_status = sys_dictionary.code AND sys_dictionary.type = '班级状态'
+    ORDER BY class_graduate_year
+	ASC
+  </select>
+  
+  <select id="queryClassInfoByStatus" resultMap="VoResultMap">
+    select 
+    class_info.id,
+    class_info.class_name,
+    class_info.class_graduate_year, 
+    teacher.teacher_name, 
+    sys_dictionary.name AS class_status
+    from class_info
+    INNER JOIN teacher ON
+    class_info.class_teacher_id = teacher.teacher_id
+    INNER JOIN sys_dictionary ON
+    class_info.class_status = sys_dictionary.code AND sys_dictionary.type = '班级状态'
+    where class_status IN
+    <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+    	#{item }
+    </foreach>
+    ORDER BY class_graduate_year
+	ASC
+  </select>
+  
+</mapper>
