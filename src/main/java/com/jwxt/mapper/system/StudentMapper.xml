@@ -197,4 +197,11 @@
         set student_status = 0
         where student_id = #{studentId,jdbcType=VARCHAR}
     </update>
+
+    <select id="selectByClassId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from student
+        where student_class_id = #{classId, jdbcType=VARCHAR}
+    </select>
 </mapper>

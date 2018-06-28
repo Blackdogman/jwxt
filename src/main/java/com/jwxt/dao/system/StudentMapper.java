@@ -21,4 +21,6 @@ public interface StudentMapper {
     List<StudentVo> listAllUser(StudentVo studentVo);
 
     int deleteStudentByStudentId(String studentId);
+
+    List<Student> selectByClassId(String classId);
 }

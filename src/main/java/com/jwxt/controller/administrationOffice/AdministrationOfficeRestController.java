@@ -36,14 +36,10 @@ public class AdministrationOfficeRestController extends BaseController {
         return classInfoVoList;
     }
 
-    @RequestMapping("/saveExam.do")
-    public void saveExam(String subject_id, String year, String semester, String examName,@RequestParam(value = "idList[]", required = false) String[] idArray){
-        List<String> idList = Arrays.asList(idArray);
-        System.out.println("subject_id: " + subject_id);
-        System.out.println("year: " + year);
-        System.out.println("semester: " + semester);
-        System.out.println("examName: " + examName);
-        System.out.println("idList: " + idList);
-
+    @RequestMapping("/examAdd.do")
+    public int saveExam(String subject_id, String year, String semester, String examName,@RequestParam(value = "idList[]", required = false) String[] idArray){
+        List<String> idList = Arrays.asList(idArray); //把id数组转换为id集合
+        int flag = scoreService.initScore(subject_id, year, semester, examName, idList);
+        return flag;
     }
 }

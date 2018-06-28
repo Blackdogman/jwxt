@@ -1,9 +1,6 @@
 package com.framework.controller;
 
-import com.jwxt.service.administrationOffice.ClassInfoService;
-import com.jwxt.service.administrationOffice.StudentService;
-import com.jwxt.service.administrationOffice.SysUserService;
-import com.jwxt.service.administrationOffice.TeacherService;
+import com.jwxt.service.administrationOffice.*;
 import com.jwxt.service.system.LoginService;
 import com.jwxt.utils.DictionaryTools;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +23,8 @@ public class BaseController extends HttpServlet {
 	protected SysUserService sysUserService;
 	@Autowired
 	protected ClassInfoService classInfoService;
+	@Autowired
+	protected ScoreService scoreService;
 
 
 	@Autowired

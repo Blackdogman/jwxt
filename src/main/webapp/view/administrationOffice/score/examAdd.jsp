@@ -227,29 +227,28 @@
     function submitThisPage(){
         var subject_id = $("#input1").val();
         var year = $("#input2").val();
-        var xueqi = $("#input3").val();
+        var semester = $("#input3").val();
         var examName = $("#input4").val();
         var idList = new Array();
         for(var i in classInfoList){
             idList.push(classInfoList[i].id);
         }
-        alert("subject_id: " + subject_id +
-            "\nyear: " + year +
-            "\nsemester: " + xueqi +
-            "\nexamName: " + examName +
-            "\nidList: " + idList );
         $.ajax({
-            url: "<%=basePath%>administrationOfficeController/saveExam.do",
+            url: "<%=basePath%>administrationOfficeController/examAdd.do",
             data: {
                 "subject_id": subject_id,
                 "year": year,
-                "semester": xueqi,
+                "semester": semester,
                 "examName": examName,
                 "idList": idList
             },
             dataType: 'json',
             type: "post",
             success: function (req) {
+                if(req == 1){
+                    alert("添加成功");
+                    window.location.href = "<%=basePath%>administrationOfficeController/examAddUi.do";
+                }
             }
         });
     }
