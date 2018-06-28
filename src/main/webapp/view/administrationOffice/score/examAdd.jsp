@@ -68,7 +68,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-8 col-xs-offset-4 col-xs-8">
-                        <button type="button" class="btn btn-info btn-block">提交</button>
+                        <button type="button" class="btn btn-info btn-block" onclick="submitThisPage();">提交</button>
                     </div>
                 </div>
             </form>
@@ -84,11 +84,11 @@
             </div>
             <div class="form-group col-sm-5">
                 <div>
-                    <input type="text" class="form-control" id="input1234" placeholder="班级名称" />
+                    <input type="text" class="form-control" id="input1234" placeholder="班级名称"/>
                 </div>
             </div>
             <div class="form-group col-sm-2">
-                <button type="button" class="btn btn-success">搜索</button>
+                <button type="button" class="btn btn-success" onclick="search();">搜索</button>
             </div>
             <div class="col-md-12 col-sm-12">
                 <ul class="list-inline" id="classAddList">
@@ -110,7 +110,8 @@
                         <td>${classInfoVo.classGraduateYear}</td>
                         <td>${classInfoVo.teacherName}</td>
                         <td class="text-center">
-                            <a href="javascript:;" onclick="addClassToList('${classInfoVo.id}','${classInfoVo.className}','${classInfoVo.classGraduateYear}','${classInfoVo.teacherName}');">添加</a>
+                            <a href="javascript:;"
+                               onclick="addClassToList('${classInfoVo.id}','${classInfoVo.className}','${classInfoVo.classGraduateYear}','${classInfoVo.teacherName}');">添加</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -122,58 +123,135 @@
 <script>
     var classInfoList = new Array();
 
-    $(function(){
+    $(function () {
         var date = new Date();
         var year = date.getFullYear();
-        for(var i = year; i > year - 30; i--){
+        for (var i = year; i > year - 30; i--) {
             //<option value="2018" selected="selected">2018</option>
-            $("#input1233").append('<option value="'+i+'">'+i+'</option>');
-            $("#input2").append('<option value="'+i+'">'+i+'</option>');
+            $("#input1233").append('<option value="' + i + '">' + i + '</option>');
+            $("#input2").append('<option value="' + i + '">' + i + '</option>');
         }
     });
 
     //把班级添加到list中
     function addClassToList(id, className, year, teacherName) {
         $("#tr_" + id).remove();
-        classInfoList.push({'id':id , 'className': className, 'year': year, 'teacherName': teacherName });
+        classInfoList.push({'id': id, 'className': className, 'year': year, 'teacherName': teacherName});
         $("#classAddList").append(
-            $('<li id="addLi_'+id+'">' +
-                '<input type="hidden" value="'+id+'"/>' +
-                '<span>'+className+'-'+year+'</span>' +
-                '<a href="javascript:;" onclick="removeClassToList(\''+id+'\');"> x</a>' +
+            $('<li id="addLi_' + id + '">' +
+                '<input type="hidden" value="' + id + '"/>' +
+                '<span>' + className + '-' + year + '</span>' +
+                '<a href="javascript:;" onclick="removeClassToList(\'' + id + '\');"> x</a>' +
                 '</li>'
             )
         );
     }
+
     //把班级移除预备list
-    function removeClassToList(id){
+    function removeClassToList(id) {
         var tempArray = new Array();
         var className;
         var year;
         var teacherName;
-        for(var i in classInfoList){
+        for (var i in classInfoList) {
             var item = classInfoList[i];
-            if(item.id == id){
+            if (item.id == id) {
                 className = item.className;
                 year = item.year;
                 teacherName = item.teacherName;
-            }else {
+            } else {
                 tempArray.push(item);
             }
         }
         $("#list_tbody").append(
-            $( '<tr id="tr_'+id+'">' +
-                    '<td>'+className+'</td>' +
-                    '<td>'+year+'</td>' +
-                    '<td>'+teacherName+'</td>' +
-                    '<td class="text-center">' +
-                        '<a href="javascript:;" onclick="addClassToList(\''+id+'\',\''+className+'\',\''+year+'\',\''+teacherName+'\');">添加</a>' +
-                    '</td>' +
+            $('<tr id="tr_' + id + '">' +
+                '<td>' + className + '</td>' +
+                '<td>' + year + '</td>' +
+                '<td>' + teacherName + '</td>' +
+                '<td class="text-center">' +
+                '<a href="javascript:;" onclick="addClassToList(\'' + id + '\',\'' + className + '\',\'' + year + '\',\'' + teacherName + '\');">添加</a>' +
+                '</td>' +
                 '</tr>'
             )
         );
-        $("#addLi_"+id).remove();
+        $("#addLi_" + id).remove();
         classInfoList = tempArray;
+    }
+
+    //搜索
+    function search() {
+        var year = $("#input1233").val();
+        var className = $("#input1234").val();
+        $.ajax({
+            url: "<%=basePath%>administrationOfficeController/examAddUiJson.do",
+            data: {
+                "year": year,
+                "className": className
+            },
+            dataType: 'json',
+            type: "post",
+            success: function (req) {
+                // console.log(req);
+                $("#list_tbody").html("");
+                for (var i in req) {
+                    var id = req[i].id;
+                    var className = req[i].className;
+                    var year = req[i].classGraduateYear;
+                    var teacherName = req[i].teacherName;
+                    var flag = false;
+                    for (var index in classInfoList) {
+                        //如果搜索结果中存在已经添加的，就忽略掉
+                        if (classInfoList[index].id == id) {
+                            flag = true;
+                        }
+                    }
+                    if (flag != true) {
+                        $("#list_tbody").append(
+                            $('<tr id="tr_' + id + '">' +
+                                '<td>' + className + '</td>' +
+                                '<td>' + year + '</td>' +
+                                '<td>' + teacherName + '</td>' +
+                                '<td class="text-center">' +
+                                '<a href="javascript:;" onclick="addClassToList(\'' + id + '\',\'' + className + '\',\'' + year + '\',\'' + teacherName + '\');">添加</a>' +
+                                '</td>' +
+                                '</tr>'
+                            )
+                        );
+                    }
+                }
+            }
+        });
+    }
+
+    //提交
+    function submitThisPage(){
+        var subject_id = $("#input1").val();
+        var year = $("#input2").val();
+        var xueqi = $("#input3").val();
+        var examName = $("#input4").val();
+        var idList = new Array();
+        for(var i in classInfoList){
+            idList.push(classInfoList[i].id);
+        }
+        alert("subject_id: " + subject_id +
+            "\nyear: " + year +
+            "\nsemester: " + xueqi +
+            "\nexamName: " + examName +
+            "\nidList: " + idList );
+        $.ajax({
+            url: "<%=basePath%>administrationOfficeController/saveExam.do",
+            data: {
+                "subject_id": subject_id,
+                "year": year,
+                "semester": xueqi,
+                "examName": examName,
+                "idList": idList
+            },
+            dataType: 'json',
+            type: "post",
+            success: function (req) {
+            }
+        });
     }
 </script>
 </body>
