@@ -84,6 +84,10 @@ public class AdministrationOfficeController extends BaseController {
         return "redirect:/administrationOfficeController/teacherListUi.do";
     }
 
-    
+    @RequestMapping("/examAddUi.do")
+    public String examAddUi(){
+
+        return "view/administrationOffice/score/examAdd";
+    }
 
 }

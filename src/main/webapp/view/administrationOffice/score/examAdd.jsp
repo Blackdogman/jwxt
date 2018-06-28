@@ -44,19 +44,19 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="input2" class="col-sm-4 col-xs-4 control-label">学年</label>
+                    <label for="input2" class="col-sm-4 col-xs-4 control-label">学年:</label>
                     <div class="col-sm-8 col-xs-8">
                         <input type="text" class="form-control" id="input2" placeholder="请输入名字">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="input3" class="col-sm-4 col-xs-4 control-label">学期</label>
+                    <label for="input3" class="col-sm-4 col-xs-4 control-label">学期:</label>
                     <div class="col-sm-8 col-xs-8">
                         <input type="text" class="form-control" id="input3" placeholder="请输入名字">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="input4" class="col-sm-4 col-xs-4 control-label">考试名称</label>
+                    <label for="input4" class="col-sm-4 col-xs-4 control-label">考试名称:</label>
                     <div class="col-sm-8 col-xs-8">
                         <input type="text" class="form-control" id="input4" placeholder="请输入名字">
                     </div>
@@ -70,62 +70,111 @@
         </div>
         <div class="col-md-8 col-sm-8">
             <div class="form-group col-sm-5">
-                <label for="input1233" class="col-sm-4 col-xs-4 control-label">学科</label>
+                <label for="input1233" class="col-sm-4 col-xs-4 control-label">学年:</label>
                 <div class="col-sm-8 col-xs-8">
                     <select class="form-control" id="input1233">
-                        <option value="1">你好</option>
-                        <option value="1">你好</option>
-                        <option value="1">你好</option>
-                        <option value="1">你好</option>
-                        <option value="1">你好</option>
-                        <option value="1">你好</option>
-                        <option value="1">你好</option>
+                        <%--时间选择下拉框--%>
                     </select>
                 </div>
             </div>
-            <div class="form-group col-sm-5">
-                <label for="input12333" class="col-sm-4 col-xs-4 control-label">学科</label>
-                <div class="col-sm-8 col-xs-8">
-                    <select class="form-control" id="input12333">
-                        <option value="1">你好</option>
-                        <option value="1">你好</option>
-                        <option value="1">你好</option>
-                        <option value="1">你好</option>
-                        <option value="1">你好</option>
-                        <option value="1">你好</option>
-                        <option value="1">你好</option>
-                    </select>
-                </div>
+            <table class="col-md-12 col-sm-12 table">
+                <thead>
+                <tr>
+                    <th>班级名称</th>
+                    <th>毕业年</th>
+                    <th>班主任</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="list_tbody">
+                <tr id="tr_1">
+                    <td>火箭一班</td>
+                    <td>2017</td>
+                    <td>李老师</td>
+                    <td class="text-center">
+                        <a href="javascript:;" onclick="addClassToList('1','火箭一班','2017','李老师');">添加</a>
+                    </td>
+                </tr>
+                <tr id="tr_2">
+                    <td>平行二班</td>
+                    <td>2018</td>
+                    <td>王老师</td>
+                    <td class="text-center">
+                        <a href="javascript:;" onclick="addClassToList('2','平行二班','2018','王老师');">添加</a>
+                    </td>
+                </tr>
+                <tr id="tr_3">
+                    <td>绿色三班</td>
+                    <td>2016</td>
+                    <td>贾老师</td>
+                    <td class="text-center">
+                        <a href="javascript:;" onclick="addClassToList('3','绿色三班','2016','贾老师');">添加</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="col-md-12 col-sm-12">
+                <ul class="list-inline" id="classAddList">
+                </ul>
             </div>
-            <select multiple="multiple" size="12" class="col-md-12">
-                <option value ="volvo">Volvo</option>
-                <option value ="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
-                <option value ="volvo">Volvo</option>
-                <option value ="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
-                <option value ="volvo">Volvo</option>
-                <option value ="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
-                <option value ="volvo">Volvo</option>
-                <option value ="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
-                <option value ="volvo">Volvo</option>
-                <option value ="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
-                <option value ="volvo">Volvo</option>
-                <option value ="saab">Saab</option>
-                <option value="opel">Opel</option>
-                <option value="audi">Audi</option>
-            </select>
         </div>
     </div>
 </div>
+<script>
+    var classInfoList = new Array();
 
+    $(function(){
+        var date = new Date();
+        var year = date.getFullYear();
+        for(var i = year; i > year - 30; i--){
+            //<option value="2018" selected="selected">2018</option>
+            $("#input1233").append('<option value="'+i+'">'+i+'</option>');
+        }
+    });
+
+    //把班级添加到list中
+    function addClassToList(id, className, year, teacherName) {
+        $("#tr_" + id).remove();
+        classInfoList.push({'id':id , 'className': className, 'year': year, 'teacherName': teacherName });
+        $("#classAddList").append(
+            $('<li id="addLi_'+id+'">' +
+                '<input type="hidden" value="'+id+'"/>' +
+                '<span>'+className+'-'+year+'</span>' +
+                '<a href="javascript:;" onclick="removeClassToList(\''+id+'\');"> x</a>' +
+                '</li>'
+            )
+        );
+    }
+    //把班级移除预备list
+    function removeClassToList(id){
+        var tempArray = new Array();
+        var className;
+        var year;
+        var teacherName;
+        for(var i in classInfoList){
+            var item = classInfoList[i];
+            if(item.id == id){
+                className = item.className;
+                year = item.year;
+                teacherName = item.teacherName;
+            }else {
+                tempArray.push(item);
+            }
+        }
+        $("#list_tbody").append(
+            $( '<tr id="tr_'+id+'">' +
+                    '<td>'+className+'</td>' +
+                    '<td>'+year+'</td>' +
+                    '<td>'+teacherName+'</td>' +
+                    '<td class="text-center">' +
+                        '<a href="javascript:;" onclick="addClassToList(\''+id+'\',\''+className+'\',\''+year+'\',\''+teacherName+'\');">添加</a>' +
+                    '</td>' +
+                '</tr>'
+            )
+        );
+        $("#addLi_"+id).remove();
+        classInfoList = tempArray;
+    }
+</script>
 </body>
 </html>
