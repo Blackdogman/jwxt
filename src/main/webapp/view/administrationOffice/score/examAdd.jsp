@@ -135,16 +135,37 @@
 
     //把班级添加到list中
     function addClassToList(id, className, year, teacherName) {
-        $("#tr_" + id).remove();
-        classInfoList.push({'id': id, 'className': className, 'year': year, 'teacherName': teacherName});
-        $("#classAddList").append(
-            $('<li id="addLi_' + id + '">' +
-                '<input type="hidden" value="' + id + '"/>' +
-                '<span>' + className + '-' + year + '</span>' +
-                '<a href="javascript:;" onclick="removeClassToList(\'' + id + '\');"> x</a>' +
-                '</li>'
-            )
-        );
+        var subject_id = $("#input1").val();
+        var year = $("#input2").val();
+        var semester = $("#input3").val();
+        var examName = $("#input4").val();
+        $.ajax({
+            url: "<%=basePath%>administrationOfficeController/examExist.do",
+            data: {
+                "subjectId": subject_id,
+                "year": year,
+                "semester": semester,
+                "examName": examName,
+                "classId": id
+            },
+            type: "post",
+            success: function (req) {
+                if(req > 0){
+                    alert("该班级已经有相同时间段的相同考试了，请检查");
+                }else{
+                    $("#tr_" + id).remove();
+                    classInfoList.push({'id': id, 'className': className, 'year': year, 'teacherName': teacherName});
+                    $("#classAddList").append(
+                        $('<li id="addLi_' + id + '">' +
+                            '<input type="hidden" value="' + id + '"/>' +
+                            '<span>' + className + '-' + year + '</span>' +
+                            '<a href="javascript:;" onclick="removeClassToList(\'' + id + '\');"> x</a>' +
+                            '</li>'
+                        )
+                    );
+                }
+            }
+        });
     }
 
     //把班级移除预备list
@@ -224,13 +245,13 @@
     }
 
     //提交
-    function submitThisPage(){
+    function submitThisPage() {
         var subject_id = $("#input1").val();
         var year = $("#input2").val();
         var semester = $("#input3").val();
         var examName = $("#input4").val();
         var idList = new Array();
-        for(var i in classInfoList){
+        for (var i in classInfoList) {
             idList.push(classInfoList[i].id);
         }
         $.ajax({
@@ -245,7 +266,7 @@
             dataType: 'json',
             type: "post",
             success: function (req) {
-                if(req == 1){
+                if (req == 1) {
                     alert("添加成功");
                     window.location.href = "<%=basePath%>administrationOfficeController/examAddUi.do";
                 }

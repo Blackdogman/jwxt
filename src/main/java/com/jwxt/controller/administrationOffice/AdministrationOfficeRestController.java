@@ -4,10 +4,7 @@ import com.framework.controller.BaseController;
 import com.framework.utils.PrimaryKeyUtil;
 import com.framework.utils.pageUtil.PagedResult;
 import com.jwxt.model.administrationOffice.ClassInfoVo;
-import com.jwxt.model.system.Student;
-import com.jwxt.model.system.StudentVo;
-import com.jwxt.model.system.Teacher;
-import com.jwxt.model.system.TeacherVo;
+import com.jwxt.model.system.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,6 +37,13 @@ public class AdministrationOfficeRestController extends BaseController {
     public int saveExam(String subject_id, String year, String semester, String examName,@RequestParam(value = "idList[]", required = false) String[] idArray){
         List<String> idList = Arrays.asList(idArray); //把id数组转换为id集合
         int flag = scoreService.initScore(subject_id, year, semester, examName, idList);
+        return flag;
+    }
+
+    @RequestMapping("/examExist.do")
+    public int examExist(String subjectId, String year, String semester, String examName, String classId){
+
+        int flag = scoreService.isExist(subjectId, year, semester, examName, classId);
         return flag;
     }
 }

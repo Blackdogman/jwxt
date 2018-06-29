@@ -126,4 +126,15 @@
       score_status = #{scoreStatus,jdbcType=INTEGER}
     where id = #{id,jdbcType=VARCHAR}
   </update>
+
+  <select id="isExist" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+    SELECT COUNT(*) FROM score s
+    JOIN student std ON s.score_student_id = std.student_id
+    WHERE 1 = 1
+          AND s.score_subject_id = #{score_subject_id, jdbcType=VARCHAR}
+          AND s.score_year = #{score_year, jdbcType=VARCHAR}
+          AND s.score_semester = #{score_semester, jdbcType=VARCHAR}
+          AND s.score_bathch = #{score_bathch, jdbcType=VARCHAR}
+          AND std.student_class_id = #{class_id, jdbcType=VARCHAR}
+  </select>
 </mapper>

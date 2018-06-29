@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ScoreServiceImpl implements ScoreService {
@@ -20,13 +22,12 @@ public class ScoreServiceImpl implements ScoreService {
     private StudentMapper studentMapper;
 
     @Override
-    public int initScore(String subject_id, String year, String semester, String examName, List<String> idList) {
+    public int initScore(String subjectId, String year, String semester, String examName, List<String> idList) {
         List<Student> studentList = new ArrayList<>();
         for(String classId : idList){
             List<Student> tempStudentList = studentMapper.selectByClassId(classId);
             studentList.addAll(tempStudentList);
         }
-        System.out.println(studentList);
         for(Student student : studentList){
             Score score = new Score();
             score.setId(PrimaryKeyUtil.getPrimaryKey());
@@ -34,10 +35,21 @@ public class ScoreServiceImpl implements ScoreService {
             score.setScoreStudentId(student.getStudentId());
             score.setScoreSemester(semester);
             score.setScoreYear(year);
-            score.setScoreSubjectId(subject_id);
+            score.setScoreSubjectId(subjectId);
             score.setScoreStatus(1);
             scoreMapper.insertSelective(score);
         }
         return 1;
+    }
+
+    @Override
+    public int isExist(String subjectId, String year, String semester, String examName, String classId) {
+        Map<String, Object> parmMap = new HashMap<>();
+        parmMap.put("score_subject_id", subjectId);
+        parmMap.put("score_year", year);
+        parmMap.put("score_semester", semester);
+        parmMap.put("score_bathch", examName);
+        parmMap.put("class_id", classId);
+        return scoreMapper.isExist(parmMap);
     }
 }
