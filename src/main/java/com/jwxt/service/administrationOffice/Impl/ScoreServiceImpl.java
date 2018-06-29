@@ -3,6 +3,7 @@ package com.jwxt.service.administrationOffice.Impl;
 import com.framework.utils.PrimaryKeyUtil;
 import com.jwxt.dao.administrationOffice.ScoreMapper;
 import com.jwxt.dao.system.StudentMapper;
+import com.jwxt.model.administrationOffice.ClassInfoVo;
 import com.jwxt.model.system.Score;
 import com.jwxt.model.system.Student;
 import com.jwxt.service.administrationOffice.ScoreService;

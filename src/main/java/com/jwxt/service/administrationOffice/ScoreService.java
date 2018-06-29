@@ -1,5 +1,7 @@
 package com.jwxt.service.administrationOffice;
 
+import com.jwxt.model.administrationOffice.ClassInfoVo;
+
 import java.util.List;
 
 public interface ScoreService {

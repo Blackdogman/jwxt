@@ -4,6 +4,7 @@ import com.jwxt.model.administrationOffice.ClassInfo;
 import com.jwxt.model.administrationOffice.ClassInfoVo;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ClassInfoMapper {
     int deleteByPrimaryKey(String id);
@@ -23,4 +24,6 @@ public interface ClassInfoMapper {
 	List<ClassInfoVo> queryClassInfoByStatus(List<Integer> statusList);
 
     List<ClassInfoVo> listClassInfoVoByYearAndName(ClassInfoVo classInfoVo);
+
+    List<ClassInfoVo> listAddScoreClassInfoVo(Map<String,Object> parmMap);
 }

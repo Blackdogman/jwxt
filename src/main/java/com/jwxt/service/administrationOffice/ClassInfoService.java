@@ -19,4 +19,6 @@ public interface ClassInfoService {
 	int updateClassInfoByClassInfo(ClassInfo classInfo);
 
     List<ClassInfoVo> listClassInfoVoByYearAndName(ClassInfoVo classInfoVo);
+
+    List<ClassInfoVo> listAddScoreClassInfoVo(String examYear, String semester, String bathch, String stdYear, String className);
 }

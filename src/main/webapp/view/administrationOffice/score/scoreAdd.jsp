@@ -89,29 +89,62 @@
                 </tr>
                 </thead>
                 <tbody id="list_tbody">
-                    <tr id="tr_demo">
-                        <td>demo22222</td>
-                        <td>demo3333333</td>
-                        <td>demo44444444</td>
-                        <td class="text-center">
-                            <a href="javascript:;">XXXX</a>
-                        </td>
-                    </tr>
+                <%--ajax动态添加--%>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
 <script>
-  $(function () {
-      var date = new Date();
-      var year = date.getFullYear();
-      for (var i = year; i > year - 30; i--) {
-          //<option value="2018" selected="selected">2018</option>
-          $("#input1233").append('<option value="' + i + '">' + i + '</option>');
-          $("#input12335").append('<option value="' + i + '">' + i + '</option>');
-      }
-  });
+    $(function () {
+        var date = new Date();
+        var year = date.getFullYear();
+        for (var i = year; i > year - 30; i--) {
+            //<option value="2018" selected="selected">2018</option>
+            $("#input1233").append('<option value="' + i + '">' + i + '</option>');
+            $("#input12335").append('<option value="' + i + '">' + i + '</option>');
+        }
+    });
+
+    function search() {
+        var examYear = $("#input12335").val();
+        var semster = $("#input123355").val();
+        var bathch = $("#input1233555").val();
+        var stdYear = $("#input1233").val();
+        var className = $("#input1234").val();
+        $.ajax({
+            url: "<%=basePath%>administrationOfficeController/scoreAddUiJson.do",
+            data: {
+                "examYear": examYear,
+                "semster": semster,
+                "bathch": bathch,
+                "stdYear": stdYear,
+                "className": className
+            },
+            type: "post",
+            success: function (req) {
+                $("#list_tbody").html("");
+                for (var i in req) {
+                    var id = req[i].id;
+                    var className = req[i].className;
+                    var year = req[i].classGraduateYear;
+                    var teacherName = req[i].teacherName;
+                    $("#list_tbody").append(
+                        $('<tr id="tr_' + id + '">' +
+                            '<td>' + className + '</td>' +
+                            '<td>' + year + '</td>' +
+                            '<td>' + teacherName + '</td>' +
+                            '<td class="text-center">' +
+                            '<a href="javascript:;" onclick="">学生列表</a>' +
+                            '</td>' +
+                            '</tr>'
+                        )
+                    );
+                }
+            }
+        })
+
+    }
 </script>
 </body>
 </html>

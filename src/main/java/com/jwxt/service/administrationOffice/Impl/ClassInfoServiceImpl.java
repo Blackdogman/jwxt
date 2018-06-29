@@ -1,6 +1,8 @@
 package com.jwxt.service.administrationOffice.Impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,5 +55,16 @@ public class ClassInfoServiceImpl implements ClassInfoService {
     @Override
     public List<ClassInfoVo> listClassInfoVoByYearAndName(ClassInfoVo classInfoVo) {
         return classInfoMapper.listClassInfoVoByYearAndName(classInfoVo);
+    }
+
+    @Override
+    public List<ClassInfoVo> listAddScoreClassInfoVo(String examYear, String semester, String bathch, String stdYear, String className) {
+        Map<String, Object> parmMap = new HashMap<>();
+        parmMap.put("score_year", examYear);
+        parmMap.put("score_semester", semester);
+        parmMap.put("score_bathch", bathch);
+        parmMap.put("class_graduate_year", stdYear);
+        parmMap.put("class_name", className);
+        return classInfoMapper.listAddScoreClassInfoVo(parmMap);
     }
 }
