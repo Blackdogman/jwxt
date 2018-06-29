@@ -66,6 +66,15 @@ public class AdministrationOfficeRestController extends BaseController {
         return flag;
     }
 
+    /**
+     * json用的scoreAdd页面json方法
+     * @param examYear
+     * @param semster
+     * @param bathch
+     * @param stdYear
+     * @param className
+     * @return 班级列表的json
+     */
     @RequestMapping("/scoreAddUiJson.do")
     public List<ClassInfoVo> scoreAddUi(String examYear, String semster, String bathch, String stdYear, String className) {
         List<ClassInfoVo> classInfoVoList = classInfoService.listAddScoreClassInfoVo(examYear, semster, bathch, stdYear, className);
