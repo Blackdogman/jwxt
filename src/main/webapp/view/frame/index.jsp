@@ -45,6 +45,8 @@
                 class="icon-caret-right"></span>老师管理</a></li>
         <li><a href="<%=basePath%>administrationOfficeController/examAddUi.do" target="right"><span
                 class="icon-caret-right"></span>考试添加</a></li>
+        <li><a href="<%=basePath%>administrationOfficeController/scoreAddUi.do" target="right"><span
+                class="icon-caret-right"></span>分数添加</a></li>
     </ul>
     <div id="test"></div>
 </div>
