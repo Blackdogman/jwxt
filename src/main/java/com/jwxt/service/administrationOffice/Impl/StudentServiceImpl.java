@@ -51,4 +51,9 @@ public class StudentServiceImpl implements StudentService {
     public int deleteStudentByStudentId(String studentId) {
         return studentMapper.deleteStudentByStudentId(studentId);
     }
+
+    @Override
+    public List<StudentVo> listStudentVoByClassId(String classId) {
+        return studentMapper.listStudentVoByClassId(classId);
+    }
 }

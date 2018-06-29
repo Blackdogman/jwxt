@@ -135,7 +135,7 @@
                             '<td>' + year + '</td>' +
                             '<td>' + teacherName + '</td>' +
                             '<td class="text-center">' +
-                            '<a href="javascript:;" onclick="">学生列表</a>' +
+                            '<a href="<%=basePath%>/administrationOfficeController/scoreStudentUi.do?classId='+id+'">学生列表</a>' +
                             '</td>' +
                             '</tr>'
                         )

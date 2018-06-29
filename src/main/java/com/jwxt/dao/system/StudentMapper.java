@@ -23,4 +23,6 @@ public interface StudentMapper {
     int deleteStudentByStudentId(String studentId);
 
     List<Student> selectByClassId(String classId);
+
+    List<StudentVo> listStudentVoByClassId(String classId);
 }

@@ -46,9 +46,9 @@ public class AdministrationOfficeController extends BaseController {
     }
 
     @RequestMapping("/deleteStudent.do")
-    public String deleteStudent(String studentId){
+    public String deleteStudent(String studentId) {
         int haveUser = sysUserService.userExist(studentId);
-        if(haveUser == 1){
+        if (haveUser == 1) {
             int flag = studentService.deleteStudentByStudentId(studentId);
         }
         return "redirect:/administrationOfficeController/studentListUi.do";
@@ -80,16 +80,16 @@ public class AdministrationOfficeController extends BaseController {
     }
 
     @RequestMapping("/deleteTeacher.do")
-    public String deleteTeacher(String teacherId){
+    public String deleteTeacher(String teacherId) {
         int haveUser = sysUserService.userExist(teacherId);
-        if(haveUser == 1 ){
+        if (haveUser == 1) {
             int flag = teacherService.deleteTeacherByTeacherId(teacherId);
         }
         return "redirect:/administrationOfficeController/teacherListUi.do";
     }
 
     @RequestMapping("/examAddUi.do")
-    public String examAddUi(Model model){
+    public String examAddUi(Model model) {
         List<Map<String, String>> xuekeDictionary = dictionaryTools.listDictionaryNameByType("科目");
         List<Map<String, String>> kaoshiDictionary = dictionaryTools.listDictionaryNameByType("考试");
         List<ClassInfoVo> classInfoVoList = classInfoService.listClassInfoVoByYearAndName(null);
@@ -99,11 +99,29 @@ public class AdministrationOfficeController extends BaseController {
         return "view/administrationOffice/score/examAdd";
     }
 
+    /**
+     * 添加分数页面跳转
+     * @param model Model对象
+     * @return 添加分数页面路径
+     */
     @RequestMapping("/scoreAddUi.do")
-    public String scoreAddUi(Model model){
+    public String scoreAddUi(Model model) {
         List<Map<String, String>> kaoshiDictionary = dictionaryTools.listDictionaryNameByType("考试");
         model.addAttribute("kaoshiDictionary", kaoshiDictionary);
         return "view/administrationOffice/score/scoreAdd";
+    }
+
+    /**
+     * 添加成绩点击班级后得到具体的学生列表
+     *
+     * @param classId 班级ID
+     * @return StudentVo集合
+     */
+    @RequestMapping("/scoreStudentUi.do")
+    public String scoreStudentUi(String classId, Model model) {
+        List<StudentVo> studentVoList = studentService.listStudentVoByClassId(classId); //这里得到班级对应的所有StudentVo对象
+        model.addAttribute("studentList", studentVoList);
+        return null;
     }
 
 

@@ -204,4 +204,12 @@
         from student
         where student_class_id = #{classId, jdbcType=VARCHAR}
     </select>
+
+    <select id="listStudentVoByClassId" parameterType="java.lang.String" resultMap="VoResultMap">
+        SELECT
+            id,student_id,student_name,student_birthday,student_sex,student_address,student_nationality,
+            student_class_id,student_status,student_citizen_id,student_political_status
+        FROM  v_studentvo
+        WHERE student_class_id = #{classId, jdbcType=VARCHAR}
+    </select>
 </mapper>

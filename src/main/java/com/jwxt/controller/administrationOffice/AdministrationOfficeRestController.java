@@ -20,6 +20,13 @@ import java.util.Map;
 @RequestMapping("/administrationOfficeController")
 public class AdministrationOfficeRestController extends BaseController {
 
+    /**
+     * examAdd的返回ajax方法
+     *
+     * @param year      毕业年
+     * @param className 班级名称（模糊查询）
+     * @return ClassInfoVo的一个集合
+     */
     @RequestMapping("/examAddUiJson.do")
     public List<ClassInfoVo> examAddUiJson(String year, String className) {
         ClassInfoVo classInfoVo = new ClassInfoVo();
@@ -68,11 +75,12 @@ public class AdministrationOfficeRestController extends BaseController {
 
     /**
      * json用的scoreAdd页面json方法
-     * @param examYear
-     * @param semster
-     * @param bathch
-     * @param stdYear
-     * @param className
+     *
+     * @param examYear  考试年
+     * @param semster   考试学期
+     * @param bathch    考试名称（字典）
+     * @param stdYear   毕业年
+     * @param className 班级名称
      * @return 班级列表的json
      */
     @RequestMapping("/scoreAddUiJson.do")
