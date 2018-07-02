@@ -92,7 +92,6 @@ public class AdministrationOfficeRestController extends BaseController {
     @RequestMapping("/searchStudentFormClassByStudentName.do")
     public List<StudentVo> searchStudentFormClassByStudentName(String studentName, String classId) {
         List<StudentVo> studentVoList = studentService.listStudentVoByClassIdAndStudentName(studentName, classId);
-        System.out.println(studentVoList);
         return studentVoList;
     }
 }

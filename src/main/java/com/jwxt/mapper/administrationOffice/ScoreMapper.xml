@@ -1,140 +1,171 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jwxt.dao.administrationOffice.ScoreMapper">
-  <resultMap id="BaseResultMap" type="com.jwxt.model.system.Score">
-    <id column="id" jdbcType="VARCHAR" property="id" />
-    <result column="score_subject_id" jdbcType="VARCHAR" property="scoreSubjectId" />
-    <result column="score_student_id" jdbcType="VARCHAR" property="scoreStudentId" />
-    <result column="score_year" jdbcType="VARCHAR" property="scoreYear" />
-    <result column="score_semester" jdbcType="VARCHAR" property="scoreSemester" />
-    <result column="score_achievement" jdbcType="DECIMAL" property="scoreAchievement" />
-    <result column="score_bathch" jdbcType="INTEGER" property="scoreBathch" />
-    <result column="score_status" jdbcType="INTEGER" property="scoreStatus" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, score_subject_id, score_student_id, score_year, score_semester, score_achievement, 
-    score_bathch, score_status
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from score
-    where id = #{id,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from score
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.jwxt.model.system.Score">
-    insert into score (id, score_subject_id, score_student_id, 
-      score_year, score_semester, score_achievement, 
-      score_bathch, score_status)
-    values (#{id,jdbcType=VARCHAR}, #{scoreSubjectId,jdbcType=VARCHAR}, #{scoreStudentId,jdbcType=VARCHAR}, 
-      #{scoreYear,jdbcType=VARCHAR}, #{scoreSemester,jdbcType=VARCHAR}, #{scoreAchievement,jdbcType=DECIMAL}, 
-      #{scoreBathch,jdbcType=INTEGER}, #{scoreStatus,jdbcType=INTEGER})
-  </insert>
-  <insert id="insertSelective" parameterType="com.jwxt.model.system.Score">
-    insert into score
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="scoreSubjectId != null">
-        score_subject_id,
-      </if>
-      <if test="scoreStudentId != null">
-        score_student_id,
-      </if>
-      <if test="scoreYear != null">
-        score_year,
-      </if>
-      <if test="scoreSemester != null">
-        score_semester,
-      </if>
-      <if test="scoreAchievement != null">
-        score_achievement,
-      </if>
-      <if test="scoreBathch != null">
-        score_bathch,
-      </if>
-      <if test="scoreStatus != null">
-        score_status,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="scoreSubjectId != null">
-        #{scoreSubjectId,jdbcType=VARCHAR},
-      </if>
-      <if test="scoreStudentId != null">
-        #{scoreStudentId,jdbcType=VARCHAR},
-      </if>
-      <if test="scoreYear != null">
-        #{scoreYear,jdbcType=VARCHAR},
-      </if>
-      <if test="scoreSemester != null">
-        #{scoreSemester,jdbcType=VARCHAR},
-      </if>
-      <if test="scoreAchievement != null">
-        #{scoreAchievement,jdbcType=DECIMAL},
-      </if>
-      <if test="scoreBathch != null">
-        #{scoreBathch,jdbcType=INTEGER},
-      </if>
-      <if test="scoreStatus != null">
-        #{scoreStatus,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jwxt.model.system.Score">
-    update score
-    <set>
-      <if test="scoreSubjectId != null">
-        score_subject_id = #{scoreSubjectId,jdbcType=VARCHAR},
-      </if>
-      <if test="scoreStudentId != null">
-        score_student_id = #{scoreStudentId,jdbcType=VARCHAR},
-      </if>
-      <if test="scoreYear != null">
-        score_year = #{scoreYear,jdbcType=VARCHAR},
-      </if>
-      <if test="scoreSemester != null">
-        score_semester = #{scoreSemester,jdbcType=VARCHAR},
-      </if>
-      <if test="scoreAchievement != null">
-        score_achievement = #{scoreAchievement,jdbcType=DECIMAL},
-      </if>
-      <if test="scoreBathch != null">
-        score_bathch = #{scoreBathch,jdbcType=INTEGER},
-      </if>
-      <if test="scoreStatus != null">
-        score_status = #{scoreStatus,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.jwxt.model.system.Score">
-    update score
-    set score_subject_id = #{scoreSubjectId,jdbcType=VARCHAR},
-      score_student_id = #{scoreStudentId,jdbcType=VARCHAR},
-      score_year = #{scoreYear,jdbcType=VARCHAR},
-      score_semester = #{scoreSemester,jdbcType=VARCHAR},
-      score_achievement = #{scoreAchievement,jdbcType=DECIMAL},
-      score_bathch = #{scoreBathch,jdbcType=INTEGER},
-      score_status = #{scoreStatus,jdbcType=INTEGER}
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
+    <resultMap id="BaseResultMap" type="com.jwxt.model.system.Score">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="score_subject_id" jdbcType="VARCHAR" property="scoreSubjectId"/>
+        <result column="score_student_id" jdbcType="VARCHAR" property="scoreStudentId"/>
+        <result column="score_year" jdbcType="VARCHAR" property="scoreYear"/>
+        <result column="score_semester" jdbcType="VARCHAR" property="scoreSemester"/>
+        <result column="score_achievement" jdbcType="DECIMAL" property="scoreAchievement"/>
+        <result column="score_bathch" jdbcType="INTEGER" property="scoreBathch"/>
+        <result column="score_status" jdbcType="INTEGER" property="scoreStatus"/>
+    </resultMap>
+    <resultMap id="VoBaseResultMap" type="com.jwxt.model.system.ScoreVo">
+        <id column="id" jdbcType="VARCHAR" property="id"/>
+        <result column="score_subject_id" jdbcType="VARCHAR" property="scoreSubjectId"/>
+        <result column="score_student_id" jdbcType="VARCHAR" property="scoreStudentId"/>
+        <result column="score_year" jdbcType="VARCHAR" property="scoreYear"/>
+        <result column="score_semester" jdbcType="VARCHAR" property="scoreSemester"/>
+        <result column="score_achievement" jdbcType="DECIMAL" property="scoreAchievement"/>
+        <result column="score_bathch" jdbcType="VARCHAR" property="scoreBathch"/>
+        <result column="score_status" jdbcType="VARCHAR" property="scoreStatus"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, score_subject_id, score_student_id, score_year, score_semester, score_achievement,
+        score_bathch, score_status
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from score
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from score
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.jwxt.model.system.Score">
+        insert into score (id, score_subject_id, score_student_id,
+                           score_year, score_semester, score_achievement,
+                           score_bathch, score_status)
+        values (#{id,jdbcType=VARCHAR}, #{scoreSubjectId,jdbcType=VARCHAR}, #{scoreStudentId,jdbcType=VARCHAR},
+                #{scoreYear,jdbcType=VARCHAR}, #{scoreSemester,jdbcType=VARCHAR}, #{scoreAchievement,jdbcType=DECIMAL},
+                #{scoreBathch,jdbcType=INTEGER}, #{scoreStatus,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="com.jwxt.model.system.Score">
+        insert into score
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="scoreSubjectId != null">
+                score_subject_id,
+            </if>
+            <if test="scoreStudentId != null">
+                score_student_id,
+            </if>
+            <if test="scoreYear != null">
+                score_year,
+            </if>
+            <if test="scoreSemester != null">
+                score_semester,
+            </if>
+            <if test="scoreAchievement != null">
+                score_achievement,
+            </if>
+            <if test="scoreBathch != null">
+                score_bathch,
+            </if>
+            <if test="scoreStatus != null">
+                score_status,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="scoreSubjectId != null">
+                #{scoreSubjectId,jdbcType=VARCHAR},
+            </if>
+            <if test="scoreStudentId != null">
+                #{scoreStudentId,jdbcType=VARCHAR},
+            </if>
+            <if test="scoreYear != null">
+                #{scoreYear,jdbcType=VARCHAR},
+            </if>
+            <if test="scoreSemester != null">
+                #{scoreSemester,jdbcType=VARCHAR},
+            </if>
+            <if test="scoreAchievement != null">
+                #{scoreAchievement,jdbcType=DECIMAL},
+            </if>
+            <if test="scoreBathch != null">
+                #{scoreBathch,jdbcType=INTEGER},
+            </if>
+            <if test="scoreStatus != null">
+                #{scoreStatus,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.jwxt.model.system.Score">
+        update score
+        <set>
+            <if test="scoreSubjectId != null">
+                score_subject_id = #{scoreSubjectId,jdbcType=VARCHAR},
+            </if>
+            <if test="scoreStudentId != null">
+                score_student_id = #{scoreStudentId,jdbcType=VARCHAR},
+            </if>
+            <if test="scoreYear != null">
+                score_year = #{scoreYear,jdbcType=VARCHAR},
+            </if>
+            <if test="scoreSemester != null">
+                score_semester = #{scoreSemester,jdbcType=VARCHAR},
+            </if>
+            <if test="scoreAchievement != null">
+                score_achievement = #{scoreAchievement,jdbcType=DECIMAL},
+            </if>
+            <if test="scoreBathch != null">
+                score_bathch = #{scoreBathch,jdbcType=INTEGER},
+            </if>
+            <if test="scoreStatus != null">
+                score_status = #{scoreStatus,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.jwxt.model.system.Score">
+        update score
+        set score_subject_id  = #{scoreSubjectId,jdbcType=VARCHAR},
+            score_student_id  = #{scoreStudentId,jdbcType=VARCHAR},
+            score_year        = #{scoreYear,jdbcType=VARCHAR},
+            score_semester    = #{scoreSemester,jdbcType=VARCHAR},
+            score_achievement = #{scoreAchievement,jdbcType=DECIMAL},
+            score_bathch      = #{scoreBathch,jdbcType=INTEGER},
+            score_status      = #{scoreStatus,jdbcType=INTEGER}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
 
-  <select id="isExist" parameterType="java.util.HashMap" resultType="java.lang.Integer">
-    SELECT COUNT(*) FROM score s
-    JOIN student std ON s.score_student_id = std.student_id
-    WHERE 1 = 1
-          AND s.score_subject_id = #{score_subject_id, jdbcType=VARCHAR}
-          AND s.score_year = #{score_year, jdbcType=VARCHAR}
-          AND s.score_semester = #{score_semester, jdbcType=VARCHAR}
-          AND s.score_bathch = #{score_bathch, jdbcType=VARCHAR}
-          AND std.student_class_id = #{class_id, jdbcType=VARCHAR}
-  </select>
+    <select id="isExist" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM score s
+            JOIN student std ON s.score_student_id = std.student_id
+        WHERE 1 = 1
+              AND s.score_subject_id = #{score_subject_id, jdbcType=VARCHAR}
+              AND s.score_year = #{score_year, jdbcType=VARCHAR}
+              AND s.score_semester = #{score_semester, jdbcType=VARCHAR}
+              AND s.score_bathch = #{score_bathch, jdbcType=VARCHAR}
+              AND std.student_class_id = #{class_id, jdbcType=VARCHAR}
+    </select>
+
+    <select id="listScoreVoByStudentId" parameterType="java.util.HashMap" resultMap="VoBaseResultMap">
+        SELECT
+            a.id,
+            (SELECT `name`
+             FROM sys_dictionary
+             WHERE code = a.score_subject_id AND type = '科目') AS score_subject_id,
+            a.score_student_id,
+            a.score_year,
+            a.score_semester,
+            a.score_achievement,
+            (SELECT `name`
+             FROM sys_dictionary
+             WHERE code = a.score_bathch AND type = '考试')     AS score_bathch,
+            a.score_status
+        FROM score a
+            JOIN student b ON a.score_student_id = b.student_id
+        WHERE b.student_id = #{studentId, jdbcType=VARCHAR}
+        AND a.score_status = 1
+    </select>
 </mapper>

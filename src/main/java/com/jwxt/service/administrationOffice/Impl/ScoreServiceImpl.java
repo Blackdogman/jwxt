@@ -3,8 +3,8 @@ package com.jwxt.service.administrationOffice.Impl;
 import com.framework.utils.PrimaryKeyUtil;
 import com.jwxt.dao.administrationOffice.ScoreMapper;
 import com.jwxt.dao.system.StudentMapper;
-import com.jwxt.model.administrationOffice.ClassInfoVo;
 import com.jwxt.model.system.Score;
+import com.jwxt.model.system.ScoreVo;
 import com.jwxt.model.system.Student;
 import com.jwxt.service.administrationOffice.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,5 +52,12 @@ public class ScoreServiceImpl implements ScoreService {
         parmMap.put("score_bathch", examName);
         parmMap.put("class_id", classId);
         return scoreMapper.isExist(parmMap);
+    }
+
+    @Override
+    public List<ScoreVo> listScoreVoByStudentId(String studentId) {
+        Map<String, Object> parmMap = new HashMap<>();
+        parmMap.put("studentId", studentId);
+        return scoreMapper.listScoreVoByStudentId(parmMap);
     }
 }

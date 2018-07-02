@@ -56,7 +56,7 @@
                         <td>${student.studentName}</td>
                         <td>${student.studentNationality}</td>
                         <td class="text-center">
-                            <a href="">添加分数</a>
+                            <a href="<%=basePath%>administrationOfficeController/studentExamUi.do?studentId=${student.studentId}">添加分数</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -100,7 +100,7 @@
                                 '<td>' + name + '</td>' +
                                 '<td>' + studentNationality + '</td>' +
                                 '<td class="text-center">' +
-                                    '<a href="">添加分数</a>' +
+                                    '<a href="<%=basePath%>administrationOfficeController/studentExamUi.do?studentId='+id+'">添加分数</a>' +
                                 '</td>' +
                             '</tr>'
                         )

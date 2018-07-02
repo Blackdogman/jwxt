@@ -4,10 +4,7 @@ import com.framework.controller.BaseController;
 import com.framework.utils.PrimaryKeyUtil;
 import com.framework.utils.pageUtil.PagedResult;
 import com.jwxt.model.administrationOffice.ClassInfoVo;
-import com.jwxt.model.system.Student;
-import com.jwxt.model.system.StudentVo;
-import com.jwxt.model.system.Teacher;
-import com.jwxt.model.system.TeacherVo;
+import com.jwxt.model.system.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -123,6 +120,14 @@ public class AdministrationOfficeController extends BaseController {
         model.addAttribute("classId", classId);
         model.addAttribute("studentList", studentVoList);
         return "view/administrationOffice/score/scoreAddStudentList";
+    }
+
+    @RequestMapping("/studentExamUi.do")
+    public String studentExamUi(String studentId, Model model){
+        List<ScoreVo> scoreVoList = scoreService.listScoreVoByStudentId(studentId);
+        System.out.println(scoreVoList);
+        model.addAttribute("scoreList", scoreVoList);
+        return null;
     }
 
 
