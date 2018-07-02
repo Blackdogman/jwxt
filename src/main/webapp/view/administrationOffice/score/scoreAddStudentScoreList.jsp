@@ -41,7 +41,6 @@
                     <th>学期</th>
                     <th>考试名称</th>
                     <th style="width:150px;">分数</th>
-                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody id="list_tbody">
@@ -52,13 +51,12 @@
                         <td class="text-center">${score.scoreYear}</td>
                         <td class="text-center">${score.scoreSemester}</td>
                         <td class="text-center">${score.scoreBathch}</td>
-                        <td class="text-center"><input type="input" class="form-control" id="achievement_${score.id}" /></td>
                         <td class="text-center">
-                            <a href="<%=basePath%>administrationOfficeController/studentExamUi.do?studentId=${student.studentId}">添加分数</a>
+                            <input type="input" class="form-control" id="achievement_${score.id}"
+                                   value="${score.scoreAchievement}"/>
                         </td>
                     </tr>
                 </c:forEach>
-                <%--ajax动态添加--%>
                 </tbody>
             </table>
         </div>
