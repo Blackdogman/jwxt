@@ -4,6 +4,7 @@ import com.jwxt.model.system.Student;
 import com.jwxt.model.system.StudentVo;
 
 import java.util.List;
+import java.util.Map;
 
 public interface StudentMapper {
     int deleteByPrimaryKey(String id);
@@ -25,4 +26,6 @@ public interface StudentMapper {
     List<Student> selectByClassId(String classId);
 
     List<StudentVo> listStudentVoByClassId(String classId);
+
+    List<StudentVo> listStudentVoByClassIdAndStudentName(Map<String,Object> parmMap);
 }

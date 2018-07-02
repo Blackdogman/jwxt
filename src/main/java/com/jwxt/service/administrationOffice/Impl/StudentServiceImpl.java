@@ -6,6 +6,7 @@ import com.framework.utils.pageUtil.PagedResult;
 import com.github.pagehelper.PageHelper;
 import com.jwxt.dao.system.StudentMapper;
 import com.jwxt.dao.system.SysUserMapper;
+import com.jwxt.model.administrationOffice.ClassInfoVo;
 import com.jwxt.model.system.Student;
 import com.jwxt.model.system.StudentVo;
 import com.jwxt.model.system.SysUser;
@@ -14,7 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -55,5 +58,13 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<StudentVo> listStudentVoByClassId(String classId) {
         return studentMapper.listStudentVoByClassId(classId);
+    }
+
+    @Override
+    public List<StudentVo> listStudentVoByClassIdAndStudentName(String studentName, String classId) {
+        Map<String, Object> parmMap = new HashMap<>();
+        parmMap.put("studentName", studentName);
+        parmMap.put("classId", classId);
+        return studentMapper.listStudentVoByClassIdAndStudentName(parmMap);
     }
 }

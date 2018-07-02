@@ -1,6 +1,7 @@
 package com.jwxt.service.administrationOffice;
 
 import com.framework.utils.pageUtil.PagedResult;
+import com.jwxt.model.administrationOffice.ClassInfoVo;
 import com.jwxt.model.system.Student;
 import com.jwxt.model.system.StudentVo;
 
@@ -14,4 +15,6 @@ public interface StudentService {
     int deleteStudentByStudentId(String studentId);
 
     List<StudentVo> listStudentVoByClassId(String classId);
+
+    List<StudentVo> listStudentVoByClassIdAndStudentName(String studentName, String classId);
 }

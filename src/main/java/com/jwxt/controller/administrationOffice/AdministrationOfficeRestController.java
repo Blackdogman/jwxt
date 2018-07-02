@@ -88,4 +88,11 @@ public class AdministrationOfficeRestController extends BaseController {
         List<ClassInfoVo> classInfoVoList = classInfoService.listAddScoreClassInfoVo(examYear, semster, bathch, stdYear, className);
         return classInfoVoList;
     }
+
+    @RequestMapping("/searchStudentFormClassByStudentName.do")
+    public List<StudentVo> searchStudentFormClassByStudentName(String studentName, String classId) {
+        List<StudentVo> studentVoList = studentService.listStudentVoByClassIdAndStudentName(studentName, classId);
+        System.out.println(studentVoList);
+        return studentVoList;
+    }
 }

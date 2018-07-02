@@ -120,8 +120,9 @@ public class AdministrationOfficeController extends BaseController {
     @RequestMapping("/scoreStudentUi.do")
     public String scoreStudentUi(String classId, Model model) {
         List<StudentVo> studentVoList = studentService.listStudentVoByClassId(classId); //这里得到班级对应的所有StudentVo对象
+        model.addAttribute("classId", classId);
         model.addAttribute("studentList", studentVoList);
-        return null;
+        return "view/administrationOffice/score/scoreAddStudentList";
     }
 
 
