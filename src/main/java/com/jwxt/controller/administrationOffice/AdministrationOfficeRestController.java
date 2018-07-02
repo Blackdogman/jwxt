@@ -98,6 +98,12 @@ public class AdministrationOfficeRestController extends BaseController {
         return studentVoList;
     }
 
+
+    /**
+     * 提交某个学生的打分
+     * @param submitArray
+     * @return 是否成功
+     */
     @RequestMapping("/submitScore.do")
     public int submitScore(@RequestParam("submitArray[]") String[] submitArray){
         List<Map<String, Object>> parmMapList = new ArrayList<>();
