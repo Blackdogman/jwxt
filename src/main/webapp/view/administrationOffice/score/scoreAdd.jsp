@@ -131,9 +131,9 @@
                     var teacherName = req[i].teacherName;
                     $("#list_tbody").append(
                         $('<tr id="tr_' + id + '">' +
-                            '<td>' + className + '</td>' +
-                            '<td>' + year + '</td>' +
-                            '<td>' + teacherName + '</td>' +
+                            '<td class="text-center">' + className + '</td>' +
+                            '<td class="text-center">' + year + '</td>' +
+                            '<td class="text-center">' + teacherName + '</td>' +
                             '<td class="text-center">' +
                             '<a href="<%=basePath%>/administrationOfficeController/scoreStudentUi.do?classId='+id+'">学生列表</a>' +
                             '</td>' +

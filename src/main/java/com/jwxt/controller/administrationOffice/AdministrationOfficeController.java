@@ -127,7 +127,7 @@ public class AdministrationOfficeController extends BaseController {
         List<ScoreVo> scoreVoList = scoreService.listScoreVoByStudentId(studentId);
         System.out.println(scoreVoList);
         model.addAttribute("scoreList", scoreVoList);
-        return null;
+        return "view/administrationOffice/score/scoreAddStudentScoreList";
     }
 
 

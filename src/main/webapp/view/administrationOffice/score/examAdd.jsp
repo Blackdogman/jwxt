@@ -106,9 +106,9 @@
                 <tbody id="list_tbody">
                 <c:forEach var="classInfoVo" items="${classList}">
                     <tr id="tr_${classInfoVo.id}">
-                        <td>${classInfoVo.className}</td>
-                        <td>${classInfoVo.classGraduateYear}</td>
-                        <td>${classInfoVo.teacherName}</td>
+                        <td class="text-center">${classInfoVo.className}</td>
+                        <td class="text-center">${classInfoVo.classGraduateYear}</td>
+                        <td class="text-center">${classInfoVo.teacherName}</td>
                         <td class="text-center">
                             <a href="javascript:;"
                                onclick="addClassToList('${classInfoVo.id}','${classInfoVo.className}','${classInfoVo.classGraduateYear}','${classInfoVo.teacherName}');">添加</a>
@@ -186,9 +186,9 @@
         }
         $("#list_tbody").append(
             $('<tr id="tr_' + id + '">' +
-                '<td>' + className + '</td>' +
-                '<td>' + year + '</td>' +
-                '<td>' + teacherName + '</td>' +
+                '<td class="text-center">' + className + '</td>' +
+                '<td class="text-center">' + year + '</td>' +
+                '<td class="text-center">' + teacherName + '</td>' +
                 '<td class="text-center">' +
                 '<a href="javascript:;" onclick="addClassToList(\'' + id + '\',\'' + className + '\',\'' + year + '\',\'' + teacherName + '\');">添加</a>' +
                 '</td>' +
@@ -229,9 +229,9 @@
                     if (flag != true) {
                         $("#list_tbody").append(
                             $('<tr id="tr_' + id + '">' +
-                                '<td>' + className + '</td>' +
-                                '<td>' + year + '</td>' +
-                                '<td>' + teacherName + '</td>' +
+                                '<td class="text-center">' + className + '</td>' +
+                                '<td class="text-center">' + year + '</td>' +
+                                '<td class="text-center">' + teacherName + '</td>' +
                                 '<td class="text-center">' +
                                 '<a href="javascript:;" onclick="addClassToList(\'' + id + '\',\'' + className + '\',\'' + year + '\',\'' + teacherName + '\');">添加</a>' +
                                 '</td>' +

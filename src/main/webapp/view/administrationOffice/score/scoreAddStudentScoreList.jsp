@@ -2,6 +2,7 @@
          pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -31,30 +32,27 @@
 
         </div>
         <div class="col-md-12">
-            <div class="form-group col-sm-6">
-                <label for="input12335" class="col-sm-3 col-xs-3 control-label">学生名字:</label>
-                <div class="col-sm-9 col-xs-9">
-                    <input type="input" class="form-control" id="input12335"/>
-                </div>
-            </div>
-            <div class="form-group col-sm-6">
-                <button type="button" class="btn btn-success col-md-2" onclick="search();">搜索</button>
-            </div>
             <table class="col-md-12 col-sm-12 table">
                 <thead>
                 <tr>
                     <th>学号</th>
-                    <th>学生名称</th>
-                    <th>民族</th>
+                    <th>科目</th>
+                    <th>考试年</th>
+                    <th>学期</th>
+                    <th>考试名称</th>
+                    <th style="width:150px;">分数</th>
                     <th>操作</th>
                 </tr>
                 </thead>
                 <tbody id="list_tbody">
-                <c:forEach var="student" items="${studentList}">
-                    <tr id="tr_${student.studentId}">
-                        <td class="text-center">${student.studentId}</td>
-                        <td class="text-center">${student.studentName}</td>
-                        <td class="text-center">${student.studentNationality}</td>
+                <c:forEach var="score" items="${scoreList}">
+                    <tr id="tr_${score.id}">
+                        <td class="text-center">${score.scoreStudentId}</td>
+                        <td class="text-center">${score.scoreSubjectId}</td>
+                        <td class="text-center">${score.scoreYear}</td>
+                        <td class="text-center">${score.scoreSemester}</td>
+                        <td class="text-center">${score.scoreBathch}</td>
+                        <td class="text-center"><input type="input" class="form-control" id="achievement_${score.id}" /></td>
                         <td class="text-center">
                             <a href="<%=basePath%>administrationOfficeController/studentExamUi.do?studentId=${student.studentId}">添加分数</a>
                         </td>
@@ -77,38 +75,6 @@
             $("#input12335").append('<option value="' + i + '">' + i + '</option>');
         }
     });
-
-    function search() {
-        var studentName = $("#input12335").val();
-        var classId = $("#classId").val();
-        $.ajax({
-            url: "<%=basePath%>administrationOfficeController/searchStudentFormClassByStudentName.do",
-            data: {
-                "studentName": studentName,
-                "classId": classId
-            },
-            type: "post",
-            success: function (req) {
-                $("#list_tbody").html("");
-                for (var i in req) {
-                    var id = req[i].studentId;
-                    var name = req[i].studentName;
-                    var studentNationality = req[i].studentNationality;
-                    $("#list_tbody").append(
-                        $('<tr id="tr_' + id + '">' +
-                                '<td class="text-center">' + id + '</td>' +
-                                '<td class="text-center">' + name + '</td>' +
-                                '<td class="text-center">' + studentNationality + '</td>' +
-                                '<td class="text-center">' +
-                                    '<a href="<%=basePath%>administrationOfficeController/studentExamUi.do?studentId='+id+'">添加分数</a>' +
-                                '</td>' +
-                            '</tr>'
-                        )
-                    );
-                }
-            }
-        })
-    }
 </script>
 </body>
 </html>
