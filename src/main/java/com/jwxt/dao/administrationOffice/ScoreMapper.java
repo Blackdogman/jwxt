@@ -22,4 +22,6 @@ public interface ScoreMapper {
     int isExist(Map<String,Object> parmMap);
 
     List<ScoreVo> listScoreVoByStudentId(Map<String,Object> parmMap);
+
+    int submitScore(Map<String,Object> parmMap);
 }

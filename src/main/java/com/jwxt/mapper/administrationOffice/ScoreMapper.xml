@@ -166,6 +166,12 @@
         FROM score a
             JOIN student b ON a.score_student_id = b.student_id
         WHERE b.student_id = #{studentId, jdbcType=VARCHAR}
-        AND a.score_status = 1
+              AND a.score_status = 1
     </select>
+
+    <update id="submitScore" parameterType="java.util.HashMap">
+        UPDATE score
+        SET score_achievement = #{achievement, jdbcType=DECIMAL}, score_status = 2
+        WHERE id = #{scoreId, jdbcType=VARCHAR}
+    </update>
 </mapper>

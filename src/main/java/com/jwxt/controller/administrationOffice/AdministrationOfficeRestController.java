@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/administrationOfficeController")
@@ -89,9 +86,29 @@ public class AdministrationOfficeRestController extends BaseController {
         return classInfoVoList;
     }
 
+    /**
+     * 在一个班中找对应姓名的学生
+     * @param studentName 学生姓名（模糊查询）
+     * @param classId 班级的ID
+     * @return 一个StudentVo对象集合
+     */
     @RequestMapping("/searchStudentFormClassByStudentName.do")
     public List<StudentVo> searchStudentFormClassByStudentName(String studentName, String classId) {
         List<StudentVo> studentVoList = studentService.listStudentVoByClassIdAndStudentName(studentName, classId);
         return studentVoList;
+    }
+
+    @RequestMapping("/submitScore.do")
+    public int submitScore(@RequestParam("submitArray[]") String[] submitArray){
+        List<Map<String, Object>> parmMapList = new ArrayList<>();
+        for(String item : submitArray){
+            Map<String, Object> parmMap = new HashMap<>();
+            String[] kV = item.split("&bdm&");
+            parmMap.put("scoreId", kV[0]);
+            parmMap.put("achievement", kV[1]);
+            parmMapList.add(parmMap);
+        }
+        int flag = scoreService.submitScore(parmMapList);
+        return flag;
     }
 }

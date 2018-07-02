@@ -60,4 +60,12 @@ public class ScoreServiceImpl implements ScoreService {
         parmMap.put("studentId", studentId);
         return scoreMapper.listScoreVoByStudentId(parmMap);
     }
+
+    @Override
+    public int submitScore(List<Map<String, Object>> parmMapList) {
+        for(Map<String, Object> parmMap : parmMapList){
+            int flag = scoreMapper.submitScore(parmMap);
+        }
+        return 1;
+    }
 }

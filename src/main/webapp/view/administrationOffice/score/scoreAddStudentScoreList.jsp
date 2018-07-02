@@ -52,15 +52,17 @@
                         <td class="text-center">${score.scoreSemester}</td>
                         <td class="text-center">${score.scoreBathch}</td>
                         <td class="text-center">
-                            <input type="input" class="form-control" id="achievement_${score.id}"
+                            <input type="input" name="achievement" class="form-control" id="achievement_${score.id}"
                                    value="${score.scoreAchievement}"/>
                         </td>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
+            <button type="button" class="btn btn-success col-md-2 col-md-offset-10" onclick="submitThisPage();">
+                提交成绩！
+            </button>
         </div>
-        <input type="hidden" value="${classId} " id="classId"/>
     </div>
 </div>
 <script>
@@ -73,6 +75,30 @@
             $("#input12335").append('<option value="' + i + '">' + i + '</option>');
         }
     });
+
+    function submitThisPage() {
+        var submitArray = new Array();
+        $("input[name = 'achievement']").each(function () {
+            var inputId = $(this).attr("id");
+            inputId = inputId.replace("achievement_","");
+            var itemStr = inputId + "&bdm&" + $(this).val();
+            submitArray.push(itemStr);
+        });
+        console.log(submitArray);
+        $.ajax({
+            url: "<%=basePath%>administrationOfficeController/submitScore.do",
+            data: {
+                "submitArray": submitArray
+            },
+            type: "post",
+            success: function (req) {
+                if(req == 1){
+                    alert("提交成功");
+                    window.location.href = "<%=basePath%>administrationOfficeController/scoreAddUi.do";
+                }
+            }
+        });
+    }
 </script>
 </body>
 </html>

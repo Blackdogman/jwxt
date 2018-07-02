@@ -14,11 +14,6 @@ public class DictionaryToolsImpl implements DictionaryTools {
     private UtilMapper utilMapper;
 
     @Override
-    public void helloWorld() {
-        System.out.println(this.getClass().getName() + "HelloWorld!");
-    }
-
-    @Override
     public List<Map<String, String>> listDictionaryNameByType(String type) {
         return utilMapper.listDictionaryNameByType(type);
     }

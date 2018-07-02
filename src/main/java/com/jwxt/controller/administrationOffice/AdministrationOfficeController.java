@@ -122,13 +122,17 @@ public class AdministrationOfficeController extends BaseController {
         return "view/administrationOffice/score/scoreAddStudentList";
     }
 
+    /**
+     * 学生页面的跳转ui,展示该学生未提交成绩的考试
+     * @param studentId 学生的ID
+     * @param model
+     * @return 前往对应页面并携带该学生的ScoreVo对象
+     */
     @RequestMapping("/studentExamUi.do")
     public String studentExamUi(String studentId, Model model){
         List<ScoreVo> scoreVoList = scoreService.listScoreVoByStudentId(studentId);
-        System.out.println(scoreVoList);
         model.addAttribute("scoreList", scoreVoList);
         return "view/administrationOffice/score/scoreAddStudentScoreList";
     }
-
 
 }
