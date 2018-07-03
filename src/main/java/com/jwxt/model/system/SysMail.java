@@ -72,4 +72,17 @@ public class SysMail {
     public void setMailContent(String mailContent) {
         this.mailContent = mailContent;
     }
+
+    @Override
+    public String toString() {
+        return "SysMail{" +
+                "mailId='" + mailId + '\'' +
+                ", fromUserId='" + fromUserId + '\'' +
+                ", toUserId='" + toUserId + '\'' +
+                ", mailSubject='" + mailSubject + '\'' +
+                ", createTime=" + createTime +
+                ", flag='" + flag + '\'' +
+                ", mailContent='" + mailContent + '\'' +
+                '}';
+    }
 }

@@ -47,15 +47,15 @@
                 <th>发送时间</th>
                 <%--<th>邮件内容</th>--%>
             </tr>
-            <c:forEach var="mail" items="${pageResult.dataList}">
+            <c:forEach var="sysMail" items="${pageResult.dataList}">
                 <tr>
                     <td><input type="checkbox" name="id[]" value="1"/>
-                            ${mail.mailId}
+                            ${sysMail.mailId}
                     </td>
-                    <td>${mail.toUserId}</td>
-                    <td>${mail.mailSubject}</td>
-                    <td><fmt:formatDate value="${mail.createTime}" type="both"/>
-                    </td><%--<td>${mail.mailContent}</td>--%>
+                    <td>${sysMail.toUserId}</td>
+                    <td>${sysMail.mailSubject}</td>
+                    <td><fmt:formatDate value="${sysMail.createTime}" type="both"/>
+                    </td><%--<td>${sysMail.mailContent}</td>--%>
                     <%--<td>--%>
                         <%--<div class="button-group">--%>
                             <%--<a class="button border-red"--%>

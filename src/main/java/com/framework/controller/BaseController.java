@@ -2,6 +2,7 @@ package com.framework.controller;
 
 import com.jwxt.service.administrationOffice.*;
 import com.jwxt.service.system.LoginService;
+import com.jwxt.service.system.SysMailService;
 import com.jwxt.utils.DictionaryTools;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -25,6 +26,8 @@ public class BaseController extends HttpServlet {
 	protected ClassInfoService classInfoService;
 	@Autowired
 	protected ScoreService scoreService;
+	@Autowired
+	protected SysMailService sysMailService;
 
 
 	@Autowired

@@ -20,4 +20,6 @@ public interface SysUserMapper {
     SysUser selectByUserLoginNameAndUserPwd(SysUser user);
 
     List<SysUser> selectByUserLoginName(String studentId);
+
+    List<SysUser> listAllUser();
 }

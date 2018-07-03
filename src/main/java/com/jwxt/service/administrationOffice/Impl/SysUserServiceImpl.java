@@ -24,4 +24,9 @@ public class SysUserServiceImpl implements SysUserService {
         }
         return flag;
     }
+
+    @Override
+    public List<SysUser> listAllUser() {
+        return sysUserMapper.listAllUser();
+    }
 }

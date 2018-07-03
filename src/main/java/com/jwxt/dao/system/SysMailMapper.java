@@ -2,6 +2,8 @@ package com.jwxt.dao.system;
 
 import com.jwxt.model.system.SysMail;
 
+import java.util.List;
+
 public interface SysMailMapper {
     int deleteByPrimaryKey(String mailId);
 
@@ -16,4 +18,12 @@ public interface SysMailMapper {
     int updateByPrimaryKeyWithBLOBs(SysMail record);
 
     int updateByPrimaryKey(SysMail record);
+
+    List<SysMail> listAllMailByFromUserId(String userId);
+
+    List<SysMail> listAllMailByToUserId(String userId);
+
+    List<SysMail> listAllMailByToUserIdDeleteBox(String userId);
+
+    List<SysMail> listAllMailByFromUserIdDraftBox(String userId);
 }

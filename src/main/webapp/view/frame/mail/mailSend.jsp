@@ -32,9 +32,9 @@
                 </div>
                 <div class="field">
                     <select name="toUserId" class="input w50">
-                        <option value="">请选择分类</option>
+                        <option value="">请选择收件人</option>
                         <c:forEach items="${userList}" var="user">
-                            <option value="${user.userId}">${user.userName}</option>
+                            <option value="${user.userId}">${user.userLoginName}</option>
                         </c:forEach>
                     </select>
                 </div>
