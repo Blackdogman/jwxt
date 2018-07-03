@@ -94,7 +94,7 @@
             },
             type: "post",
             success: function (mailId) {
-                alert("mailId: " + mailId);
+                alert("保存成功");
                 $("#mailId").val(mailId);
             }
         });
