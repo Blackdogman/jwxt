@@ -166,7 +166,7 @@
         WHERE from_user_id = #{UserId,jdbcType=VARCHAR} AND flag != '0'
     </select>
 
-    <select id="listAllMailByFromUserIdDraftBox" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    <select id="listAllMailByFromUserIdDraftBox" parameterType="java.lang.String" resultMap="VoResultMap">
         SELECT
             mail_id,
             (SELECT user_name
@@ -183,7 +183,7 @@
         where from_user_id = #{UserId,jdbcType=VARCHAR} AND flag = '0'
     </select>
 
-    <select id="listAllMailByToUserId" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    <select id="listAllMailByToUserId" parameterType="java.lang.String" resultMap="VoResultMap">
         SELECT
             mail_id,
             (SELECT user_name
@@ -200,7 +200,7 @@
         where to_user_id = #{UserId,jdbcType=VARCHAR} AND (flag = '1' OR flag = '2')
     </select>
 
-    <select id="listAllMailByToUserIdDeleteBox" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    <select id="listAllMailByToUserIdDeleteBox" parameterType="java.lang.String" resultMap="VoResultMap">
         SELECT
             mail_id,
             (SELECT user_name

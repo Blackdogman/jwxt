@@ -56,10 +56,10 @@
                 class="icon-caret-right"></span>收件箱</a></li>
         <li><a href="<%=basePath%>mailController/mailSendHistoryUi.do" target="right"><span
                 class="icon-caret-right"></span>发件箱</a></li>
-        <li><a href="<%=basePath%>mailController/mailDraftBox.do" target="right"><span
-                class="icon-caret-right"></span>草稿箱</a></li>
-        <li><a href="<%=basePath%>mailController/mailDeleteBox.do" target="right"><span
-                class="icon-caret-right"></span>垃圾箱</a></li>
+        <%--<li><a href="<%=basePath%>mailController/mailDraftBox.do" target="right"><span--%>
+                <%--class="icon-caret-right"></span>草稿箱</a></li>--%>
+        <%--<li><a href="<%=basePath%>mailController/mailDeleteBox.do" target="right"><span--%>
+                <%--class="icon-caret-right"></span>垃圾箱</a></li>--%>
     </ul>
     <div id="test"></div>
 </div>
