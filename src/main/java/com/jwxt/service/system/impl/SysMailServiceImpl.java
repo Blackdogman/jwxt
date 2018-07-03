@@ -5,6 +5,7 @@ import com.framework.utils.pageUtil.PagedResult;
 import com.github.pagehelper.PageHelper;
 import com.jwxt.dao.system.SysMailMapper;
 import com.jwxt.model.system.SysMail;
+import com.jwxt.model.system.SysMailVo;
 import com.jwxt.service.system.SysMailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,9 +23,10 @@ public class SysMailServiceImpl implements SysMailService {
     }
 
     @Override
-    public PagedResult<SysMail> listAllMailByFromUserId(String userId, Integer pageNumber, Integer pageSize) {
+    public PagedResult<SysMailVo> listAllMailByFromUserId(String userId, Integer pageNumber, Integer pageSize) {
         PageHelper.startPage(pageNumber, pageSize);
-        List<SysMail> sysMailList = sysMailMapper.listAllMailByFromUserId(userId);
+
+        List<SysMailVo> sysMailList = sysMailMapper.listAllMailVoByFromUserId(userId);
         return PageBeanUtil.toPagedResult(sysMailList);
     }
 
@@ -62,7 +64,9 @@ public class SysMailServiceImpl implements SysMailService {
     }
 
     @Override
-    public SysMail selectSysMailByMailId(String mailId) {
-        return sysMailMapper.selectByPrimaryKey(mailId);
+    public SysMailVo selectSysMailByMailId(String mailId) {
+        SysMailVo testVo = sysMailMapper.selectByPrimaryKeyVo(mailId);
+        System.out.println(testVo);
+        return sysMailMapper.selectByPrimaryKeyVo(mailId);
     }
 }

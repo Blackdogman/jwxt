@@ -52,7 +52,7 @@
                     <td><input type="checkbox" name="id[]" value="1"/>
                             ${sysMail.mailId}
                     </td>
-                    <td>${sysMail.toUserId}</td>
+                    <td>${sysMail.toUserName}</td>
                     <td>${sysMail.mailSubject}</td>
                     <td><fmt:formatDate value="${sysMail.createTime}" type="both"/>
                     </td><%--<td>${sysMail.mailContent}</td>--%>
@@ -85,7 +85,6 @@
     }
 
     function mailDetail(mailId){
-        alert("点击了/// _ ///\nmailId:" + mailId);
         window.location.href = "<%=basePath%>mailController/mailDetails.do?mailId="+mailId;
     }
 

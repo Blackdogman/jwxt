@@ -1,6 +1,7 @@
 package com.jwxt.dao.system;
 
 import com.jwxt.model.system.SysMail;
+import com.jwxt.model.system.SysMailVo;
 
 import java.util.List;
 
@@ -21,9 +22,13 @@ public interface SysMailMapper {
 
     List<SysMail> listAllMailByFromUserId(String userId);
 
+    List<SysMailVo> listAllMailVoByFromUserId(String userId);
+
     List<SysMail> listAllMailByToUserId(String userId);
 
     List<SysMail> listAllMailByToUserIdDeleteBox(String userId);
 
     List<SysMail> listAllMailByFromUserIdDraftBox(String userId);
+
+    SysMailVo selectByPrimaryKeyVo(String mailId);
 }

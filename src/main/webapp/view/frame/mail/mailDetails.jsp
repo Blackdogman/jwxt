@@ -31,7 +31,7 @@
                     <label>收件人：</label>
                 </div>
                 <div class="field">
-                    <input name="toUserID" class="input w50" value="${sysMail.toUserId}" type="text" readonly="readonly"/>
+                    <input name="toUserID" class="input w50" value="${sysMail.toUserName}" type="text" readonly="readonly"/>
                 </div>
             </div>
             <div class="form-group">
@@ -39,7 +39,7 @@
                     <label>发件人：</label>
                 </div>
                 <div class="field">
-                    <input name="fromUserId" class="input w50" value="${sysMail.fromUserId}" type="text" readonly="readonly"/>
+                    <input name="fromUserId" class="input w50" value="${sysMail.fromUserName}" type="text" readonly="readonly"/>
                 </div>
             </div>
             <div class="form-group">

@@ -4,6 +4,7 @@ import com.framework.controller.BaseController;
 import com.framework.utils.PrimaryKeyUtil;
 import com.framework.utils.pageUtil.PagedResult;
 import com.jwxt.model.system.SysMail;
+import com.jwxt.model.system.SysMailVo;
 import com.jwxt.model.system.SysUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -87,7 +88,7 @@ public class MailController extends BaseController {
                                     @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
                                     @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize) {
         SysUser user = (SysUser) session.getAttribute("loginUser");
-        PagedResult<SysMail> pageResult = sysMailService.listAllMailByFromUserId(user.getUserId(),pageNumber,pageSize);
+        PagedResult<SysMailVo> pageResult = sysMailService.listAllMailByFromUserId(user.getUserId(),pageNumber,pageSize);
         model.addAttribute("pageResult", pageResult);
         return "view/frame/mail/mailList";
     }
@@ -105,7 +106,7 @@ public class MailController extends BaseController {
                             @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
                             @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize) {
         SysUser user = (SysUser) session.getAttribute("loginUser");
-        PagedResult<SysMail> pageResult = sysMailService.listAllMailByToUserId(user.getUserId(),pageNumber,pageSize);
+        PagedResult<SysMailVo> pageResult = sysMailService.listAllMailByFromUserId(user.getUserId(),pageNumber,pageSize);
         model.addAttribute("pageResult", pageResult);
         return "view/frame/mail/mailList";
     }
@@ -123,7 +124,7 @@ public class MailController extends BaseController {
                                 @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
                                 @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize) {
         SysUser user = (SysUser) session.getAttribute("loginUser");
-        PagedResult<SysMail> pageResult = sysMailService.listAllMailByToUserIdDeleteBox(user.getUserId(),pageNumber,pageSize);
+        PagedResult<SysMailVo> pageResult = sysMailService.listAllMailByFromUserId(user.getUserId(),pageNumber,pageSize);
         model.addAttribute("pageResult", pageResult);
         return "view/frame/mail/mailList";
     }
@@ -141,14 +142,20 @@ public class MailController extends BaseController {
                                @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
                                @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize) {
         SysUser user = (SysUser) session.getAttribute("loginUser");
-        PagedResult<SysMail> pageResult = sysMailService.listAllMailByFromUserIdDraftBox(user.getUserId(),pageNumber,pageSize);
+        PagedResult<SysMailVo> pageResult = sysMailService.listAllMailByFromUserId(user.getUserId(),pageNumber,pageSize);
         model.addAttribute("pageResult", pageResult);
         return "view/frame/mail/mailList";
     }
 
+    /**
+     * 通过Mail的ID得到对应的mail
+     * @param mailId
+     * @param model
+     * @return
+     */
     @RequestMapping("/mailDetails.do")
     public String mailDetails(String mailId, Model model){
-        SysMail sysMail = sysMailService.selectSysMailByMailId(mailId);
+        SysMailVo sysMail = sysMailService.selectSysMailByMailId(mailId);
         model.addAttribute("sysMail", sysMail);
         return "view/frame/mail/mailDetails";
     }
