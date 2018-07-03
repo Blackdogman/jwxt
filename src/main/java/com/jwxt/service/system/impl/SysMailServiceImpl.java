@@ -65,8 +65,6 @@ public class SysMailServiceImpl implements SysMailService {
 
     @Override
     public SysMailVo selectSysMailByMailId(String mailId) {
-        SysMailVo testVo = sysMailMapper.selectByPrimaryKeyVo(mailId);
-        System.out.println(testVo);
         return sysMailMapper.selectByPrimaryKeyVo(mailId);
     }
 }
