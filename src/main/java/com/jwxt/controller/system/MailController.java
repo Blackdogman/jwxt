@@ -106,7 +106,7 @@ public class MailController extends BaseController {
                             @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
                             @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize) {
         SysUser user = (SysUser) session.getAttribute("loginUser");
-        PagedResult<SysMailVo> pageResult = sysMailService.listAllMailByFromUserId(user.getUserId(),pageNumber,pageSize);
+        PagedResult<SysMailVo> pageResult = sysMailService.listAllMailByToUserId(user.getUserId(),pageNumber,pageSize);
         model.addAttribute("pageResult", pageResult);
         return "view/frame/mail/mailList";
     }
@@ -124,7 +124,7 @@ public class MailController extends BaseController {
                                 @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
                                 @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize) {
         SysUser user = (SysUser) session.getAttribute("loginUser");
-        PagedResult<SysMailVo> pageResult = sysMailService.listAllMailByFromUserId(user.getUserId(),pageNumber,pageSize);
+        PagedResult<SysMailVo> pageResult = sysMailService.listAllMailByToUserIdDeleteBox(user.getUserId(),pageNumber,pageSize);
         model.addAttribute("pageResult", pageResult);
         return "view/frame/mail/mailList";
     }
@@ -142,7 +142,7 @@ public class MailController extends BaseController {
                                @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
                                @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize) {
         SysUser user = (SysUser) session.getAttribute("loginUser");
-        PagedResult<SysMailVo> pageResult = sysMailService.listAllMailByFromUserId(user.getUserId(),pageNumber,pageSize);
+        PagedResult<SysMailVo> pageResult = sysMailService.listAllMailByFromUserIdDraftBox(user.getUserId(),pageNumber,pageSize);
         model.addAttribute("pageResult", pageResult);
         return "view/frame/mail/mailList";
     }

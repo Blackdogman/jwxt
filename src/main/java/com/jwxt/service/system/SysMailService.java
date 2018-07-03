@@ -9,15 +9,15 @@ public interface SysMailService {
 
     PagedResult<SysMailVo> listAllMailByFromUserId(String userId, Integer pageNumber, Integer pageSize);
 
-    PagedResult<SysMail> listAllMailByToUserId(String userId, Integer pageNumber, Integer pageSize);
+    PagedResult<SysMailVo> listAllMailByToUserId(String userId, Integer pageNumber, Integer pageSize);
 
     int saveDraft(SysMail sysMail);
 
     int deleteMail(String mailId);
 
-    PagedResult<SysMail> listAllMailByToUserIdDeleteBox(String userId, Integer pageNumber, Integer pageSize);
+    PagedResult<SysMailVo> listAllMailByToUserIdDeleteBox(String userId, Integer pageNumber, Integer pageSize);
 
-    PagedResult<SysMail> listAllMailByFromUserIdDraftBox(String userId, Integer pageNumber, Integer pageSize);
+    PagedResult<SysMailVo> listAllMailByFromUserIdDraftBox(String userId, Integer pageNumber, Integer pageSize);
 
     SysMailVo selectSysMailByMailId(String mailId);
 }

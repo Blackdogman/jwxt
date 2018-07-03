@@ -30,42 +30,44 @@
         <div class="panel-head"><strong class="icon-reorder"> 留言管理</strong></div>
         <div class="padding border-bottom">
             <%--<ul class="search">--%>
-                <%--<li>--%>
-                    <%--<a href="<%=basePath%>menuController/addMenuUi.do" class="button border-blue" id=""><span--%>
-                            <%--class="icon-plus"></span> 添加--%>
-                    <%--</a>--%>
-                    <%--<button type="button" class="button border-green" id="checkall"><span class="icon-check"></span> 全选--%>
-                    <%--</button>--%>
-                <%--</li>--%>
+            <%--<li>--%>
+            <%--<a href="<%=basePath%>menuController/addMenuUi.do" class="button border-blue" id=""><span--%>
+            <%--class="icon-plus"></span> 添加--%>
+            <%--</a>--%>
+            <%--<button type="button" class="button border-green" id="checkall"><span class="icon-check"></span> 全选--%>
+            <%--</button>--%>
+            <%--</li>--%>
             <%--</ul>--%>
         </div>
         <table class="table table-hover text-center">
             <tr>
-                <th>邮件id</th>
                 <th>收件人</th>
+                <th>发件人</th>
                 <th>邮件主题</th>
                 <th>发送时间</th>
                 <%--<th>邮件内容</th>--%>
             </tr>
             <c:forEach var="sysMail" items="${pageResult.dataList}">
                 <tr onclick="mailDetail('${sysMail.mailId}');" style="cursor: pointer">
-                    <td><input type="checkbox" name="id[]" value="1"/>
-                            ${sysMail.mailId}
-                    </td>
+                        <%--<td><input type="checkbox" name="id[]" value="1"/>--%>
+                        <%--${sysMail.mailId}--%>
+                        <%--</td>--%>
                     <td>${sysMail.toUserName}</td>
+                    <td>${sysMail.fromUserName}</td>
                     <td>${sysMail.mailSubject}</td>
                     <td><fmt:formatDate value="${sysMail.createTime}" type="both"/>
-                    </td><%--<td>${sysMail.mailContent}</td>--%>
-                    <%--<td>--%>
+                    </td>
+                        <%--<td>${sysMail.mailContent}</td>--%>
+                        <%--<td>--%>
                         <%--<div class="button-group">--%>
-                            <%--<a class="button border-red"--%>
-                               <%--href="<%=basePath%>menuController/deleteMenu.do?menuId=${menu.menuId}"><span--%>
-                                    <%--class="icon-trash-o"></span> 删除</a>--%>
-                            <%--<a class="button border-blue"--%>
-                               <%--href="<%=basePath%>menuController/updateMenuUi.do?menuId=${menu.menuId}"><span--%>
-                                    <%--class="icon-database"></span> 修改</a>--%>
+                        <%--<a class="button border-red"--%>
+                        <%--href="<%=basePath%>menuController/deleteMenu.do?menuId=${menu.menuId}"><span--%>
+                        <%--class="icon-trash-o"></span> 删除</a>--%>
+                        <%--<a class="button border-blue"--%>
+                        <%--href="<%=basePath%>menuController/updateMenuUi.do?menuId=${menu.menuId}"><span--%>
+                        <%--class="icon-database"></span> 修改</a>--%>
                         <%--</div>--%>
-                    <%--</td>--%>
+                        <%--</td>--%>
                 </tr>
             </c:forEach>
         </table>
@@ -74,7 +76,7 @@
 <div align="center" id="jpager"></div>
 <script type="text/javascript">
     function load() {
-        arrayPage(${pageResult.pages},${pageResult.total});
+        arrayPage(${pageResult.pages}, ${pageResult.total});
     }
 
 
@@ -84,8 +86,8 @@
         }
     }
 
-    function mailDetail(mailId){
-        window.location.href = "<%=basePath%>mailController/mailDetails.do?mailId="+mailId;
+    function mailDetail(mailId) {
+        window.location.href = "<%=basePath%>mailController/mailDetails.do?mailId=" + mailId;
     }
 
     $("#checkall").click(function () {

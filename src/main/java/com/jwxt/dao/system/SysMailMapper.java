@@ -24,11 +24,11 @@ public interface SysMailMapper {
 
     List<SysMailVo> listAllMailVoByFromUserId(String userId);
 
-    List<SysMail> listAllMailByToUserId(String userId);
+    List<SysMailVo> listAllMailByToUserId(String userId);
 
-    List<SysMail> listAllMailByToUserIdDeleteBox(String userId);
+    List<SysMailVo> listAllMailByToUserIdDeleteBox(String userId);
 
-    List<SysMail> listAllMailByFromUserIdDraftBox(String userId);
+    List<SysMailVo> listAllMailByFromUserIdDraftBox(String userId);
 
     SysMailVo selectByPrimaryKeyVo(String mailId);
 }

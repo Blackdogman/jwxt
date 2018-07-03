@@ -31,9 +31,9 @@ public class SysMailServiceImpl implements SysMailService {
     }
 
     @Override
-    public PagedResult<SysMail> listAllMailByToUserId(String userId, Integer pageNumber, Integer pageSize) {
+    public PagedResult<SysMailVo> listAllMailByToUserId(String userId, Integer pageNumber, Integer pageSize) {
         PageHelper.startPage(pageNumber, pageSize);
-        List<SysMail> sysMailList = sysMailMapper.listAllMailByToUserId(userId);
+        List<SysMailVo> sysMailList = sysMailMapper.listAllMailByToUserId(userId);
         return PageBeanUtil.toPagedResult(sysMailList);
     }
 
@@ -50,16 +50,16 @@ public class SysMailServiceImpl implements SysMailService {
     }
 
     @Override
-    public PagedResult<SysMail> listAllMailByToUserIdDeleteBox(String userId, Integer pageNumber, Integer pageSize) {
+    public PagedResult<SysMailVo> listAllMailByToUserIdDeleteBox(String userId, Integer pageNumber, Integer pageSize) {
         PageHelper.startPage(pageNumber, pageSize);
-        List<SysMail> sysMailList = sysMailMapper.listAllMailByToUserIdDeleteBox(userId);
+        List<SysMailVo> sysMailList = sysMailMapper.listAllMailByToUserIdDeleteBox(userId);
         return PageBeanUtil.toPagedResult(sysMailList);
     }
 
     @Override
-    public PagedResult<SysMail> listAllMailByFromUserIdDraftBox(String userId, Integer pageNumber, Integer pageSize) {
+    public PagedResult<SysMailVo> listAllMailByFromUserIdDraftBox(String userId, Integer pageNumber, Integer pageSize) {
         PageHelper.startPage(pageNumber, pageSize);
-        List<SysMail> sysMailList = sysMailMapper.listAllMailByFromUserIdDraftBox(userId);
+        List<SysMailVo> sysMailList = sysMailMapper.listAllMailByFromUserIdDraftBox(userId);
         return PageBeanUtil.toPagedResult(sysMailList);
     }
 
