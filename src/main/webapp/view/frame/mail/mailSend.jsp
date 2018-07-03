@@ -26,15 +26,21 @@
     <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>发送邮件</strong></div>
     <div class="body-content">
         <form method="post" class="form-x" action="<%=basePath%>mailController/mailSend.do">
+            <input type="hidden" id="mailId" name="mailId" value="${sysMail.mailId}" />
             <div class="form-group">
                 <div class="label">
                     <label>收件人：</label>
                 </div>
                 <div class="field">
-                    <select name="toUserId" class="input w50">
+                    <select name="toUserId" id="toUserId" class="input w50">
                         <option value="">请选择收件人</option>
                         <c:forEach items="${userList}" var="user">
-                            <option value="${user.userId}">${user.userLoginName}</option>
+                            <c:if test="${user.userId == sysMail.toUserId}">
+                                <option value="${user.userId}" selected="selected">${user.userLoginName}</option>
+                            </c:if>
+                            <c:if test="${user.userId != sysMail.toUserId}">
+                                <option value="${user.userId}">${user.userLoginName}</option>
+                            </c:if>
                         </c:forEach>
                     </select>
                 </div>
@@ -44,7 +50,8 @@
                     <label>标题：</label>
                 </div>
                 <div class="field">
-                    <input type="text" class="input w50" value="" name="mailSubject" data-validate="required:请输入标题"/>
+                    <input type="text" class="input w50" id="mailSubject" value="${sysMail.mailSubject}" name="mailSubject"
+                           data-validate="required:请输入标题"/>
                     <div class="tips"></div>
                 </div>
             </div>
@@ -53,7 +60,8 @@
                     <label>内容：</label>
                 </div>
                 <div class="field">
-                    <textarea name="mailContent" class="input" style="height:450px; border:1px solid #ddd;"></textarea>
+                    <textarea name="mailContent" id="mailContent" class="input"
+                              style="height:450px; border:1px solid #ddd;">${sysMail.mailContent}</textarea>
                     <div class="tips"></div>
                 </div>
             </div>
@@ -63,11 +71,34 @@
                 </div>
                 <div class="field">
                     <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+                    <button class="button bg-main icon-check-square-o" type="button" onclick="saveDraft();"> 保存至草稿箱
+                    </button>
                 </div>
             </div>
         </form>
     </div>
 </div>
-
+<script>
+    function saveDraft() {
+        var toUserId = $("#toUserId").val();
+        var mailSubject = $("#mailSubject").val();
+        var mailContent = $("#mailContent").val();
+        var mailId = $("#mailId").val();
+        $.ajax({
+            url: "<%=basePath%>mailController/saveDraft.do",
+            data: {
+                "toUserId": toUserId,
+                "mailSubject": mailSubject,
+                "mailContent": mailContent,
+                "mailId": mailId
+            },
+            type: "post",
+            success: function (mailId) {
+                alert("mailId: " + mailId);
+                $("#mailId").val(mailId);
+            }
+        });
+    }
+</script>
 </body>
 </html>

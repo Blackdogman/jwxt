@@ -20,4 +20,8 @@ public interface SysMailService {
     PagedResult<SysMailVo> listAllMailByFromUserIdDraftBox(String userId, Integer pageNumber, Integer pageSize);
 
     SysMailVo selectSysMailByMailId(String mailId);
+
+    int saveDraftUpdate(SysMail sysMail);
+
+    int sendMailUpdate(SysMail sysMail);
 }

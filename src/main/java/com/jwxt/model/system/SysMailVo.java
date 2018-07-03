@@ -7,7 +7,11 @@ public class SysMailVo {
 
     private String fromUserName;
 
+    private String fromUserId;
+
     private String toUserName;
+
+    private String toUserId;
 
     private String mailSubject;
 
@@ -73,12 +77,30 @@ public class SysMailVo {
         this.mailContent = mailContent;
     }
 
+    public String getFromUserId() {
+        return fromUserId;
+    }
+
+    public void setFromUserId(String fromUserId) {
+        this.fromUserId = fromUserId;
+    }
+
+    public String getToUserId() {
+        return toUserId;
+    }
+
+    public void setToUserId(String toUserId) {
+        this.toUserId = toUserId;
+    }
+
     @Override
     public String toString() {
         return "SysMailVo{" +
                 "mailId='" + mailId + '\'' +
                 ", fromUserName='" + fromUserName + '\'' +
+                ", fromUserId='" + fromUserId + '\'' +
                 ", toUserName='" + toUserName + '\'' +
+                ", toUserId='" + toUserId + '\'' +
                 ", mailSubject='" + mailSubject + '\'' +
                 ", createTime=" + createTime +
                 ", flag='" + flag + '\'' +

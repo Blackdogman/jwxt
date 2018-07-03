@@ -15,12 +15,29 @@
     <resultMap id="VoResultMap" type="com.jwxt.model.system.SysMailVo">
         <id column="mail_id" jdbcType="VARCHAR" property="mailId"/>
         <result column="from_user_name" jdbcType="VARCHAR" property="fromUserName"/>
+        <result column="from_user_id" jdbcType="VARCHAR" property="fromUserId"/>
         <result column="to_user_name" jdbcType="VARCHAR" property="toUserName"/>
+        <result column="to_user_id" jdbcType="VARCHAR" property="toUserId"/>
         <result column="mail_subject" jdbcType="VARCHAR" property="mailSubject"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="flag" jdbcType="VARCHAR" property="flag"/>
         <result column="mail_content" jdbcType="LONGVARCHAR" property="mailContent"/>
     </resultMap>
+    <sql id="vo_list">
+        mail_id,
+        ( SELECT user_name
+        FROM v_allUserInfo
+        WHERE user_id = mail.from_user_id) AS from_user_name,
+        from_user_id,
+        ( SELECT user_name
+        FROM v_allUserInfo
+        WHERE user_id = mail.to_user_id) AS to_user_name,
+        to_user_id,
+        mail_subject,
+        mail_content,
+        create_time,
+        flag
+    </sql>
     <sql id="Base_Column_List">
         mail_id, from_user_id, to_user_id, mail_subject, create_time, flag
     </sql>
@@ -151,88 +168,37 @@
 
     <select id="listAllMailVoByFromUserId" parameterType="java.lang.String" resultMap="VoResultMap">
         SELECT
-            mail_id,
-            (SELECT user_name
-             FROM v_allUserInfo
-             WHERE user_id = mail.from_user_id) AS from_user_name,
-            (SELECT user_name
-             FROM v_allUserInfo
-             WHERE user_id = mail.to_user_id)   AS to_user_name,
-            mail_subject,
-            mail_content,
-            create_time,
-            flag
+        <include refid="vo_list"/>
         FROM sys_mail mail
         WHERE from_user_id = #{UserId,jdbcType=VARCHAR} AND flag != '0'
     </select>
 
     <select id="listAllMailByFromUserIdDraftBox" parameterType="java.lang.String" resultMap="VoResultMap">
         SELECT
-            mail_id,
-            (SELECT user_name
-             FROM v_allUserInfo
-             WHERE user_id = mail.from_user_id) AS from_user_name,
-            (SELECT user_name
-             FROM v_allUserInfo
-             WHERE user_id = mail.to_user_id)   AS to_user_name,
-            mail_subject,
-            mail_content,
-            create_time,
-            flag
+        <include refid="vo_list"/>
         FROM sys_mail mail
         where from_user_id = #{UserId,jdbcType=VARCHAR} AND flag = '0'
     </select>
 
     <select id="listAllMailByToUserId" parameterType="java.lang.String" resultMap="VoResultMap">
         SELECT
-            mail_id,
-            (SELECT user_name
-             FROM v_allUserInfo
-             WHERE user_id = mail.from_user_id) AS from_user_name,
-            (SELECT user_name
-             FROM v_allUserInfo
-             WHERE user_id = mail.to_user_id)   AS to_user_name,
-            mail_subject,
-            mail_content,
-            create_time,
-            flag
+        <include refid="vo_list"/>
         FROM sys_mail mail
         where to_user_id = #{UserId,jdbcType=VARCHAR} AND (flag = '1' OR flag = '2')
     </select>
 
     <select id="listAllMailByToUserIdDeleteBox" parameterType="java.lang.String" resultMap="VoResultMap">
         SELECT
-            mail_id,
-            (SELECT user_name
-             FROM v_allUserInfo
-             WHERE user_id = mail.from_user_id) AS from_user_name,
-            (SELECT user_name
-             FROM v_allUserInfo
-             WHERE user_id = mail.to_user_id)   AS to_user_name,
-            mail_subject,
-            mail_content,
-            create_time,
-            flag
+        <include refid="vo_list"/>
         FROM sys_mail mail
         where to_user_id = #{UserId,jdbcType=VARCHAR} AND flag = '3'
     </select>
 
     <select id="selectByPrimaryKeyVo" parameterType="java.lang.String" resultMap="VoResultMap">
         SELECT
-            mail_id,
-            (SELECT user_name
-             FROM v_allUserInfo
-             WHERE user_id = mail.from_user_id) AS from_user_name,
-            (SELECT user_name
-             FROM v_allUserInfo
-             WHERE user_id = mail.to_user_id)   AS to_user_name,
-            mail_subject,
-            mail_content,
-            create_time,
-            flag
+        <include refid="vo_list"/>
         FROM sys_mail mail
         WHERE 1 = 1
-              AND flag != '0'
-              AND mail.mail_id = #{mailId,jdbcType=VARCHAR}
+        AND mail.mail_id = #{mailId,jdbcType=VARCHAR}
     </select>
 </mapper>

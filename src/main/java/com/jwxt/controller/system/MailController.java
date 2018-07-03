@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
@@ -24,9 +25,11 @@ public class MailController extends BaseController {
      * @return
      */
     @RequestMapping("/mailSendUi.do")
-    public String mailSendUi(Model model) {
+    public String mailSendUi(Model model, String mailId) {
         List<SysUser> userList = sysUserService.listAllUser();
         model.addAttribute("userList", userList);
+        SysMailVo sysMail = sysMailService.selectSysMailByMailId(mailId);
+        model.addAttribute("sysMail", sysMail);
         return "view/frame/mail/mailSend";
     }
 
@@ -39,11 +42,18 @@ public class MailController extends BaseController {
     @RequestMapping("/mailSend.do")
     public String mailSend(SysMail sysMail, HttpSession session) {
         SysUser user = (SysUser) session.getAttribute("loginUser");
-        sysMail.setMailId(PrimaryKeyUtil.getPrimaryKey());
-        sysMail.setFlag("1");
-        sysMail.setFromUserId(user.getUserId());
-        sysMail.setCreateTime(new Date());
-        int flag = sysMailService.sendMail(sysMail);
+        if(sysMail.getMailId() != null && sysMail.getMailId() != ""){
+            sysMail.setFlag("1");
+            sysMail.setFromUserId(user.getUserId());
+            sysMail.setCreateTime(new Date());
+            int flag = sysMailService.sendMailUpdate(sysMail);
+        }else {
+            sysMail.setMailId(PrimaryKeyUtil.getPrimaryKey());
+            sysMail.setFlag("1");
+            sysMail.setFromUserId(user.getUserId());
+            sysMail.setCreateTime(new Date());
+            int flag = sysMailService.sendMail(sysMail);
+        }
         return "redirect:/mailController/mailSendHistoryUi.do";
     }
 
@@ -53,15 +63,26 @@ public class MailController extends BaseController {
      * @param session HttpSession用来取当前登录的用户
      * @return
      */
-    @RequestMapping("/saveDraft")
-    public String saveDraft(SysMail sysMail, HttpSession session){
+    @RequestMapping("/saveDraft.do")
+    @ResponseBody
+    public String saveDraft(SysMail sysMail, HttpSession session, Model model){
         SysUser user = (SysUser) session.getAttribute("loginUser");
-        sysMail.setMailId(PrimaryKeyUtil.getPrimaryKey());
-        sysMail.setFlag("0");
-        sysMail.setFromUserId(user.getUserId());
-        sysMail.setCreateTime(new Date());
-        int flag = sysMailService.saveDraft(sysMail);
-        return null;
+        System.out.println(sysMail.getMailId());
+        if(sysMail.getMailId() != "" && sysMail.getMailId() != null){
+            System.out.println("id不为空");
+            sysMail.setFlag("0");
+            sysMail.setFromUserId(user.getUserId());
+            sysMail.setCreateTime(new Date());
+            int flag = sysMailService.saveDraftUpdate(sysMail);
+        }else {
+            System.out.println("id为空");
+            sysMail.setMailId(PrimaryKeyUtil.getPrimaryKey());
+            sysMail.setFlag("0");
+            sysMail.setFromUserId(user.getUserId());
+            sysMail.setCreateTime(new Date());
+            int flag = sysMailService.saveDraft(sysMail);
+        }
+        return sysMail.getMailId();
     }
 
     /**
@@ -69,7 +90,7 @@ public class MailController extends BaseController {
      * @param mailId 对应的邮件ID
      * @return
      */
-    @RequestMapping("/deleteMail")
+    @RequestMapping("/deleteMail.do")
     public String deleteMail(String mailId){
         int flag = sysMailService.deleteMail(mailId);
         return null;
@@ -144,7 +165,7 @@ public class MailController extends BaseController {
         SysUser user = (SysUser) session.getAttribute("loginUser");
         PagedResult<SysMailVo> pageResult = sysMailService.listAllMailByFromUserIdDraftBox(user.getUserId(),pageNumber,pageSize);
         model.addAttribute("pageResult", pageResult);
-        return "view/frame/mail/mailList";
+        return "view/frame/mail/mailListDraft";
     }
 
     /**
