@@ -93,7 +93,7 @@ public class MailController extends BaseController {
     @RequestMapping("/deleteMail.do")
     public String deleteMail(String mailId){
         int flag = sysMailService.deleteMail(mailId);
-        return null;
+        return "redirect:/mailController/mailMyBox.do";
     }
 
     /**
@@ -129,6 +129,7 @@ public class MailController extends BaseController {
         SysUser user = (SysUser) session.getAttribute("loginUser");
         PagedResult<SysMailVo> pageResult = sysMailService.listAllMailByToUserId(user.getUserId(),pageNumber,pageSize);
         model.addAttribute("pageResult", pageResult);
+        model.addAttribute("mailBoxType", 1);
         return "view/frame/mail/mailList";
     }
 

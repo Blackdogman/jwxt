@@ -45,29 +45,25 @@
                 <th>发件人</th>
                 <th>邮件主题</th>
                 <th>发送时间</th>
-                <%--<th>邮件内容</th>--%>
+                <c:if test="${mailBoxType == 1}">
+                    <th>操作</th>
+                </c:if>
             </tr>
             <c:forEach var="sysMail" items="${pageResult.dataList}">
                 <tr onclick="mailDetail('${sysMail.mailId}');" style="cursor: pointer">
-                        <%--<td><input type="checkbox" name="id[]" value="1"/>--%>
-                        <%--${sysMail.mailId}--%>
-                        <%--</td>--%>
                     <td>${sysMail.toUserName}</td>
                     <td>${sysMail.fromUserName}</td>
                     <td>${sysMail.mailSubject}</td>
-                    <td><fmt:formatDate value="${sysMail.createTime}" type="both"/>
-                    </td>
-                        <%--<td>${sysMail.mailContent}</td>--%>
-                        <%--<td>--%>
-                        <%--<div class="button-group">--%>
-                        <%--<a class="button border-red"--%>
-                        <%--href="<%=basePath%>menuController/deleteMenu.do?menuId=${menu.menuId}"><span--%>
-                        <%--class="icon-trash-o"></span> 删除</a>--%>
-                        <%--<a class="button border-blue"--%>
-                        <%--href="<%=basePath%>menuController/updateMenuUi.do?menuId=${menu.menuId}"><span--%>
-                        <%--class="icon-database"></span> 修改</a>--%>
-                        <%--</div>--%>
-                        <%--</td>--%>
+                    <td><fmt:formatDate value="${sysMail.createTime}" type="both"/></td>
+                    <c:if test="${mailBoxType == 1}">
+                        <td>
+                            <div class="button-group">
+                                <a class="button border-red"
+                                   href="<%=basePath%>mailController/deleteMail.do?mailId=${sysMail.mailId}"><span
+                                        class="icon-trash-o"></span> 删除</a>
+                            </div>
+                        </td>
+                    </c:if>
                 </tr>
             </c:forEach>
         </table>
