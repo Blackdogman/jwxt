@@ -67,15 +67,12 @@ public class MailController extends BaseController {
     @ResponseBody
     public String saveDraft(SysMail sysMail, HttpSession session, Model model){
         SysUser user = (SysUser) session.getAttribute("loginUser");
-        System.out.println(sysMail.getMailId());
         if(sysMail.getMailId() != "" && sysMail.getMailId() != null){
-            System.out.println("id不为空");
             sysMail.setFlag("0");
             sysMail.setFromUserId(user.getUserId());
             sysMail.setCreateTime(new Date());
             int flag = sysMailService.saveDraftUpdate(sysMail);
         }else {
-            System.out.println("id为空");
             sysMail.setMailId(PrimaryKeyUtil.getPrimaryKey());
             sysMail.setFlag("0");
             sysMail.setFromUserId(user.getUserId());
