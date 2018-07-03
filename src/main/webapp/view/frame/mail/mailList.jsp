@@ -48,7 +48,7 @@
                 <%--<th>邮件内容</th>--%>
             </tr>
             <c:forEach var="sysMail" items="${pageResult.dataList}">
-                <tr>
+                <tr onclick="mailDetail('${sysMail.mailId}');" style="cursor: pointer">
                     <td><input type="checkbox" name="id[]" value="1"/>
                             ${sysMail.mailId}
                     </td>
@@ -82,6 +82,11 @@
         if (confirm("您确定要删除吗?")) {
 
         }
+    }
+
+    function mailDetail(mailId){
+        alert("点击了/// _ ///\nmailId:" + mailId);
+        window.location.href = "<%=basePath%>mailController/mailDetails.do?mailId="+mailId;
     }
 
     $("#checkall").click(function () {

@@ -17,6 +17,11 @@ import java.util.List;
 @Controller
 @RequestMapping("/mailController")
 public class MailController extends BaseController {
+    /**
+     * 发件页面
+     * @param model
+     * @return
+     */
     @RequestMapping("/mailSendUi.do")
     public String mailSendUi(Model model) {
         List<SysUser> userList = sysUserService.listAllUser();
@@ -24,6 +29,12 @@ public class MailController extends BaseController {
         return "view/frame/mail/mailSend";
     }
 
+    /**
+     * 发送邮件
+     * @param sysMail 邮件对象
+     * @param session HttpSession用来取当前登录的用户
+     * @return
+     */
     @RequestMapping("/mailSend.do")
     public String mailSend(SysMail sysMail, HttpSession session) {
         SysUser user = (SysUser) session.getAttribute("loginUser");
@@ -35,6 +46,12 @@ public class MailController extends BaseController {
         return "redirect:/mailController/mailSendHistoryUi.do";
     }
 
+    /**
+     * 存入草稿箱
+     * @param sysMail 邮件对象
+     * @param session HttpSession用来取当前登录的用户
+     * @return
+     */
     @RequestMapping("/saveDraft")
     public String saveDraft(SysMail sysMail, HttpSession session){
         SysUser user = (SysUser) session.getAttribute("loginUser");
@@ -46,12 +63,25 @@ public class MailController extends BaseController {
         return null;
     }
 
+    /**
+     * 删除邮件（变更邮件状态为3，进入垃圾箱未从数据库删除）
+     * @param mailId 对应的邮件ID
+     * @return
+     */
     @RequestMapping("/deleteMail")
     public String deleteMail(String mailId){
         int flag = sysMailService.deleteMail(mailId);
         return null;
     }
 
+    /**
+     * 发件箱页面准备ui
+     * @param session HttpSession取当前登录用户
+     * @param model
+     * @param pageNumber
+     * @param pageSize
+     * @return
+     */
     @RequestMapping(value = "/mailSendHistoryUi.do", produces = "application/json;charset=utf-8")
     public String mailSendHistoryUi(HttpSession session, Model model,
                                     @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
@@ -62,6 +92,14 @@ public class MailController extends BaseController {
         return "view/frame/mail/mailList";
     }
 
+    /**
+     * 收件箱准备ui
+     * @param session HttpSession取当前登录用户
+     * @param model
+     * @param pageNumber
+     * @param pageSize
+     * @return
+     */
     @RequestMapping(value = "/mailMyBox.do", produces = "application/json;charset=utf-8")
     public String mailMyBox(HttpSession session, Model model,
                             @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
@@ -72,6 +110,14 @@ public class MailController extends BaseController {
         return "view/frame/mail/mailList";
     }
 
+    /**
+     * 垃圾箱准备ui
+     * @param session HttpSession取当前登录用户
+     * @param model
+     * @param pageNumber
+     * @param pageSize
+     * @return
+     */
     @RequestMapping(value = "/mailDeleteBox.do", produces = "application/json;charset=utf-8")
     public String mailDeleteBox(HttpSession session, Model model,
                                 @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
@@ -82,6 +128,14 @@ public class MailController extends BaseController {
         return "view/frame/mail/mailList";
     }
 
+    /**
+     * 草稿箱准备ui
+     * @param session HttpSession取当前登录用户
+     * @param model
+     * @param pageNumber
+     * @param pageSize
+     * @return
+     */
     @RequestMapping(value = "/mailDraftBox.do", produces = "application/json;charset=utf-8")
     public String mailDraftBox(HttpSession session, Model model,
                                @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
@@ -90,5 +144,12 @@ public class MailController extends BaseController {
         PagedResult<SysMail> pageResult = sysMailService.listAllMailByFromUserIdDraftBox(user.getUserId(),pageNumber,pageSize);
         model.addAttribute("pageResult", pageResult);
         return "view/frame/mail/mailList";
+    }
+
+    @RequestMapping("/mailDetails.do")
+    public String mailDetails(String mailId, Model model){
+        SysMail sysMail = sysMailService.selectSysMailByMailId(mailId);
+        model.addAttribute("sysMail", sysMail);
+        return "view/frame/mail/mailDetails";
     }
 }

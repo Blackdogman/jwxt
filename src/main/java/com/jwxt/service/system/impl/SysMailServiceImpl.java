@@ -60,4 +60,9 @@ public class SysMailServiceImpl implements SysMailService {
         List<SysMail> sysMailList = sysMailMapper.listAllMailByFromUserIdDraftBox(userId);
         return PageBeanUtil.toPagedResult(sysMailList);
     }
+
+    @Override
+    public SysMail selectSysMailByMailId(String mailId) {
+        return sysMailMapper.selectByPrimaryKey(mailId);
+    }
 }

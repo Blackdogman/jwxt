@@ -17,4 +17,6 @@ public interface SysMailService {
     PagedResult<SysMail> listAllMailByToUserIdDeleteBox(String userId, Integer pageNumber, Integer pageSize);
 
     PagedResult<SysMail> listAllMailByFromUserIdDraftBox(String userId, Integer pageNumber, Integer pageSize);
+
+    SysMail selectSysMailByMailId(String mailId);
 }
