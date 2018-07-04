@@ -1,8 +1,8 @@
-package com.jwxt.model.system;
+package com.jwxt.model.sc;
 
 import java.util.Date;
 
-public class Student {
+public class ScStudent {
     private String id;
 
     private String studentId;
@@ -111,22 +111,5 @@ public class Student {
 
     public void setStudentPoliticalStatus(Integer studentPoliticalStatus) {
         this.studentPoliticalStatus = studentPoliticalStatus;
-    }
-
-    @Override
-    public String toString() {
-        return "ScStudent{" +
-                "id='" + id + '\'' +
-                ", studentId='" + studentId + '\'' +
-                ", studentName='" + studentName + '\'' +
-                ", studentBirthday=" + studentBirthday +
-                ", studentSex=" + studentSex +
-                ", studentAddress='" + studentAddress + '\'' +
-                ", studentNationality=" + studentNationality +
-                ", studentClassId='" + studentClassId + '\'' +
-                ", studentStatus=" + studentStatus +
-                ", studentCitizenId='" + studentCitizenId + '\'' +
-                ", studentPoliticalStatus=" + studentPoliticalStatus +
-                '}';
     }
 }

@@ -31,12 +31,12 @@
 			enableSelectByExample="false" selectByExampleQueryId="false"></table> <table 
 			tableName="class_info" domainObjectName="ClassInfo" enableCountByExample="false" 
 			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
-			selectByExampleQueryId="false"></table> <table tableName="course" domainObjectName="Course" 
+			selectByExampleQueryId="false"></table> <table tableName="course" domainObjectName="ScCourse"
 			enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" 
 			enableSelectByExample="false" selectByExampleQueryId="false"></table> <table 
-			tableName="score" domainObjectName="Score" enableCountByExample="false" enableUpdateByExample="false" 
+			tableName="score" domainObjectName="ScScore" enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table> 
-			<table tableName="student" domainObjectName="Student" enableCountByExample="false" 
+			<table tableName="student" domainObjectName="ScStudent" enableCountByExample="false"
 			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" 
 			selectByExampleQueryId="false"></table> <table tableName="sys_dictionary" 
 			domainObjectName="SysDictionary" enableCountByExample="false" enableUpdateByExample="false" 
