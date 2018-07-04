@@ -17,8 +17,6 @@
         <result column="name" property="name" jdbcType="VARCHAR"/>
 
     </resultMap>
-
-
     <sql id="Base_Column_List">
         id, score_subject_id, score_student_id, score_year, score_semester, score_achievement,
         score_bathch, score_status
@@ -164,7 +162,6 @@
             INNER JOIN score
                 ON student.student_id = score.score_student_id AND course.course_subject_id = score.score_subject_id
             INNER JOIN sys_dictionary ON sys_dictionary.`code` = score.score_subject_id AND sys_dictionary.`type` = '科目'
-
     </select>
 
 

@@ -1,6 +1,7 @@
 package com.jwxt.dao.sc;
 
 import com.jwxt.model.sc.ScScore;
+import com.jwxt.model.sc.ScView;
 
 import java.util.List;
 
@@ -19,5 +20,5 @@ public interface ScScoreMapper {
 
 	List<ScScore> seletByTeacherId(String teacher_id);
 
-	List<Object> selectNameAndScoreByTid(String teacher_id);
+	List<ScView> selectNameAndScoreByTid(String teacher_id);
 }

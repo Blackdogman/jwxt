@@ -98,9 +98,18 @@ public class TeacherController {
         String teacher_id = userService.seletTidbyname(userLoginName);
         //ID查询课程
         List<ScScore> sco = scoreService.seletByTeacherId(teacher_id);
-        List<Object> allscore;
+        List<ScView> allscore;
         //把得到的viewl类的值存入泛型类中
         allscore = scoreService.selectNameAndScoreByTid(teacher_id);
+        for (int i = 0; i < allscore.size(); i++) {
+            for (int j = allscore.size() - 1; j > i; j--) {
+                if(allscore.get(i).getStudentName().equals(allscore.get(j).getStudentName())
+                        && allscore.get(i).getName().equals(allscore.get(j).getName())
+                        && allscore.get(i).getScoreAchievement().equals(allscore.get(j).getScoreAchievement())){
+                    allscore.remove(j);
+                }
+            }
+        }
         model.addAttribute("score", allscore);
         return "view/sc/teacher/score";
     }

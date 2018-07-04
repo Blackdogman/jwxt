@@ -3,6 +3,7 @@ package com.jwxt.service.sc.teacher.impl;
 
 import com.jwxt.dao.sc.ScScoreMapper;
 import com.jwxt.model.sc.ScScore;
+import com.jwxt.model.sc.ScView;
 import com.jwxt.service.sc.teacher.ScScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class ScScoreServiceImpl implements ScScoreService {
 		return scoreMapper.seletByTeacherId(teacher_id);
 	}
 	@Override
-	public List<Object> selectNameAndScoreByTid(String teacher_id) {
+	public List<ScView> selectNameAndScoreByTid(String teacher_id) {
 		// TODO Auto-generated method stub
 		return scoreMapper.selectNameAndScoreByTid( teacher_id);
 	}
