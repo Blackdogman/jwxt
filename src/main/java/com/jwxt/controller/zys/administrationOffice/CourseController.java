@@ -127,7 +127,6 @@ public class CourseController {
             String key = (cVo.getCoursePeriod() + "-" + cVo.getCourseWeekday());
             map.put(key, cVo);
         }
-        System.out.println(map);
         //传给前台
         model.addAttribute("courseMap", map);
 
@@ -154,12 +153,6 @@ public class CourseController {
     public String addUI(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model,
                         @ModelAttribute("classId") String classId, @ModelAttribute("courseYear") String courseYear, @ModelAttribute("courseSemester") String courseSemester,
                         @ModelAttribute("msg") String msg) {
-
-        System.out.println(classId);
-        System.out.println(courseYear);
-        System.out.println(courseSemester);
-        System.out.println(msg);
-
         //构造年份下拉菜单数据
         Date date = new Date();
         Calendar calendar = Calendar.getInstance();
@@ -273,8 +266,6 @@ public class CourseController {
             String key = (cVo.getCoursePeriod() + "-" + cVo.getCourseWeekday());
             map.put(key, cVo);
         }
-
-        System.out.println(map);
         return map;
     }
 

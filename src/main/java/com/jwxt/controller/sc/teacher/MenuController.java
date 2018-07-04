@@ -56,13 +56,8 @@ public class MenuController {
         userLoginName = ((SysUser) (session.getAttribute("loginUser"))).getUserLoginName();
         //通过用户名拿到Id
         String userId = userService.seletTidbyname(userLoginName);
-        // System.out.println("----"+userId);
         String roleId = userRoleService.selectRoIdByUId(userId);
-        // System.out.println("----rid---"+roleId);
         List<ScMenu> menulist = menuService.queryAllMenu();
-        for (ScMenu menu2 : menulist) {
-            // System.out.println(menu2);
-        }
         model.addAttribute("roleid", roleId);
         model.addAttribute("menulist", menulist);
         return "view/sc/menu/menulist";
@@ -133,7 +128,6 @@ public class MenuController {
     public String fpMenu(Model model,
                          ScRole role, ScMenu menu, ScroleMenu roleMenu, String roleId, String[] menuIds) {
         // 1、收集数据
-        System.out.println("------------增加用户-----------" + roleId);
         roleMenu.setRoleId(roleId);
         // 首先看数据库里面有没有相同
         rolemenuService.deleteRoleMenuByRoleId(roleId);

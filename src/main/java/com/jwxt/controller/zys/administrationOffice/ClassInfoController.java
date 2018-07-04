@@ -154,7 +154,6 @@ public class ClassInfoController {
     @RequestMapping("/delete.do")
     public String delect(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model,
                          ZysClassInfo classInfo) {
-        System.out.println(classInfo);
         int u = classInfoService.setClassStatusToFalse(classInfo);
         return "redirect:/classInfoController/listPage.do";
     }
@@ -224,7 +223,6 @@ public class ClassInfoController {
     @RequestMapping("/update.do")
     public String update(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model,
                          ZysClassInfo classInfo) {
-        System.out.println(classInfo);
         int n = classInfoService.updateClassInfoByClassInfo(classInfo);
         return "redirect:/classInfoController/listPage.do";
     }

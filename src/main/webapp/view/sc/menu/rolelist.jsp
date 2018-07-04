@@ -27,7 +27,7 @@
 			<div class="padding border-bottom">
 				<ul class="search">
 					<li>
-						
+
 					</li>
 				</ul>
 			</div>
@@ -47,15 +47,17 @@
 						<td>${role.roleDesc }</td>
 						<td>${role.roleState }</td>
 						<td><fmt:formatDate value="${role.createTime }"/>
-						
+
 					</td>
 						<td><div class="button-group">
 								<a class="button border-blue"
 									href="<%=basePath%>RoleController/fpRoleUI.do?userLoginName=${userLoginName}"
 									"><span class="icon-trash-o"></span>
-									分配角色</a> 
+									分配角色</a>
+                                <a class="button border-yellow"
+                                    href="<%=basePath%>MenuController/fpMenuUI.do?roleId=${role.roleId }"><span
+                                    class="icon-trash-o"></span> 分配菜单</a>
 							</div></td>
-
 					</tr>
 				</c:forEach>
 			</table>

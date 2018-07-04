@@ -44,7 +44,6 @@ public class TeacherController {
     @RequestMapping("/list.do")
     public String login(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model,
                         ScTeacher teac, String userLoginName) {
-        System.out.println(userLoginName);
         userLoginName = ((SysUser)(session.getAttribute("loginUser"))).getUserLoginName();
         /**个人信息查询界面 根据用户名拿到用户ID */
         String teacher_id = userService.seletTidbyname(userLoginName);
@@ -62,16 +61,10 @@ public class TeacherController {
         String teacher_id = userService.seletTidbyname(userLoginName);
         /**根据用户ID拿到用户课程信息  */
         List<ScCourse> cou = courseService.selectByTeacherId(teacher_id);
-        for (ScCourse course1 : cou) {
-            System.out.println(course1);
-        }
 
         /**创建一个映射类scorview,利用scoreview类对象拿到课程名称，课程星期数和课程课时  */
 
         List<ScScoreView> cour = courseService.selectCourseById(teacher_id);
-        for (ScScoreView scoreView : cour) {
-            System.out.println(scoreView);
-        }
         model.addAttribute("course", cour);
         return "view/sc/teacher/lesson";
     }
@@ -80,7 +73,6 @@ public class TeacherController {
     public String updateUI(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model,
                            String teacherId) {
         /**更改密码  */
-        System.out.println(teacherId);
         ScUser a = userService.selectByPrimaryKeyAndStatus(teacherId);
         if (a != null) {
             model.addAttribute("teacherId", teacherId);
@@ -97,7 +89,6 @@ public class TeacherController {
         ScUser us = new ScUser();
         us.setUserLoginPwd(userLoginPwd);
         us.setUserId(teacherId);
-        System.out.println(us);
         userService.updateByPrimaryKeySelective(us);
         return "redirect:/TeacherController/list.do";
     }
@@ -110,15 +101,9 @@ public class TeacherController {
         String teacher_id = userService.seletTidbyname(userLoginName);
         //ID查询课程
         List<ScScore> sco = scoreService.seletByTeacherId(teacher_id);
-        for (ScScore score : sco) {
-            System.out.println(score);
-        }
         List<Object> allscore = new ArrayList<Object>();
         //把得到的viewl类的值存入泛型类中
         allscore = scoreService.selectNameAndScoreByTid(teacher_id);
-        for (int i = 0; i < allscore.size(); i++) {
-            System.out.println(allscore.get(i));
-        }
         model.addAttribute("score", allscore);
         return "view/sc/teacher/score";
     }
