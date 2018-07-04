@@ -18,9 +18,7 @@ private ScroleMenuMapper rolemenuMapper;
 
 	@Override
 	public void deleteRoleMenuByRoleId(String roleId) {
-		System.out.println("-----delate1-----");
 		rolemenuMapper.deleteRoleMenuByRoleId( roleId);
-		System.out.println("-----delate-----");
 	}
 
 }

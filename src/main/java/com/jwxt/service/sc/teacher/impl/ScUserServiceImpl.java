@@ -21,7 +21,6 @@ private ScUserMapper userMapper;
 	@Override
 	public String seletTidbyname(String userLoginName) {
 		// TODO Auto-generated method stub
-		System.out.println("返回的值：" + userMapper.seletTidbyname(userLoginName));
 		return userMapper.seletTidbyname(userLoginName);
 	}
 	@Override
@@ -32,7 +31,6 @@ private ScUserMapper userMapper;
 	@Override
 	public void updateByPrimaryKeySelective(ScUser us) {
 		userMapper.updateByPrimaryKeySelective(us);
-		System.out.println("增加成功");
 	}
 	@Override
 	public ScUser queryByUserId(String userId) {
