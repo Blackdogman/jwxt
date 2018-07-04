@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jwxt.dao.sc.ScUserRoleMapper">
+    <resultMap id="BaseResultMap" type="com.jwxt.model.sc.ScUserRole">
+        <id column="user_role_id" property="userRoleId" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="role_id" property="roleId" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        user_role_id, user_id, role_id
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user_role
+        where user_role_id = #{userRoleId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from sys_user_role
+        where user_role_id = #{userRoleId,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.jwxt.model.sc.ScUserRole">
+        insert into sys_user_role (user_role_id, user_id, role_id
+        )
+        values (#{userRoleId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.jwxt.model.sc.ScUserRole">
+        insert into sys_user_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userRoleId != null">
+                user_role_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="roleId != null">
+                role_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userRoleId != null">
+                #{userRoleId,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="roleId != null">
+                #{roleId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.jwxt.model.sc.ScUserRole">
+        update sys_user_role
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="roleId != null">
+                role_id = #{roleId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where user_role_id = #{userRoleId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.jwxt.model.sc.ScUserRole">
+        update sys_user_role
+        set user_id = #{userId,jdbcType=VARCHAR},
+            role_id = #{roleId,jdbcType=VARCHAR}
+        where user_role_id = #{userRoleId,jdbcType=VARCHAR}
+    </update>
+    <delete id="deleteUserRoleByUserId" parameterType="java.lang.String">
+        delete from sys_user_role
+        where user_id = #{userId,jdbcType=VARCHAR}
+    </delete>
+
+    <select id="selectRoIdByUId" resultType="java.lang.String" parameterType="java.lang.String">
+        select role_id
+        from sys_user_role
+        where user_id = #{userId,jdbcType=VARCHAR}
+    </select>
+</mapper>

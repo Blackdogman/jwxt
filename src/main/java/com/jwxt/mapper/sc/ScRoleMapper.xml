@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jwxt.dao.sc.ScRoleMapper">
+    <resultMap id="BaseResultMap" type="com.jwxt.model.sc.ScRole">
+        <id column="role_id" property="roleId" jdbcType="VARCHAR"/>
+        <result column="role_name" property="roleName" jdbcType="VARCHAR"/>
+        <result column="role_desc" property="roleDesc" jdbcType="VARCHAR"/>
+        <result column="role_state" property="roleState" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        role_id, role_name, role_desc, role_state, create_time
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_role
+        where role_id = #{roleId,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from sys_role
+        where role_id = #{roleId,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.jwxt.model.sc.ScRole">
+        insert into sys_role (role_id, role_name, role_desc,
+                              role_state, create_time)
+        values (#{roleId,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, #{roleDesc,jdbcType=VARCHAR},
+                #{roleState,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.jwxt.model.sc.ScRole">
+        insert into sys_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="roleId != null">
+                role_id,
+            </if>
+            <if test="roleName != null">
+                role_name,
+            </if>
+            <if test="roleDesc != null">
+                role_desc,
+            </if>
+            <if test="roleState != null">
+                role_state,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="roleId != null">
+                #{roleId,jdbcType=VARCHAR},
+            </if>
+            <if test="roleName != null">
+                #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="roleDesc != null">
+                #{roleDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="roleState != null">
+                #{roleState,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.jwxt.model.sc.ScRole">
+        update sys_role
+        <set>
+            <if test="roleName != null">
+                role_name = #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="roleDesc != null">
+                role_desc = #{roleDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="roleState != null">
+                role_state = #{roleState,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where role_id = #{roleId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.jwxt.model.sc.ScRole">
+        update sys_role
+        set role_name   = #{roleName,jdbcType=VARCHAR},
+            role_desc   = #{roleDesc,jdbcType=VARCHAR},
+            role_state  = #{roleState,jdbcType=VARCHAR},
+            create_time = #{createTime,jdbcType=TIMESTAMP}
+        where role_id = #{roleId,jdbcType=VARCHAR}
+    </update>
+    <select id="queryAllRole" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_role
+
+    </select>
+    <select id="queryAllRoleXZ" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT Distinct
+            sys_role.role_name,
+            sys_role.role_desc,
+            sys_role.role_state,
+            sys_role.role_id,
+            sys_role.create_time,
+            sys_user_role.role_id
+        FROM
+            sys_user_role
+            INNER JOIN
+            sys_role ON
+                         sys_role.role_id =
+                         sys_user_role.role_id
+        where user_id =
+              #{userId,jdbcType=VARCHAR}
+    </select>
+
+</mapper>
