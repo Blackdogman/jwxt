@@ -138,6 +138,7 @@
         <include refid="Base_Column_List"/>
         from course
         where course_teacher_id = #{courseTeacherId,jdbcType=VARCHAR}
+        ORDER BY course_weekday, course_period
     </select>
     <select id="selectCourseById" resultMap="scoreMap" parameterType="java.lang.String">
         SELECT
@@ -149,7 +150,6 @@
             INNER JOIN course ON teacher.teacher_id = course.course_teacher_id
             INNER JOIN sys_dictionary
                 ON sys_dictionary.`code` = course.course_subject_id AND sys_dictionary.`type` = '科目'
-
     </select>
 
 </mapper>

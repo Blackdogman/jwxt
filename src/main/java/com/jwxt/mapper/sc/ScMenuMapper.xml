@@ -127,4 +127,36 @@
         ORDER BY create_time ASC
     </select>
 
+    <select id="getUserMenu" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT DISTINCT
+            sys_menu.menu_id,
+            sys_menu.p_id,
+            sys_menu.anthorty_name,
+            sys_menu.anthorty_desc,
+            sys_menu.anthorty_url,
+            sys_menu.create_time
+        FROM sys_user
+            JOIN sys_role_menu ON sys_role_menu.role_id = sys_user.user_charactor
+            JOIN sys_menu ON sys_menu.menu_id = sys_role_menu.menu_id
+        WHERE 1 = 1
+              AND sys_user.user_id = #{userId, jdbcType=VARCHAR}
+              AND sys_menu.p_id = 'root';
+    </select>
+
+    <select id="listKidMenuByMenuIdAndUserId" resultMap="BaseResultMap">
+        SELECT DISTINCT
+            sys_menu.menu_id,
+            sys_menu.p_id,
+            sys_menu.anthorty_name,
+            sys_menu.anthorty_desc,
+            sys_menu.anthorty_url,
+            sys_menu.create_time
+        FROM sys_user
+            JOIN sys_role_menu ON sys_role_menu.role_id = sys_user.user_charactor
+            JOIN sys_menu ON sys_menu.menu_id = sys_role_menu.menu_id
+        WHERE 1 = 1
+            AND sys_user.user_id = #{0,jdbcType=VARCHAR}
+            AND sys_menu.p_id = #{1,jdbcType=VARCHAR};
+    </select>
+
 </mapper>

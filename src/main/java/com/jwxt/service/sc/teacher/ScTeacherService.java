@@ -6,8 +6,6 @@ import java.util.List;
 
 public interface ScTeacherService {
 
-	List<ScTeacher> selectByTeacherAll(String teacher_id);
-
-	
+    List<ScTeacher> selectByTeacherAll(String teacher_id);
 
 }

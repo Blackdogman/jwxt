@@ -38,4 +38,14 @@ private ScMenuMapper menuMapper;
 		return menuMapper.queryAllMenuXZ( roleId);
 	}
 
+	@Override
+	public List<ScMenu> getUserMenu(String userId) {
+		return menuMapper.getUserMenu(userId);
+	}
+
+	@Override
+	public List<ScMenu> listKidMenuByMenuIdAndUserId(String userId, String menuId) {
+		return menuMapper.listKidMenuByMenuIdAndUserId(userId, menuId);
+	}
+
 }

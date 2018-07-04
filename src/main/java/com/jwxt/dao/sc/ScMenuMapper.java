@@ -21,5 +21,8 @@ public interface ScMenuMapper {
 
 	List<ScMenu> queryAllMenuXZ(String roleId);
 
-	
+
+    List<ScMenu> getUserMenu(String userId);
+
+    List<ScMenu> listKidMenuByMenuIdAndUserId(String userId, String menuId);
 }

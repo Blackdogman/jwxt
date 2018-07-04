@@ -150,7 +150,6 @@
             INNER JOIN student ON student.student_class_id = course.course_class_id
             INNER JOIN score
                 ON student.student_id = score.score_student_id AND course.course_subject_id = score.score_subject_id
-
     </select>
 
     <select id="selectNameAndScoreByTid" resultMap="ViewMap" parameterType="java.lang.String">

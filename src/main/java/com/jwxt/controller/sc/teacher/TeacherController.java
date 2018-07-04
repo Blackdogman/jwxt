@@ -42,36 +42,33 @@ public class TeacherController {
     private static final long serialVersionUID = -1946926049646497072L;
 
     @RequestMapping("/list.do")
-    public String login(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model,
-                        ScTeacher teac, String userLoginName) {
-        userLoginName = ((SysUser)(session.getAttribute("loginUser"))).getUserLoginName();
+    public String login(HttpSession session, Model model) {
+        String userLoginName = ((SysUser) (session.getAttribute("loginUser"))).getUserLoginName();
         /**个人信息查询界面 根据用户名拿到用户ID */
-        String teacher_id = userService.seletTidbyname(userLoginName);
+        String teacher_user_id = userService.seletTidbyname(userLoginName);
         /**根据ID拿到教师表中的个人信息 */
-        List<ScTeacher> teach = teacherservice.selectByTeacherAll(teacher_id);
+        List<ScTeacher> teach = teacherservice.selectByTeacherAll(teacher_user_id);
         model.addAttribute("teacherList", teach);
         return "view/sc/teacher/list";
     }
 
     @RequestMapping("/lesson.do")
-    public String lesson(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model,
-                         ScTeacher teac, String userLoginName) {
-        userLoginName = ((SysUser)(session.getAttribute("loginUser"))).getUserLoginName();
-        /**课程表查询根据用户名拿到用户ID  */
-        String teacher_id = userService.seletTidbyname(userLoginName);
+    public String lesson(HttpSession session, Model model) {
+        String userLoginName = ((SysUser) (session.getAttribute("loginUser"))).getUserLoginName();
+//        /**课程表查询根据用户名拿到用户ID  */
+//        String teacher_id = userService.seletTidbyname(userLoginName);
         /**根据用户ID拿到用户课程信息  */
-        List<ScCourse> cou = courseService.selectByTeacherId(teacher_id);
+        List<ScCourse> cou = courseService.selectByTeacherId(userLoginName);
 
         /**创建一个映射类scorview,利用scoreview类对象拿到课程名称，课程星期数和课程课时  */
 
-        List<ScScoreView> cour = courseService.selectCourseById(teacher_id);
+        List<ScScoreView> cour = courseService.selectCourseById("n/a");
         model.addAttribute("course", cour);
         return "view/sc/teacher/lesson";
     }
 
     @RequestMapping("/updateUI.do")
-    public String updateUI(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model,
-                           String teacherId) {
+    public String updateUI(Model model, String teacherId) {
         /**更改密码  */
         ScUser a = userService.selectByPrimaryKeyAndStatus(teacherId);
         if (a != null) {
@@ -96,12 +93,12 @@ public class TeacherController {
     @RequestMapping("/score.do")
     public String score(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model,
                         String userLoginName) {
-        userLoginName = ((SysUser)(session.getAttribute("loginUser"))).getUserLoginName();
+        userLoginName = ((SysUser) (session.getAttribute("loginUser"))).getUserLoginName();
         /** 成绩查询 拿到用户ID */
         String teacher_id = userService.seletTidbyname(userLoginName);
         //ID查询课程
         List<ScScore> sco = scoreService.seletByTeacherId(teacher_id);
-        List<Object> allscore = new ArrayList<Object>();
+        List<Object> allscore;
         //把得到的viewl类的值存入泛型类中
         allscore = scoreService.selectNameAndScoreByTid(teacher_id);
         model.addAttribute("score", allscore);

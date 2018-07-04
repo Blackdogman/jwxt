@@ -29,7 +29,7 @@
         前台首页</a>
         &nbsp;&nbsp;<a href="##" class="button button-little bg-blue"><span class="icon-wrench"></span>
             清除缓存</a>
-        &nbsp;&nbsp;<a class="button button-little bg-red" href="login.html"><span
+        &nbsp;&nbsp;<a class="button button-little bg-red" href="<%=basePath%>"><span
                 class="icon-power-off"></span> 退出登录</a>
         <div style="color: white;">欢迎您：${sessionScope.loginUser.userLoginName}</div>
 
@@ -37,63 +37,16 @@
 </div>
 <div class="leftnav" style="overflow: auto; height: 90%;">
     <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
-    <h2><span class="icon-user"></span>管理员</h2>
-    <ul style="display:block">
-        <li><a href="<%=basePath%>MenuController/list.do" target="right"><span
-                class="icon-caret-right"></span>菜单管理</a></li>
-        <li><a href="<%=basePath%>RoleController/list.do" target="right"><span
-                class="icon-caret-right"></span>分配角色</a></li>
-    </ul>
-
-    <h2><span class="icon-user"></span>教务处</h2>
-    <ul style="display:block">
-        <li><a href="<%=basePath%>administrationOfficeController/studentListUi.do" target="right"><span
-                class="icon-caret-right"></span>学生管理</a></li>
-        <li><a href="<%=basePath%>administrationOfficeController/teacherListUi.do" target="right"><span
-                class="icon-caret-right"></span>老师管理</a></li>
-        <li><a href="<%=basePath%>administrationOfficeController/examAddUi.do" target="right"><span
-                class="icon-caret-right"></span>考试添加</a></li>
-        <li><a href="<%=basePath%>administrationOfficeController/scoreAddUi.do" target="right"><span
-                class="icon-caret-right"></span>分数添加</a></li>
-        <li><a href="<%=basePath%>classInfoController/listPage.do" target="right"><span
-                class="icon-caret-right"></span>班级查询</a></li>
-        <li><a href="<%=basePath%>courseController/courseList.do" target="right"><span
-                class="icon-caret-right"></span>课程查询</a></li>
-    </ul>
-    <h2><span class="icon-user"></span>学生</h2>
-    <ul style="display:block">
-        <li><a href="<%=basePath%>#" target="right"><span
-                class="icon-caret-right"></span>制作中....</a></li>
-    </ul>
-    <h2><span class="icon-user"></span>老师</h2>
-    <ul style="display:block">
-        <li><a href="<%=basePath%>TeacherController/list.do" target="right"><span
-                class="icon-caret-right"></span>个人基本信息</a></li>
-        <li><a href="<%=basePath%>TeacherController/lesson.do" target="right"><span
-                class="icon-caret-right"></span>课表查询</a></li>
-        <li><a href="<%=basePath%>TeacherController/score.do" target="right"><span
-                class="icon-caret-right"></span>成绩查询</a></li>
-    </ul>
-
-    <h2><span class="icon-user"></span>邮件</h2>
-    <ul style="display:block">
-        <li><a href="<%=basePath%>mailController/mailSendUi.do" target="right"><span
-                class="icon-caret-right"></span>发送邮件</a></li>
-        <li><a href="<%=basePath%>mailController/mailMyBox.do" target="right"><span
-                class="icon-caret-right"></span>收件箱</a></li>
-        <li><a href="<%=basePath%>mailController/mailSendHistoryUi.do" target="right"><span
-                class="icon-caret-right"></span>发件箱</a></li>
-        <li><a href="<%=basePath%>mailController/mailDraftBox.do" target="right"><span
-                class="icon-caret-right"></span>草稿箱</a></li>
-        <li><a href="<%=basePath%>mailController/mailDeleteBox.do" target="right"><span
-                class="icon-caret-right"></span>垃圾箱</a></li>
-    </ul>
+    <c:forEach items="${menuList}" var="menu">
+        <h2 onclick="menuClick('${menu.menuId}')"><span class="icon-user"></span>${menu.anthortyName}</h2>
+        <ul style="display:block" id="ul_${menu.menuId}"></ul>
+    </c:forEach>
 </div>
 <script type="text/javascript">
     function menuClick(menuId) {
         if ($("#ul_" + menuId + "").html() == '') {
             $.ajax({
-                url: "<%=basePath%>menuController/getKidMenuList.do",
+                url: "<%=basePath%>loginController/getKidMenuList.do",
                 data: {
                     menuId: menuId
                 },
