@@ -88,8 +88,9 @@ public class AdministrationOfficeRestController extends BaseController {
 
     /**
      * 在一个班中找对应姓名的学生
+     *
      * @param studentName 学生姓名（模糊查询）
-     * @param classId 班级的ID
+     * @param classId     班级的ID
      * @return 一个StudentVo对象集合
      */
     @RequestMapping("/searchStudentFormClassByStudentName.do")
@@ -101,13 +102,14 @@ public class AdministrationOfficeRestController extends BaseController {
 
     /**
      * 提交某个学生的打分
+     *
      * @param submitArray
      * @return 是否成功
      */
     @RequestMapping("/submitScore.do")
-    public int submitScore(@RequestParam("submitArray[]") String[] submitArray){
+    public int submitScore(@RequestParam("submitArray[]") String[] submitArray) {
         List<Map<String, Object>> parmMapList = new ArrayList<>();
-        for(String item : submitArray){
+        for (String item : submitArray) {
             Map<String, Object> parmMap = new HashMap<>();
             String[] kV = item.split("&bdm&");
             parmMap.put("scoreId", kV[0]);
