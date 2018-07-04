@@ -1,25 +1,15 @@
-package com.jwxt.model.administrationOffice;
+package com.jwxt.model.zys.administrationOffice;
 
-public class ClassInfo {
-    /**
-     * 班级ID
-     */
+public class ZysClassInfo {
+	/**班级ID */
     private String id;
-    /**
-     * 班级名称
-     */
+    /**班级名称 */
     private String className;
-    /**
-     * 毕业年
-     */
+    /**毕业年 */
     private String classGraduateYear;
-    /**
-     * 班主任ID
-     */
+    /**班主任ID */
     private String classTeacherId;
-    /**
-     * 班级状态
-     */
+    /**班级状态 */
     private Integer classStatus;
 
     public String getId() {
@@ -62,25 +52,25 @@ public class ClassInfo {
         this.classStatus = classStatus;
     }
 
-    public ClassInfo() {
-        super();
-    }
+	public ZysClassInfo() {
+		super();
+	}
 
-    public ClassInfo(String id, String className, String classGraduateYear, String classTeacherId,
-                     Integer classStatus) {
-        super();
-        this.id = id;
-        this.className = className;
-        this.classGraduateYear = classGraduateYear;
-        this.classTeacherId = classTeacherId;
-        this.classStatus = classStatus;
-    }
+	public ZysClassInfo(String id, String className, String classGraduateYear, String classTeacherId,
+                        Integer classStatus) {
+		super();
+		this.id = id;
+		this.className = className;
+		this.classGraduateYear = classGraduateYear;
+		this.classTeacherId = classTeacherId;
+		this.classStatus = classStatus;
+	}
 
-    @Override
-    public String toString() {
-        return "ZysClassInfo [id=" + id + ", className=" + className + ", classGraduateYear=" + classGraduateYear
-                + ", classTeacherId=" + classTeacherId + ", classStatus=" + classStatus + "]";
-    }
-
-
+	@Override
+	public String toString() {
+		return "ZysClassInfo [id=" + id + ", className=" + className + ", classGraduateYear=" + classGraduateYear
+				+ ", classTeacherId=" + classTeacherId + ", classStatus=" + classStatus + "]";
+	}
+    
+    
 }

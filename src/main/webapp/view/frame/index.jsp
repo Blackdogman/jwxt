@@ -35,7 +35,7 @@
 
     </div>
 </div>
-<div class="leftnav">
+<div class="leftnav" style="overflow: auto; height: 90%;">
     <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
     <h2><span class="icon-user"></span>教务处</h2>
     <ul style="display:block">
@@ -73,6 +73,13 @@
                 class="icon-caret-right"></span>菜单管理</a></li>
         <li><a href="<%=basePath%>RoleController/list.do" target="right"><span
                 class="icon-caret-right"></span>分配角色</a></li>
+    </ul>
+    <h2><span class="icon-user"></span>zys</h2>
+    <ul style="display:block">
+        <li><a href="<%=basePath%>classInfoController/listPage.do" target="right"><span
+                class="icon-caret-right"></span>班级查询</a></li>
+        <li><a href="<%=basePath%>courseController/courseList.do" target="right"><span
+                class="icon-caret-right"></span>课程查询</a></li>
     </ul>
 </div>
 <script type="text/javascript">

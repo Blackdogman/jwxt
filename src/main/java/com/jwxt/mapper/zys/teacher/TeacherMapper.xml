@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jwxt.dao.zys.teacher.ZysTeacherMapper">
+  <resultMap id="BaseResultMap" type="com.jwxt.model.zys.teacher.ZysTeacher">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="teacher_id" jdbcType="VARCHAR" property="teacherId" />
+    <result column="teacher_name" jdbcType="VARCHAR" property="teacherName" />
+    <result column="teacher_birthday" jdbcType="DATE" property="teacherBirthday" />
+    <result column="teacher_sex" jdbcType="INTEGER" property="teacherSex" />
+    <result column="teacher_address" jdbcType="VARCHAR" property="teacherAddress" />
+    <result column="teacher_nationality" jdbcType="VARCHAR" property="teacherNationality" />
+    <result column="teacher_status" jdbcType="INTEGER" property="teacherStatus" />
+    <result column="teacher_citizen_id" jdbcType="VARCHAR" property="teacherCitizenId" />
+    <result column="teacher_political_status" jdbcType="INTEGER" property="teacherPoliticalStatus" />
+    <result column="teacher_phone" jdbcType="VARCHAR" property="teacherPhone" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, teacher_id, teacher_name, teacher_birthday, teacher_sex, teacher_address, teacher_nationality, 
+    teacher_status, teacher_citizen_id, teacher_political_status, teacher_phone
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from teacher
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from teacher
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.jwxt.model.zys.teacher.ZysTeacher">
+    insert into teacher (id, teacher_id, teacher_name, 
+      teacher_birthday, teacher_sex, teacher_address, 
+      teacher_nationality, teacher_status, teacher_citizen_id, 
+      teacher_political_status, teacher_phone)
+    values (#{id,jdbcType=VARCHAR}, #{teacherId,jdbcType=VARCHAR}, #{teacherName,jdbcType=VARCHAR}, 
+      #{teacherBirthday,jdbcType=DATE}, #{teacherSex,jdbcType=INTEGER}, #{teacherAddress,jdbcType=VARCHAR}, 
+      #{teacherNationality,jdbcType=VARCHAR}, #{teacherStatus,jdbcType=INTEGER}, #{teacherCitizenId,jdbcType=VARCHAR}, 
+      #{teacherPoliticalStatus,jdbcType=INTEGER}, #{teacherPhone,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jwxt.model.zys.teacher.ZysTeacher">
+    insert into teacher
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="teacherId != null">
+        teacher_id,
+      </if>
+      <if test="teacherName != null">
+        teacher_name,
+      </if>
+      <if test="teacherBirthday != null">
+        teacher_birthday,
+      </if>
+      <if test="teacherSex != null">
+        teacher_sex,
+      </if>
+      <if test="teacherAddress != null">
+        teacher_address,
+      </if>
+      <if test="teacherNationality != null">
+        teacher_nationality,
+      </if>
+      <if test="teacherStatus != null">
+        teacher_status,
+      </if>
+      <if test="teacherCitizenId != null">
+        teacher_citizen_id,
+      </if>
+      <if test="teacherPoliticalStatus != null">
+        teacher_political_status,
+      </if>
+      <if test="teacherPhone != null">
+        teacher_phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherId != null">
+        #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherName != null">
+        #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherBirthday != null">
+        #{teacherBirthday,jdbcType=DATE},
+      </if>
+      <if test="teacherSex != null">
+        #{teacherSex,jdbcType=INTEGER},
+      </if>
+      <if test="teacherAddress != null">
+        #{teacherAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherNationality != null">
+        #{teacherNationality,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherStatus != null">
+        #{teacherStatus,jdbcType=INTEGER},
+      </if>
+      <if test="teacherCitizenId != null">
+        #{teacherCitizenId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherPoliticalStatus != null">
+        #{teacherPoliticalStatus,jdbcType=INTEGER},
+      </if>
+      <if test="teacherPhone != null">
+        #{teacherPhone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jwxt.model.zys.teacher.ZysTeacher">
+    update teacher
+    <set>
+      <if test="teacherId != null">
+        teacher_id = #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherName != null">
+        teacher_name = #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherBirthday != null">
+        teacher_birthday = #{teacherBirthday,jdbcType=DATE},
+      </if>
+      <if test="teacherSex != null">
+        teacher_sex = #{teacherSex,jdbcType=INTEGER},
+      </if>
+      <if test="teacherAddress != null">
+        teacher_address = #{teacherAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherNationality != null">
+        teacher_nationality = #{teacherNationality,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherStatus != null">
+        teacher_status = #{teacherStatus,jdbcType=INTEGER},
+      </if>
+      <if test="teacherCitizenId != null">
+        teacher_citizen_id = #{teacherCitizenId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherPoliticalStatus != null">
+        teacher_political_status = #{teacherPoliticalStatus,jdbcType=INTEGER},
+      </if>
+      <if test="teacherPhone != null">
+        teacher_phone = #{teacherPhone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jwxt.model.zys.teacher.ZysTeacher">
+    update teacher
+    set teacher_id = #{teacherId,jdbcType=VARCHAR},
+      teacher_name = #{teacherName,jdbcType=VARCHAR},
+      teacher_birthday = #{teacherBirthday,jdbcType=DATE},
+      teacher_sex = #{teacherSex,jdbcType=INTEGER},
+      teacher_address = #{teacherAddress,jdbcType=VARCHAR},
+      teacher_nationality = #{teacherNationality,jdbcType=VARCHAR},
+      teacher_status = #{teacherStatus,jdbcType=INTEGER},
+      teacher_citizen_id = #{teacherCitizenId,jdbcType=VARCHAR},
+      teacher_political_status = #{teacherPoliticalStatus,jdbcType=INTEGER},
+      teacher_phone = #{teacherPhone,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="queryTeahcerByStatus" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from teacher
+    where teacher_status in 
+    <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+    	#{item }
+    </foreach>
+  </select>
+</mapper>

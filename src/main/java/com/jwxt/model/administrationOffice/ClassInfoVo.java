@@ -77,7 +77,7 @@ public class ClassInfoVo {
 
     @Override
     public String toString() {
-        return "ClassInfoVo [id=" + id + ", className=" + className + ", classGraduateYear=" + classGraduateYear
+        return "ZysClassInfoVo [id=" + id + ", className=" + className + ", classGraduateYear=" + classGraduateYear
                 + ", teacherName=" + teacherName + ", classStatus=" + classStatus + "]";
     }
 
