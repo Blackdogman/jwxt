@@ -37,6 +37,14 @@
 </div>
 <div class="leftnav" style="overflow: auto; height: 90%;">
     <div class="leftnav-title"><strong><span class="icon-list"></span>菜单列表</strong></div>
+    <h2><span class="icon-user"></span>管理员</h2>
+    <ul style="display:block">
+        <li><a href="<%=basePath%>MenuController/list.do" target="right"><span
+                class="icon-caret-right"></span>菜单管理</a></li>
+        <li><a href="<%=basePath%>RoleController/list.do" target="right"><span
+                class="icon-caret-right"></span>分配角色</a></li>
+    </ul>
+
     <h2><span class="icon-user"></span>教务处</h2>
     <ul style="display:block">
         <li><a href="<%=basePath%>administrationOfficeController/studentListUi.do" target="right"><span
@@ -47,7 +55,26 @@
                 class="icon-caret-right"></span>考试添加</a></li>
         <li><a href="<%=basePath%>administrationOfficeController/scoreAddUi.do" target="right"><span
                 class="icon-caret-right"></span>分数添加</a></li>
+        <li><a href="<%=basePath%>classInfoController/listPage.do" target="right"><span
+                class="icon-caret-right"></span>班级查询</a></li>
+        <li><a href="<%=basePath%>courseController/courseList.do" target="right"><span
+                class="icon-caret-right"></span>课程查询</a></li>
     </ul>
+    <h2><span class="icon-user"></span>学生</h2>
+    <ul style="display:block">
+        <li><a href="<%=basePath%>#" target="right"><span
+                class="icon-caret-right"></span>制作中....</a></li>
+    </ul>
+    <h2><span class="icon-user"></span>老师</h2>
+    <ul style="display:block">
+        <li><a href="<%=basePath%>TeacherController/list.do" target="right"><span
+                class="icon-caret-right"></span>个人基本信息</a></li>
+        <li><a href="<%=basePath%>TeacherController/lesson.do" target="right"><span
+                class="icon-caret-right"></span>课表查询</a></li>
+        <li><a href="<%=basePath%>TeacherController/score.do" target="right"><span
+                class="icon-caret-right"></span>成绩查询</a></li>
+    </ul>
+
     <h2><span class="icon-user"></span>邮件</h2>
     <ul style="display:block">
         <li><a href="<%=basePath%>mailController/mailSendUi.do" target="right"><span
@@ -60,26 +87,6 @@
                 class="icon-caret-right"></span>草稿箱</a></li>
         <li><a href="<%=basePath%>mailController/mailDeleteBox.do" target="right"><span
                 class="icon-caret-right"></span>垃圾箱</a></li>
-    </ul>
-    <h2><span class="icon-user"></span>sc</h2>
-    <ul style="display:block">
-        <li><a href="<%=basePath%>TeacherController/list.do" target="right"><span
-                class="icon-caret-right"></span>个人基本信息</a></li>
-        <li><a href="<%=basePath%>TeacherController/lesson.do" target="right"><span
-                class="icon-caret-right"></span>课表查询</a></li>
-        <li><a href="<%=basePath%>TeacherController/score.do" target="right"><span
-                class="icon-caret-right"></span>成绩查询</a></li>
-        <li><a href="<%=basePath%>MenuController/list.do" target="right"><span
-                class="icon-caret-right"></span>菜单管理</a></li>
-        <li><a href="<%=basePath%>RoleController/list.do" target="right"><span
-                class="icon-caret-right"></span>分配角色</a></li>
-    </ul>
-    <h2><span class="icon-user"></span>zys</h2>
-    <ul style="display:block">
-        <li><a href="<%=basePath%>classInfoController/listPage.do" target="right"><span
-                class="icon-caret-right"></span>班级查询</a></li>
-        <li><a href="<%=basePath%>courseController/courseList.do" target="right"><span
-                class="icon-caret-right"></span>课程查询</a></li>
     </ul>
 </div>
 <script type="text/javascript">
