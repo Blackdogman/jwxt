@@ -17,6 +17,9 @@ import java.util.Map;
 @RequestMapping("/administrationOfficeController")
 public class AdministrationOfficeController extends BaseController {
 
+    /**
+     * 学生列表UI
+     */
     @RequestMapping(value = "/studentListUi.do", produces = "application/json;charset=utf-8")
     public String studentListUi(
             @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
@@ -29,6 +32,11 @@ public class AdministrationOfficeController extends BaseController {
         return "view/administrationOffice/student/studentList";
     }
 
+    /**
+     * 添加学生
+     *
+     * @param student 表单提交的学生模型
+     */
     @RequestMapping("/addStudent.do")
     public String addStudent(Student student, Model model) {
         student.setId(PrimaryKeyUtil.getPrimaryKey());
@@ -42,6 +50,11 @@ public class AdministrationOfficeController extends BaseController {
         return "redirect:/administrationOfficeController/studentListUi.do";
     }
 
+    /**
+     * 删除学生
+     *
+     * @param studentId 要删除学生的学号
+     */
     @RequestMapping("/deleteStudent.do")
     public String deleteStudent(String studentId) {
         int haveUser = sysUserService.userExist(studentId);
@@ -51,6 +64,14 @@ public class AdministrationOfficeController extends BaseController {
         return "redirect:/administrationOfficeController/studentListUi.do";
     }
 
+    /**
+     * 老师列表Ui
+     * @param pageNumber
+     * @param pageSize
+     * @param teacherVo
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/teacherListUi.do", produces = "application/json;charset=utf-8")
     public String studentListUi(
             @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
@@ -98,6 +119,7 @@ public class AdministrationOfficeController extends BaseController {
 
     /**
      * 添加分数页面跳转
+     *
      * @param model Model对象
      * @return 添加分数页面路径
      */
@@ -124,12 +146,13 @@ public class AdministrationOfficeController extends BaseController {
 
     /**
      * 学生页面的跳转ui,展示该学生未提交成绩的考试
+     *
      * @param studentId 学生的ID
      * @param model
      * @return 前往对应页面并携带该学生的ScoreVo对象
      */
     @RequestMapping("/studentExamUi.do")
-    public String studentExamUi(String studentId, Model model){
+    public String studentExamUi(String studentId, Model model) {
         List<ScoreVo> scoreVoList = scoreService.listScoreVoByStudentId(studentId);
         model.addAttribute("scoreList", scoreVoList);
         return "view/administrationOffice/score/scoreAddStudentScoreList";
