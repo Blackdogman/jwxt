@@ -1,6 +1,6 @@
 package com.jwxt.controller.ydj;
 
-import com.jwxt.model.system.Student;
+import com.jwxt.model.ydj.YdjStudent;
 import com.jwxt.model.ydj.YdjStudentCourse;
 import com.jwxt.service.ydj.YdjStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class YdjCourseController{
 	@RequestMapping("/course.do")
 	public String course(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {
 		YdjStudentCourse studentCourse = null;
-		Student st = (Student) (session.getAttribute("CLASSID"));
+		YdjStudent st = (YdjStudent) (session.getAttribute("CLASSID"));
 		System.err.println("班级编号：" + st.getStudentClassId());
 		String n = st.getStudentClassId();
 		list1 = studentService.queryCourseWeekPeriodByClassId(n);
