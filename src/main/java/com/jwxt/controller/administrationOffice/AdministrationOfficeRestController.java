@@ -62,7 +62,7 @@ public class AdministrationOfficeRestController extends BaseController {
      * @param semester  考试学期
      * @param examName  考试名称（字典）
      * @param classId   班级ID
-     * @return >0 代表有对应的考试计划 ==0 即代表没有
+     * @return >0 代表有对应的考试计划 == 0 即代表没有
      */
     @RequestMapping("/examExist.do")
     public int examExist(String subjectId, String year, String semester, String examName, String classId) {
