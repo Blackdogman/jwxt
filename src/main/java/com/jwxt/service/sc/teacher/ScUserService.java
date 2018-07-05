@@ -17,8 +17,9 @@ public interface ScUserService {
 
 	ScUser queryByUserId(String userId);
 
-	
 
-	
+	ScUser selectUserByLoginName(String teacherId);
 
+
+	int updateByLoginName(ScUser us);
 }

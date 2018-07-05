@@ -58,7 +58,7 @@ public class ClassInfoController {
     //TODO 前台传一个List用来装要查询班级的状态,暂时还没加,现在写死只查有效的班级
     @RequestMapping(value = "listPage.do", produces = "application/json;charset=utf-8")
     public ModelAndView listPage(@RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
-                                 @RequestParam(value = "pageSize", defaultValue = "3") Integer pageSize) {
+                                 @RequestParam(value = "pageSize", defaultValue = "99") Integer pageSize) {
         ModelAndView mv = new ModelAndView();
         //只查询状态为有效的班级
         List<Integer> statusList = new ArrayList<>();

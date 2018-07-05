@@ -183,7 +183,7 @@
   
   <update id="updateClassIdByClassIdAndStudentId" parameterType="java.util.Map">
   	update student
-  	set student_class_id = ${classId }
+  	set student_class_id = #{classId, jdbcType=VARCHAR }
   	where student_id in
   	<foreach collection="list" index="index" item="item" open="(" separator="," close=")">
     	#{item }

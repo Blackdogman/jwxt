@@ -99,10 +99,15 @@
     $(function () {
         var date = new Date();
         var year = date.getFullYear();
-        for (var i = year; i > year - 30; i--) {
+        for (var i = year + 10; i > year - 30; i--) {
             //<option value="2018" selected="selected">2018</option>
-            $("#input1233").append('<option value="' + i + '">' + i + '</option>');
-            $("#input12335").append('<option value="' + i + '">' + i + '</option>');
+            if(i == year){
+                $("#input1233").append('<option value="' + i + '" selected="selected">' + i + '</option>');
+                $("#input12335").append('<option value="' + i + '" selected="selected">' + i + '</option>');
+            }else {
+                $("#input1233").append('<option value="' + i + '">' + i + '</option>');
+                $("#input12335").append('<option value="' + i + '">' + i + '</option>');
+            }
         }
     });
 

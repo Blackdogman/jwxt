@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,52 +19,60 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/studentController")
-public class YdjStudentController{
-	@Autowired
-	private YdjStudentService studentService;
-	@Autowired
-	private YdjUserService userService;
-	@RequestMapping("/student.do")
-	public String student(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {
-		SysUser user   = (SysUser) session.getAttribute("loginUser");
-		System.err.println("有没有学生名字呢?："+user);
-		String name = user.getUserLoginName();
-		System.err.println("打印一下名字麻6666666: "+name );
-		 List<YdjStudentMessage> studentMessage= studentService.queryStudentMessage(name);
-		 System.err.println("学生信息打印出来吧："+studentMessage);
-		model.addAttribute("studentMessage", studentMessage);
-		return "view/ydj/student_message";
-}
-	@RequestMapping("/update.do")
-	public String updatePassWord(HttpServletRequest request, HttpServletResponse response, HttpSession session,Model model,String oldUserLoginPwd,String newUserLoginPwd) {
-		SysUser user   = (SysUser) session.getAttribute("loginUser");
-		String userLoginPwd = user.getUserLoginPwd();
-		String userLoginName = user.getUserLoginName();
+public class YdjStudentController {
+    @Autowired
+    private YdjStudentService studentService;
+    @Autowired
+    private YdjUserService userService;
+
+    @RequestMapping("/student.do")
+    public String student(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {
+        SysUser user = (SysUser) session.getAttribute("loginUser");
+        System.err.println("有没有学生名字呢?：" + user);
+        String name = user.getUserLoginName();
+        System.err.println("打印一下名字麻6666666: " + name);
+        List<YdjStudentMessage> studentMessage = studentService.queryStudentMessage(name);
+        System.err.println("学生信息打印出来吧：" + studentMessage);
+        model.addAttribute("studentMessage", studentMessage);
+        return "view/ydj/student_message";
+    }
+
+    @RequestMapping("/updateStudentPwd.do")
+    @ResponseBody
+    public boolean updateStudentPwd(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, String oldUserLoginPwd, String newUserLoginPwd) {
+        System.err.println("进入了这个方法");
+        SysUser user = (SysUser) session.getAttribute("loginUser");
+        String userLoginPwd = user.getUserLoginPwd();
+        String userLoginName = user.getUserLoginName();
+        System.err.println("密码判断：" + !userLoginPwd.equals(oldUserLoginPwd));
 //		判断旧密码是否正确
-		if (!userLoginPwd.equals(oldUserLoginPwd)) {
-			model.addAttribute("passWordError", "旧密码错误，请重新输入");
-			System.err.println("旧密码与新密码不一致，重新输入");
-			return "view/ydj/keyword_update";
-		}else {
+        if (!userLoginPwd.equals(oldUserLoginPwd)) {
+            model.addAttribute("passWordError", "旧密码错误，请重新输入");
+            System.err.println("旧密码与新密码不一致，重新输入");
+            return false;
+        } else {
 //			输入新密码，并且修改
-			System.err.println("旧密码与新密码一致，开始改密码");
-			System.err.println("新密码是什么呢？"+newUserLoginPwd);
-			user.setUserLoginName(userLoginName);
-			user.setUserLoginPwd(newUserLoginPwd);
-			YdjUser u = new YdjUser();
-			u.setUserLoginName(user.getUserLoginName());
-			u.setUserLoginPwd(user.getUserLoginPwd());
-			u.setUserCharactor(user.getUserCharactor());
-			u.setUserCreateTime(user.getUserCreateTime());
-			u.setUserId(user.getUserId());
-			u.setUserStatus(user.getUserStatus());
-			int n = userService.updateByPrimaryKeySelective(u);
-			System.err.println("密码该成功了的时候n是个什么值呢："+n);
-			return "view/frame/login";
-		}
-}
-	@RequestMapping("/relogin.do")
-	public String relogin(HttpServletRequest request, HttpServletResponse response, HttpSession session,Model model,String oldUserLoginPwd,String newUserLoginPwd) {
-		return "view/frame/login";
-	}	
+            System.err.println("旧密码与新密码一致，开始改密码");
+            System.err.println("新密码是什么呢？" + newUserLoginPwd);
+            user.setUserLoginName(userLoginName);
+            user.setUserLoginPwd(newUserLoginPwd);
+            YdjUser u = new YdjUser();
+            u.setUserLoginName(user.getUserLoginName());
+            u.setUserLoginPwd(user.getUserLoginPwd());
+            u.setUserCharactor(user.getUserCharactor());
+            u.setUserCreateTime(user.getUserCreateTime());
+            u.setUserId(user.getUserId());
+            u.setUserStatus(user.getUserStatus());
+            System.out.println("========================");
+            System.out.println(u);
+            int n = userService.updateByPrimaryKeySelective(u);
+            System.err.println("密码该成功了的时候n是个什么值呢：" + n);
+            return true;
+        }
+    }
+
+    @RequestMapping("/relogin.do")
+    public String relogin(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, String oldUserLoginPwd, String newUserLoginPwd) {
+        return "view/frame/login";
+    }
 }

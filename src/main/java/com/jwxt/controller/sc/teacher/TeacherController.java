@@ -58,11 +58,15 @@ public class TeacherController {
 //        /**课程表查询根据用户名拿到用户ID  */
 //        String teacher_id = userService.seletTidbyname(userLoginName);
         /**根据用户ID拿到用户课程信息  */
-        List<ScCourse> cou = courseService.selectByTeacherId(userLoginName);
+//        List<ScCourse> cou = courseService.selectByTeacherId(userLoginName);
 
         /**创建一个映射类scorview,利用scoreview类对象拿到课程名称，课程星期数和课程课时  */
-
-        List<ScScoreView> cour = courseService.selectCourseById("n/a");
+        List<ScScoreView> cour = courseService.selectCourseById(userLoginName);
+        String[][] tempArray = new String[7][7];
+        for(ScScoreView tempView : cour){
+            tempArray[Integer.parseInt(tempView.getCoursePeriod())][Integer.parseInt(tempView.getCourseWeekday())] = tempView.getName();
+        }
+        model.addAttribute("tempArray", tempArray);
         model.addAttribute("course", cour);
         return "view/sc/teacher/lesson";
     }
@@ -70,7 +74,7 @@ public class TeacherController {
     @RequestMapping("/updateUI.do")
     public String updateUI(Model model, String teacherId) {
         /**更改密码  */
-        ScUser a = userService.selectByPrimaryKeyAndStatus(teacherId);
+        ScUser a = userService.selectUserByLoginName(teacherId);
         if (a != null) {
             model.addAttribute("teacherId", teacherId);
             return "view/sc/teacher/update";
@@ -85,8 +89,8 @@ public class TeacherController {
         /** 更改密码 */
         ScUser us = new ScUser();
         us.setUserLoginPwd(userLoginPwd);
-        us.setUserId(teacherId);
-        userService.updateByPrimaryKeySelective(us);
+        us.setUserLoginName(teacherId);
+        int flag = userService.updateByLoginName(us);
         return "redirect:/TeacherController/list.do";
     }
 
@@ -95,17 +99,17 @@ public class TeacherController {
                         String userLoginName) {
         userLoginName = ((SysUser) (session.getAttribute("loginUser"))).getUserLoginName();
         /** 成绩查询 拿到用户ID */
-        String teacher_id = userService.seletTidbyname(userLoginName);
+//        String teacher_id = userService.seletTidbyname(userLoginName);
         //ID查询课程
-        List<ScScore> sco = scoreService.seletByTeacherId(teacher_id);
+//        List<ScScore> sco = scoreService.seletByTeacherId(teacher_id);
         List<ScView> allscore;
         //把得到的viewl类的值存入泛型类中
-        allscore = scoreService.selectNameAndScoreByTid(teacher_id);
+        allscore = scoreService.selectNameAndScoreByTid(userLoginName);
         for (int i = 0; i < allscore.size(); i++) {
             for (int j = allscore.size() - 1; j > i; j--) {
-                if(allscore.get(i).getStudentName().equals(allscore.get(j).getStudentName())
+                if (allscore.get(i).getStudentName().equals(allscore.get(j).getStudentName())
                         && allscore.get(i).getName().equals(allscore.get(j).getName())
-                        && allscore.get(i).getScoreAchievement().equals(allscore.get(j).getScoreAchievement())){
+                        && allscore.get(i).getScoreAchievement().equals(allscore.get(j).getScoreAchievement())) {
                     allscore.remove(j);
                 }
             }

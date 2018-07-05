@@ -25,5 +25,8 @@ public interface ScUserMapper {
 
 	ScUser selectByPrimaryKeyAndStatus(String teacherId);
 
-	
+
+    ScUser selectUserByLoginName(String teacherId);
+
+    int updateByLoginName(ScUser us);
 }

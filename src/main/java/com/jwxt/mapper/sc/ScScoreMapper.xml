@@ -162,6 +162,7 @@
             INNER JOIN score
                 ON student.student_id = score.score_student_id AND course.course_subject_id = score.score_subject_id
             INNER JOIN sys_dictionary ON sys_dictionary.`code` = score.score_subject_id AND sys_dictionary.`type` = '科目'
+        WHERE teacher_id = #{0, jdbcType=VARCHAR}
     </select>
 
 

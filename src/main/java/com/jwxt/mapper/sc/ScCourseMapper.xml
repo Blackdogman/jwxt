@@ -150,6 +150,7 @@
             INNER JOIN course ON teacher.teacher_id = course.course_teacher_id
             INNER JOIN sys_dictionary
                 ON sys_dictionary.`code` = course.course_subject_id AND sys_dictionary.`type` = '科目'
+        WHERE teacher_id = #{0, jdbcType=VARCHAR}
     </select>
 
 </mapper>

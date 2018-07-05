@@ -122,5 +122,32 @@
         user_status = 1
     </select>
 
+    <select id="selectUserByLoginName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_user
+        where user_login_name = #{0,jdbcType=VARCHAR}
+    </select>
 
+    <update id="updateByLoginName" parameterType="com.jwxt.model.sc.ScUser">
+        update sys_user
+        <set>
+            <if test="userLoginName != null">
+                user_login_name = #{userLoginName,jdbcType=VARCHAR},
+            </if>
+            <if test="userLoginPwd != null">
+                user_login_pwd = #{userLoginPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="userCreateTime != null">
+                user_create_time = #{userCreateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="userCharactor != null">
+                user_charactor = #{userCharactor,jdbcType=VARCHAR},
+            </if>
+            <if test="userStatus != null">
+                user_status = #{userStatus,jdbcType=INTEGER},
+            </if>
+        </set>
+        where user_login_name = #{userLoginName ,jdbcType=VARCHAR}
+    </update>
 </mapper>

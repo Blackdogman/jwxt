@@ -37,8 +37,16 @@ private ScUserMapper userMapper;
 		// TODO Auto-generated method stub
 		return userMapper.selectByPrimaryKey(userId);
 	}
-	
-	
-	
+
+	@Override
+	public ScUser selectUserByLoginName(String teacherId) {
+		return userMapper.selectUserByLoginName(teacherId);
+	}
+
+	@Override
+	public int updateByLoginName(ScUser us) {
+		return userMapper.updateByLoginName(us);
+	}
+
 
 }
