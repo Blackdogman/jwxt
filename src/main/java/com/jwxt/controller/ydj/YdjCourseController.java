@@ -41,7 +41,7 @@ public class YdjCourseController{
 			arr[studPeriod-1][studWeek-1] = studentCourse.getCourseName();
 		}
 		model.addAttribute("course2", arr);
-		return "view/frame/student_course";
+		return "view/ydj/student_course";
 	}
 
 }

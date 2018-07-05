@@ -20,8 +20,6 @@ public class YdjUserController {
     @RequestMapping("/update.do")
     public String update(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model,
                          YdjUser user) {
-        System.err.println(user);
-
         return "view/frame/login";
 
     }

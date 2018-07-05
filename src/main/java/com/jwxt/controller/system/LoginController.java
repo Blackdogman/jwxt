@@ -4,7 +4,11 @@ import com.framework.controller.BaseController;
 import com.jwxt.model.sc.ScMenu;
 import com.jwxt.model.sc.ScUser;
 import com.jwxt.model.system.SysUser;
+import com.jwxt.model.ydj.YdjClassInfo;
+import com.jwxt.model.ydj.YdjStudent;
 import com.jwxt.service.sc.menu.ScMenuService;
+import com.jwxt.service.ydj.YdjClassInfoService;
+import com.jwxt.service.ydj.YdjStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +25,10 @@ import java.util.List;
 public class LoginController extends BaseController {
     @Autowired
     private ScMenuService menuService;
+    @Autowired
+    private YdjStudentService ydjStudentService;
+    @Autowired
+    private YdjClassInfoService ydjClassInfoService;
 
     @RequestMapping("/login.do")
     public String login(SysUser user, Model model, HttpSession session){
@@ -30,6 +38,15 @@ public class LoginController extends BaseController {
             return "view/frame/login";
         }else {
             session.setAttribute("loginUser", reUser);
+            YdjStudent s = ydjStudentService.queryStudentByuserLoginName(user.getUserLoginName());
+            String id = s.getStudentId();
+            session.setAttribute("STUDENTid", id);
+            session.setAttribute("CLASSID", s);
+            YdjClassInfo c = ydjClassInfoService.queryClassById(s.getStudentClassId());
+            model.addAttribute("classId", "所属班级");
+            session.setAttribute("CLA", c);
+
+
             List<ScMenu> menuList = menuService.getUserMenu(reUser.getUserId());
             model.addAttribute("menuList", menuList);
             return "view/frame/index";

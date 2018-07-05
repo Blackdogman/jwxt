@@ -25,6 +25,6 @@ public String score(HttpServletRequest request, HttpServletResponse response, Ht
 	List<YdjScoreStudent> list= studentService.queryScoreById(id);
 	System.err.println("有没有数据呢？："+list);
 	model.addAttribute("scoreStudent", list);
-	return "view/frame/student_score";
+	return "view/ydj/student_score";
 }
 }
