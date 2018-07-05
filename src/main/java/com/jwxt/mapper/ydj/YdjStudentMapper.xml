@@ -164,10 +164,10 @@
     where id = #{id,jdbcType=VARCHAR}
   </update>
    <select id="queryStudentByuserLoginName" resultMap="BaseResultMap" parameterType="java.lang.String" >
-    select student_class_id 
+    select
     <include refid="Base_Column_List" />
     from student
-    where student_name = #{userLoginName,jdbcType=VARCHAR}
+    where student_id = #{userLoginName,jdbcType=VARCHAR}
   </select>
   <select id="queryCourseWeekPeriodByClassId" resultType="com.jwxt.model.ydj.YdjScoreStudent" parameterType="java.lang.String" >
   SELECT DISTINCT

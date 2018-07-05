@@ -39,14 +39,16 @@ public class LoginController extends BaseController {
         }else {
             session.setAttribute("loginUser", reUser);
             YdjStudent s = ydjStudentService.queryStudentByuserLoginName(user.getUserLoginName());
-            String id = s.getStudentId();
-            session.setAttribute("STUDENTid", id);
-            session.setAttribute("CLASSID", s);
-            YdjClassInfo c = ydjClassInfoService.queryClassById(s.getStudentClassId());
-            model.addAttribute("classId", "所属班级");
-            session.setAttribute("CLA", c);
-
-
+            if(s != null){
+                String id = s.getStudentId();
+                session.setAttribute("STUDENTid", id);
+                session.setAttribute("CLASSID", s);
+                YdjClassInfo c = ydjClassInfoService.queryClassById(s.getStudentClassId());
+                if( c != null){
+                    model.addAttribute("classId", "所属班级");
+                    session.setAttribute("CLA", c);
+                }
+            }
             List<ScMenu> menuList = menuService.getUserMenu(reUser.getUserId());
             model.addAttribute("menuList", menuList);
             return "view/frame/index";

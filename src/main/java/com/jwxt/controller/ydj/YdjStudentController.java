@@ -25,7 +25,7 @@ public class YdjStudentController{
 	private YdjUserService userService;
 	@RequestMapping("/student.do")
 	public String student(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) {
-		SysUser user   = (SysUser) session.getAttribute("USER");
+		SysUser user   = (SysUser) session.getAttribute("loginUser");
 		System.err.println("有没有学生名字呢?："+user);
 		String name = user.getUserLoginName();
 		System.err.println("打印一下名字麻6666666: "+name );
@@ -36,7 +36,7 @@ public class YdjStudentController{
 }
 	@RequestMapping("/update.do")
 	public String updatePassWord(HttpServletRequest request, HttpServletResponse response, HttpSession session,Model model,String oldUserLoginPwd,String newUserLoginPwd) {
-		SysUser user   = (SysUser) session.getAttribute("USER");
+		SysUser user   = (SysUser) session.getAttribute("loginUser");
 		String userLoginPwd = user.getUserLoginPwd();
 		String userLoginName = user.getUserLoginName();
 //		判断旧密码是否正确
