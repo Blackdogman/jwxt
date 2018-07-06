@@ -84,7 +84,6 @@
             var itemStr = inputId + "&bdm&" + $(this).val();
             submitArray.push(itemStr);
         });
-        console.log(submitArray);
         $.ajax({
             url: "<%=basePath%>administrationOfficeController/submitScore.do",
             data: {

@@ -39,9 +39,12 @@
                     type: "post",
                     success: function(req){
                         if(req){
+                            alert(1);
                             window.parent.document.location.href = "<%=basePath%>view/frame/login.jsp";
                         }else {
-                        }   window.location.href = "<%=basePath%>view/ydj/keyword_update.jsp";
+                            alert(2);
+                            window.location.href = "<%=basePath%>view/ydj/keyword_update.jsp";
+                        }
                     }
                 });
             });

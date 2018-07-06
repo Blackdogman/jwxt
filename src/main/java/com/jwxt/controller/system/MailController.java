@@ -41,7 +41,7 @@ public class MailController extends BaseController {
     public String mailSend(SysMail sysMail, HttpSession session) {
         SysUser user = (SysUser) session.getAttribute("loginUser");
         int flag;
-        if (sysMail.getMailId() != null && "".equals(sysMail.getMailId())) {
+        if (sysMail.getMailId() != null && !"".equals(sysMail.getMailId())) {
             sysMail.setFlag("1");
             sysMail.setFromUserId(user.getUserId());
             sysMail.setCreateTime(new Date());
@@ -70,7 +70,7 @@ public class MailController extends BaseController {
     @ResponseBody
     public String saveDraft(SysMail sysMail, HttpSession session) {
         SysUser user = (SysUser) session.getAttribute("loginUser");
-        if ("".equals(sysMail.getMailId()) && sysMail.getMailId() != null) {
+        if (!"".equals(sysMail.getMailId()) && sysMail.getMailId() != null) {
             sysMail.setFlag("0");
             sysMail.setFromUserId(user.getUserId());
             sysMail.setCreateTime(new Date());
