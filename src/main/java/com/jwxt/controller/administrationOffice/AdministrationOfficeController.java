@@ -47,7 +47,12 @@ public class AdministrationOfficeController extends BaseController {
             return "view/administrationOffice/student/studentAdd";
         }
         int flag = studentService.addStudent(student);
-        return "redirect:/administrationOfficeController/studentListUi.do";
+        if(flag > 0){
+            return "redirect:/administrationOfficeController/studentListUi.do";
+        }else {
+            model.addAttribute("errorMessage", "添加学生异常");
+            return "view/administrationOffice/student/studentAdd";
+        }
     }
 
     /**
@@ -59,18 +64,13 @@ public class AdministrationOfficeController extends BaseController {
     public String deleteStudent(String studentId) {
         int haveUser = sysUserService.userExist(studentId);
         if (haveUser == 1) {
-            int flag = studentService.deleteStudentByStudentId(studentId);
+            studentService.deleteStudentByStudentId(studentId);
         }
         return "redirect:/administrationOfficeController/studentListUi.do";
     }
 
     /**
      * 老师列表Ui
-     * @param pageNumber
-     * @param pageSize
-     * @param teacherVo
-     * @param model
-     * @return
      */
     @RequestMapping(value = "/teacherListUi.do", produces = "application/json;charset=utf-8")
     public String studentListUi(
@@ -84,6 +84,11 @@ public class AdministrationOfficeController extends BaseController {
         return "view/administrationOffice/teacher/teacherList";
     }
 
+    /**
+     * 添加老师
+     *
+     * @param teacher 表单提交的老师数据
+     */
     @RequestMapping("/addTeacher.do")
     public String addTeacher(Teacher teacher, Model model) {
         teacher.setId(PrimaryKeyUtil.getPrimaryKey());
@@ -94,18 +99,27 @@ public class AdministrationOfficeController extends BaseController {
             return "view/administrationOffice/teacher/teacherAdd";
         }
         int flag = teacherService.addTeacher(teacher);
-        return "redirect:/administrationOfficeController/teacherListUi.do";
+        if(flag >0){
+            return "redirect:/administrationOfficeController/teacherListUi.do";
+        }else {
+            model.addAttribute("errorMessage", "添加失败");
+            return "view/administrationOffice/teacher/teacherAdd";
+        }
+
     }
 
     @RequestMapping("/deleteTeacher.do")
     public String deleteTeacher(String teacherId) {
         int haveUser = sysUserService.userExist(teacherId);
         if (haveUser == 1) {
-            int flag = teacherService.deleteTeacherByTeacherId(teacherId);
+            teacherService.deleteTeacherByTeacherId(teacherId);
         }
         return "redirect:/administrationOfficeController/teacherListUi.do";
     }
 
+    /**
+     * 考试添加页面
+     */
     @RequestMapping("/examAddUi.do")
     public String examAddUi(Model model) {
         List<Map<String, String>> xuekeDictionary = dictionaryTools.listDictionaryNameByType("科目");
@@ -148,7 +162,6 @@ public class AdministrationOfficeController extends BaseController {
      * 学生页面的跳转ui,展示该学生未提交成绩的考试
      *
      * @param studentId 学生的ID
-     * @param model
      * @return 前往对应页面并携带该学生的ScoreVo对象
      */
     @RequestMapping("/studentExamUi.do")

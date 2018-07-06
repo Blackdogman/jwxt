@@ -21,8 +21,6 @@ import java.util.List;
 public class MailController extends BaseController {
     /**
      * 发件页面
-     * @param model
-     * @return
      */
     @RequestMapping("/mailSendUi.do")
     public String mailSendUi(Model model, String mailId) {
@@ -35,96 +33,95 @@ public class MailController extends BaseController {
 
     /**
      * 发送邮件
+     *
      * @param sysMail 邮件对象
      * @param session HttpSession用来取当前登录的用户
-     * @return
      */
     @RequestMapping("/mailSend.do")
     public String mailSend(SysMail sysMail, HttpSession session) {
         SysUser user = (SysUser) session.getAttribute("loginUser");
-        if(sysMail.getMailId() != null && sysMail.getMailId() != ""){
+        int flag;
+        if (sysMail.getMailId() != null && "".equals(sysMail.getMailId())) {
             sysMail.setFlag("1");
             sysMail.setFromUserId(user.getUserId());
             sysMail.setCreateTime(new Date());
-            int flag = sysMailService.sendMailUpdate(sysMail);
-        }else {
+            flag = sysMailService.sendMailUpdate(sysMail);
+        } else {
             sysMail.setMailId(PrimaryKeyUtil.getPrimaryKey());
             sysMail.setFlag("1");
             sysMail.setFromUserId(user.getUserId());
             sysMail.setCreateTime(new Date());
-            int flag = sysMailService.sendMail(sysMail);
+            flag = sysMailService.sendMail(sysMail);
         }
-        return "redirect:/mailController/mailSendHistoryUi.do";
+        if (flag > 0) {
+            return "redirect:/mailController/mailSendHistoryUi.do";
+        } else {
+            return "redirect:/mailController/mailSendUi.do?mailId=" + sysMail.getMailId();
+        }
     }
 
     /**
      * 存入草稿箱
+     *
      * @param sysMail 邮件对象
      * @param session HttpSession用来取当前登录的用户
-     * @return
      */
     @RequestMapping("/saveDraft.do")
     @ResponseBody
-    public String saveDraft(SysMail sysMail, HttpSession session, Model model){
+    public String saveDraft(SysMail sysMail, HttpSession session) {
         SysUser user = (SysUser) session.getAttribute("loginUser");
-        if(sysMail.getMailId() != "" && sysMail.getMailId() != null){
+        if ("".equals(sysMail.getMailId()) && sysMail.getMailId() != null) {
             sysMail.setFlag("0");
             sysMail.setFromUserId(user.getUserId());
             sysMail.setCreateTime(new Date());
-            int flag = sysMailService.saveDraftUpdate(sysMail);
-        }else {
+            sysMailService.saveDraftUpdate(sysMail);
+        } else {
             sysMail.setMailId(PrimaryKeyUtil.getPrimaryKey());
             sysMail.setFlag("0");
             sysMail.setFromUserId(user.getUserId());
             sysMail.setCreateTime(new Date());
-            int flag = sysMailService.saveDraft(sysMail);
+            sysMailService.saveDraft(sysMail);
         }
         return sysMail.getMailId();
     }
 
     /**
      * 删除邮件（变更邮件状态为3，进入垃圾箱未从数据库删除）
+     *
      * @param mailId 对应的邮件ID
-     * @return
      */
     @RequestMapping("/deleteMail.do")
-    public String deleteMail(String mailId){
-        int flag = sysMailService.deleteMail(mailId);
+    public String deleteMail(String mailId) {
+        sysMailService.deleteMail(mailId);
         return "redirect:/mailController/mailMyBox.do";
     }
 
     /**
      * 发件箱页面准备ui
+     *
      * @param session HttpSession取当前登录用户
-     * @param model
-     * @param pageNumber
-     * @param pageSize
-     * @return
      */
     @RequestMapping(value = "/mailSendHistoryUi.do", produces = "application/json;charset=utf-8")
     public String mailSendHistoryUi(HttpSession session, Model model,
                                     @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
                                     @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize) {
         SysUser user = (SysUser) session.getAttribute("loginUser");
-        PagedResult<SysMailVo> pageResult = sysMailService.listAllMailByFromUserId(user.getUserId(),pageNumber,pageSize);
+        PagedResult<SysMailVo> pageResult = sysMailService.listAllMailByFromUserId(user.getUserId(), pageNumber, pageSize);
         model.addAttribute("pageResult", pageResult);
         return "view/frame/mail/mailList";
     }
 
     /**
      * 收件箱准备ui
+     *
      * @param session HttpSession取当前登录用户
-     * @param model
-     * @param pageNumber
-     * @param pageSize
-     * @return
      */
     @RequestMapping(value = "/mailMyBox.do", produces = "application/json;charset=utf-8")
     public String mailMyBox(HttpSession session, Model model,
                             @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
                             @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize) {
         SysUser user = (SysUser) session.getAttribute("loginUser");
-        PagedResult<SysMailVo> pageResult = sysMailService.listAllMailByToUserId(user.getUserId(),pageNumber,pageSize);
+        PagedResult<SysMailVo> pageResult = sysMailService.listAllMailByToUserId(user.getUserId(), pageNumber, pageSize);
         model.addAttribute("pageResult", pageResult);
         model.addAttribute("mailBoxType", 1);
         return "view/frame/mail/mailList";
@@ -132,48 +129,41 @@ public class MailController extends BaseController {
 
     /**
      * 垃圾箱准备ui
+     *
      * @param session HttpSession取当前登录用户
-     * @param model
-     * @param pageNumber
-     * @param pageSize
-     * @return
      */
     @RequestMapping(value = "/mailDeleteBox.do", produces = "application/json;charset=utf-8")
     public String mailDeleteBox(HttpSession session, Model model,
                                 @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
                                 @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize) {
         SysUser user = (SysUser) session.getAttribute("loginUser");
-        PagedResult<SysMailVo> pageResult = sysMailService.listAllMailByToUserIdDeleteBox(user.getUserId(),pageNumber,pageSize);
+        PagedResult<SysMailVo> pageResult = sysMailService.listAllMailByToUserIdDeleteBox(user.getUserId(), pageNumber, pageSize);
         model.addAttribute("pageResult", pageResult);
         return "view/frame/mail/mailList";
     }
 
     /**
      * 草稿箱准备ui
+     *
      * @param session HttpSession取当前登录用户
-     * @param model
-     * @param pageNumber
-     * @param pageSize
-     * @return
      */
     @RequestMapping(value = "/mailDraftBox.do", produces = "application/json;charset=utf-8")
     public String mailDraftBox(HttpSession session, Model model,
                                @RequestParam(value = "pageNumber", defaultValue = "1") Integer pageNumber,
                                @RequestParam(value = "pageSize", defaultValue = "5") Integer pageSize) {
         SysUser user = (SysUser) session.getAttribute("loginUser");
-        PagedResult<SysMailVo> pageResult = sysMailService.listAllMailByFromUserIdDraftBox(user.getUserId(),pageNumber,pageSize);
+        PagedResult<SysMailVo> pageResult = sysMailService.listAllMailByFromUserIdDraftBox(user.getUserId(), pageNumber, pageSize);
         model.addAttribute("pageResult", pageResult);
         return "view/frame/mail/mailListDraft";
     }
 
     /**
      * 通过Mail的ID得到对应的mail
-     * @param mailId
-     * @param model
-     * @return
+     *
+     * @param mailId 邮件ID
      */
     @RequestMapping("/mailDetails.do")
-    public String mailDetails(String mailId, Model model){
+    public String mailDetails(String mailId, Model model) {
         SysMailVo sysMail = sysMailService.selectSysMailByMailId(mailId);
         model.addAttribute("sysMail", sysMail);
         return "view/frame/mail/mailDetails";
